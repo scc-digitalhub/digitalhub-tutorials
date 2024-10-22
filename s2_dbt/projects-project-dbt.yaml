@@ -1,0 +1,257 @@
+id: project-dbt
+key: store://project-dbt
+kind: project
+metadata:
+  name: project-dbt
+  updated_by: khurshid@fbk.eu
+  project: project-dbt
+  updated: 2024-10-22T12:36:25.798Z
+  created_by: khurshid@fbk.eu
+  created: 2024-10-22T12:36:14.102Z
+name: project-dbt
+project: project-dbt
+spec:
+  dataitems:
+    - id: 52e3f5ac-1c1a-449a-a4f9-ff286314c63c
+      key: store://project-dbt/dataitem/table/employees-dbt:52e3f5ac-1c1a-449a-a4f9-ff286314c63c
+      kind: table
+      metadata:
+        created: 2024-10-22T12:36:16.679Z
+        name: employees-dbt
+        updated_by: khurshid@fbk.eu
+        project: project-dbt
+        updated: 2024-10-22T12:36:16.679Z
+        embedded: true
+        created_by: khurshid@fbk.eu
+        version: 52e3f5ac-1c1a-449a-a4f9-ff286314c63c
+      name: employees-dbt
+      project: project-dbt
+      spec:
+        path: https://gist.githubusercontent.com/kevin336/acbb2271e66c10a5b73aacf82ca82784/raw/e38afe62e088394d61ed30884dd50a6826eee0a8/employees.csv
+      status:
+        state: CREATED
+      user: khurshid@fbk.eu
+    - id: 1e7f488f-b982-42e7-9d20-61928e66d6aa
+      key: store://project-dbt/dataitem/table/employees_v52e3f5ac-1c1a-449a-a4f9-ff286314c63c:1e7f488f-b982-42e7-9d20-61928e66d6aa
+      kind: table
+      metadata:
+        created: 2024-10-22T12:36:23.028Z
+        name: employees_v52e3f5ac-1c1a-449a-a4f9-ff286314c63c
+        updated_by: khurshid@fbk.eu
+        project: project-dbt
+        updated: 2024-10-22T12:36:23.028Z
+        embedded: true
+        created_by: khurshid@fbk.eu
+        version: 1e7f488f-b982-42e7-9d20-61928e66d6aa
+      name: employees_v52e3f5ac-1c1a-449a-a4f9-ff286314c63c
+      project: project-dbt
+      spec:
+        path: sql://digitalhub/public/employees_v52e3f5ac-1c1a-449a-a4f9-ff286314c63c
+      status:
+        state: CREATED
+      user: khurshid@fbk.eu
+    - id: 1f0a7308-568d-43a1-abc5-741257152ef4
+      key: store://project-dbt/dataitem/table/department-50:1f0a7308-568d-43a1-abc5-741257152ef4
+      kind: table
+      metadata:
+        created: 2024-10-22T12:36:25.724Z
+        name: department-50
+        updated_by: khurshid@fbk.eu
+        project: project-dbt
+        updated: 2024-10-22T12:36:25.724Z
+        embedded: true
+        created_by: khurshid@fbk.eu
+        version: 1f0a7308-568d-43a1-abc5-741257152ef4
+      name: department-50
+      project: project-dbt
+      spec:
+        schema:
+          fields:
+            - name: EMPLOYEE_ID
+              type: integer
+            - name: FIRST_NAME
+              type: string
+            - name: LAST_NAME
+              type: string
+            - name: EMAIL
+              type: string
+            - name: PHONE_NUMBER
+              type: string
+            - name: HIRE_DATE
+              type: string
+            - name: JOB_ID
+              type: string
+            - name: SALARY
+              type: integer
+            - name: COMMISSION_PCT
+              type: string
+            - name: MANAGER_ID
+              type: string
+            - name: DEPARTMENT_ID
+              type: integer
+        path: sql://digitalhub/public/department-50_v1f0a7308-568d-43a1-abc5-741257152ef4
+      status:
+        preview:
+          cols:
+            - name: EMPLOYEE_ID
+              value:
+                - 198
+                - 199
+                - 120
+                - 121
+                - 122
+                - 123
+                - 124
+                - 125
+                - 126
+                - 127
+            - name: FIRST_NAME
+              value:
+                - Donald
+                - Douglas
+                - Matthew
+                - Adam
+                - Payam
+                - Shanta
+                - Kevin
+                - Julia
+                - Irene
+                - James
+            - name: LAST_NAME
+              value:
+                - OConnell
+                - Grant
+                - Weiss
+                - Fripp
+                - Kaufling
+                - Vollman
+                - Mourgos
+                - Nayer
+                - Mikkilineni
+                - Landry
+            - name: EMAIL
+              value:
+                - DOCONNEL
+                - DGRANT
+                - MWEISS
+                - AFRIPP
+                - PKAUFLIN
+                - SVOLLMAN
+                - KMOURGOS
+                - JNAYER
+                - IMIKKILI
+                - JLANDRY
+            - name: PHONE_NUMBER
+              value:
+                - 650.507.9833
+                - 650.507.9844
+                - 650.123.1234
+                - 650.123.2234
+                - 650.123.3234
+                - 650.123.4234
+                - 650.123.5234
+                - 650.124.1214
+                - 650.124.1224
+                - 650.124.1334
+            - name: HIRE_DATE
+              value:
+                - 21-JUN-07
+                - 13-JAN-08
+                - 18-JUL-04
+                - 10-APR-05
+                - 01-MAY-03
+                - 10-OCT-05
+                - 16-NOV-07
+                - 16-JUL-05
+                - 28-SEP-06
+                - 14-JAN-07
+            - name: JOB_ID
+              value:
+                - SH_CLERK
+                - SH_CLERK
+                - ST_MAN
+                - ST_MAN
+                - ST_MAN
+                - ST_MAN
+                - ST_MAN
+                - ST_CLERK
+                - ST_CLERK
+                - ST_CLERK
+            - name: SALARY
+              value:
+                - 2600
+                - 2600
+                - 8000
+                - 8200
+                - 7900
+                - 6500
+                - 5800
+                - 3200
+                - 2700
+                - 2400
+            - name: COMMISSION_PCT
+              value:
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+                - " - "
+            - name: MANAGER_ID
+              value:
+                - "124"
+                - "124"
+                - "100"
+                - "100"
+                - "100"
+                - "100"
+                - "100"
+                - "120"
+                - "120"
+                - "120"
+            - name: DEPARTMENT_ID
+              value:
+                - 50
+                - 50
+                - 50
+                - 50
+                - 50
+                - 50
+                - 50
+                - 50
+                - 50
+                - 50
+          rows: 23
+        state: CREATED
+      user: khurshid@fbk.eu
+  functions:
+    - id: 0faf91e8-8957-4e59-b056-29535382d4be
+      key: store://project-dbt/function/dbt/function-dbt:0faf91e8-8957-4e59-b056-29535382d4be
+      kind: dbt
+      metadata:
+        created: 2024-10-22T12:36:18.676Z
+        name: function-dbt
+        updated_by: khurshid@fbk.eu
+        project: project-dbt
+        updated: 2024-10-22T12:36:18.676Z
+        embedded: true
+        created_by: khurshid@fbk.eu
+        version: 0faf91e8-8957-4e59-b056-29535382d4be
+      name: function-dbt
+      project: project-dbt
+      spec:
+        source:
+          base64: CldJVEggdGFiIEFTICgKICAgIFNFTEVDVCAgKgogICAgRlJPTSAgICB7eyByZWYoJ2VtcGxveWVlcycpIH19CikKU0VMRUNUICAqCkZST00gICAgdGFiCldIRVJFICAgdGFiLiJERVBBUlRNRU5UX0lEIiA9ICc1MCcK
+          lang: sql
+      status:
+        state: CREATED
+      user: khurshid@fbk.eu
+  workflows: []
+  artifacts: []
+status:
+  state: CREATED
+user: khurshid@fbk.eu
