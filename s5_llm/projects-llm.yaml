@@ -1,0 +1,40 @@
+id: llm
+key: store://llm
+kind: project
+metadata:
+  name: llm
+  updated_by: khurshid@fbk.eu
+  project: llm
+  updated: 2024-10-23T09:45:40.748Z
+  created_by: khurshid@fbk.eu
+  created: 2024-10-23T09:45:33.691Z
+name: llm
+project: llm
+spec:
+  dataitems: []
+  functions:
+    - id: 36ed268c-863c-483b-9b2d-73a4d5a7ffd3
+      key: store://llm/function/huggingfaceserve/llm_classification:36ed268c-863c-483b-9b2d-73a4d5a7ffd3
+      kind: huggingfaceserve
+      metadata:
+        created: 2024-10-23T09:45:40.667Z
+        name: llm_classification
+        updated_by: khurshid@fbk.eu
+        project: llm
+        updated: 2024-10-23T09:45:40.667Z
+        embedded: true
+        created_by: khurshid@fbk.eu
+        version: 36ed268c-863c-483b-9b2d-73a4d5a7ffd3
+      name: llm_classification
+      project: llm
+      spec:
+        path: huggingface://distilbert/distilbert-base-uncased-finetuned-sst-2-english
+        model_name: mymodel
+      status:
+        state: CREATED
+      user: khurshid@fbk.eu
+  workflows: []
+  artifacts: []
+status:
+  state: CREATED
+user: khurshid@fbk.eu
