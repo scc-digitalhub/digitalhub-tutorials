@@ -3,11 +3,7 @@ key: store://demo-etl-ci
 kind: project
 metadata:
   name: demo-etl-ci
-  updated_by: khurshid@fbk.eu
   project: demo-etl-ci
-  updated: 2024-10-23T12:12:53.036Z
-  created_by: khurshid@fbk.eu
-  created: 2024-10-23T11:48:54.947Z
 name: demo-etl-ci
 project: demo-etl-ci
 spec:
@@ -17,14 +13,8 @@ spec:
       key: store://demo-etl-ci/function/python/process-spire:1e255544-1d6e-4a0e-8ebd-18a638862a1c
       kind: python
       metadata:
-        created: 2024-10-23T11:53:46.822Z
         name: process-spire
-        updated_by: khurshid@fbk.eu
         project: demo-etl-ci
-        updated: 2024-10-23T11:53:46.822Z
-        embedded: true
-        created_by: khurshid@fbk.eu
-        version: 1e255544-1d6e-4a0e-8ebd-18a638862a1c
       name: process-spire
       project: demo-etl-ci
       spec:
@@ -34,21 +24,12 @@ spec:
           handler: process
           base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX3B5dGhvbiBpbXBvcnQgaGFuZGxlcgoKS0VZUz1bJ2NvZGljZSBzcGlyYScsJ2xvbmdpdHVkaW5lJywnbGF0aXR1ZGluZScsJ0xpdmVsbG8nLCd0aXBvbG9naWEnLCdjb2RpY2UnLCdjb2RpY2UgYXJjbycsJ2NvZGljZSB2aWEnLCdOb21lIHZpYScsICdzdGF0bycsJ2RpcmV6aW9uZScsJ2FuZ29sbycsJ2dlb3BvaW50J10KCkBoYW5kbGVyKG91dHB1dHM9WyJkYXRhc2V0LXNwaXJlIl0pCmRlZiBwcm9jZXNzKHByb2plY3QsIGRpKToKICAgIGRmID0gZGkuYXNfZGYoKQogICAgc2RmPSBkZi5ncm91cGJ5KFsnY29kaWNlIHNwaXJhJ10pLmZpcnN0KCkucmVzZXRfaW5kZXgoKVtLRVlTXQogICAgcmV0dXJuIHNkZgo=
           lang: python
-      status:
-        state: CREATED
-      user: khurshid@fbk.eu
     - id: 2dc45041-6cdd-4792-9d35-68c34a0a9ead
       key: store://demo-etl-ci/function/python/process-measures:2dc45041-6cdd-4792-9d35-68c34a0a9ead
       kind: python
       metadata:
-        created: 2024-10-23T12:03:58.035Z
         name: process-measures
-        updated_by: khurshid@fbk.eu
         project: demo-etl-ci
-        updated: 2024-10-23T12:03:58.035Z
-        embedded: true
-        created_by: khurshid@fbk.eu
-        version: 2dc45041-6cdd-4792-9d35-68c34a0a9ead
       name: process-measures
       project: demo-etl-ci
       spec:
@@ -60,19 +41,12 @@ spec:
           lang: python
       status:
         state: CREATED
-      user: khurshid@fbk.eu
     - id: 24b03448-6de6-4e74-a057-129cbe033ab2
       key: store://demo-etl-ci/function/python/download-data:24b03448-6de6-4e74-a057-129cbe033ab2
       kind: python
       metadata:
-        created: 2024-10-23T12:07:33.346Z
         name: download-data
-        updated_by: khurshid@fbk.eu
         project: demo-etl-ci
-        updated: 2024-10-23T12:07:33.346Z
-        embedded: true
-        created_by: khurshid@fbk.eu
-        version: 24b03448-6de6-4e74-a057-129cbe033ab2
       name: download-data
       project: demo-etl-ci
       spec:
@@ -84,19 +58,12 @@ spec:
           lang: python
       status:
         state: CREATED
-      user: khurshid@fbk.eu
     - id: fa0ef681-78ed-410d-b47b-ff23cf0bce25
       key: store://demo-etl-ci/function/python/api:fa0ef681-78ed-410d-b47b-ff23cf0bce25
       kind: python
       metadata:
-        created: 2024-10-23T12:12:52.958Z
         name: api
-        updated_by: khurshid@fbk.eu
         project: demo-etl-ci
-        updated: 2024-10-23T12:12:52.958Z
-        embedded: true
-        created_by: khurshid@fbk.eu
-        version: fa0ef681-78ed-410d-b47b-ff23cf0bce25
       name: api
       project: demo-etl-ci
       spec:
@@ -109,20 +76,13 @@ spec:
           init_function: init_context
       status:
         state: CREATED
-      user: khurshid@fbk.eu
   workflows:
     - id: b24cf917-fbbc-4557-bcc8-6b821870b16c
       key: store://demo-etl-ci/workflow/kfp/pipeline:b24cf917-fbbc-4557-bcc8-6b821870b16c
       kind: kfp
       metadata:
-        created: 2024-10-23T12:06:32.399Z
         name: pipeline
-        updated_by: khurshid@fbk.eu
         project: demo-etl-ci
-        updated: 2024-10-23T12:06:32.399Z
-        embedded: true
-        created_by: khurshid@fbk.eu
-        version: b24cf917-fbbc-4557-bcc8-6b821870b16c
       name: pipeline
       project: demo-etl-ci
       spec:
@@ -133,8 +93,6 @@ spec:
           lang: python
       status:
         state: CREATED
-      user: khurshid@fbk.eu
   artifacts: []
 status:
   state: CREATED
-user: khurshid@fbk.eu
