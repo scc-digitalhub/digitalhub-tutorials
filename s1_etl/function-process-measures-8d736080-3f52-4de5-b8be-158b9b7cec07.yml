@@ -2,11 +2,6 @@ kind: python
 metadata:
   project: project-etl-ci
   name: process-measures
-  version: 8d736080-3f52-4de5-b8be-158b9b7cec07
-  created: '2024-10-24T11:25:34.654Z'
-  updated: '2024-10-24T11:25:34.654Z'
-  created_by: khurshid@fbk.eu
-  updated_by: khurshid@fbk.eu
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -17,7 +12,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: khurshid@fbk.eu
 project: project-etl-ci
 name: process-measures
 id: 8d736080-3f52-4de5-b8be-158b9b7cec07

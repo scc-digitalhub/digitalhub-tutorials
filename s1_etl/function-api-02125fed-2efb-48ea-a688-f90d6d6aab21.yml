@@ -2,11 +2,6 @@ kind: python
 metadata:
   project: project-etl-ci
   name: api
-  version: 02125fed-2efb-48ea-a688-f90d6d6aab21
-  created: '2024-10-24T11:26:24.489Z'
-  updated: '2024-10-24T11:26:24.489Z'
-  created_by: khurshid@fbk.eu
-  updated_by: khurshid@fbk.eu
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -18,7 +13,6 @@ spec:
     init_function: init_context
 status:
   state: CREATED
-user: khurshid@fbk.eu
 project: project-etl-ci
 name: api
 id: 02125fed-2efb-48ea-a688-f90d6d6aab21

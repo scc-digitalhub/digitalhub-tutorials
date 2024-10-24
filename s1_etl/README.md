@@ -11,7 +11,7 @@ a jypter notebook and a digitalhub project.
    1. Import the project inside the 'Coder' instance using the yaml file.
 	```
  	import digitalhub as dh
- 	proj = dh.import_project('project-etl-ci.yaml")
+ 	proj = dh.import_project('project-etl-ci.yaml')
 	```
 
    2.  View the project details such as pipeline name.
@@ -25,7 +25,7 @@ a jypter notebook and a digitalhub project.
    3. Create the input parameter from url
     ```
     URL = "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rilevazione-flusso-veicoli-tramite-spire-anno-2023/exports/csv?lang=it&timezone=Europe%2FRome&use_labels=true&delimiter=%3B"
-	di= project.new_dataitem(name="url_data_item",kind="table",path=URL)
+	di= proj.new_dataitem(name="url_data_item",kind="table",path=URL)
 	di.key
     ```
 	```
