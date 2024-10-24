@@ -10,7 +10,7 @@ The 's2_dbt' folder contains a jypter notebook and a digitalhub project yaml des
    1. Import the project inside the 'Coder' instance using the yaml file.
 	```
  	import digitalhub as dh
-	proj = dh.import_project("projects-dbt-ci.yaml")
+	proj = dh.import_project("project-dbt-ci.yaml")
 	```
 
    2.  View the project details such as pipeline name.
