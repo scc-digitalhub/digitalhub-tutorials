@@ -1,22 +1,22 @@
-id: demo-etl-ci
-key: store://demo-etl-ci
+id: project-etl-ci
+key: store://project-etl-ci
 kind: project
 metadata:
-  name: demo-etl-ci
-  project: demo-etl-ci
-name: demo-etl-ci
-project: demo-etl-ci
+  name: project-etl-ci
+  project: project-etl-ci
+name: project-etl-ci
+project: project-etl-ci
 spec:
   dataitems: []
   functions:
     - id: 1e255544-1d6e-4a0e-8ebd-18a638862a1c
-      key: store://demo-etl-ci/function/python/process-spire:1e255544-1d6e-4a0e-8ebd-18a638862a1c
+      key: store://project-etl-ci/function/python/process-spire:1e255544-1d6e-4a0e-8ebd-18a638862a1c
       kind: python
       metadata:
         name: process-spire
-        project: demo-etl-ci
+        project: project-etl-ci
       name: process-spire
-      project: demo-etl-ci
+      project: project-etl-ci
       spec:
         python_version: PYTHON3_10
         source:
@@ -25,13 +25,13 @@ spec:
           base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX3B5dGhvbiBpbXBvcnQgaGFuZGxlcgoKS0VZUz1bJ2NvZGljZSBzcGlyYScsJ2xvbmdpdHVkaW5lJywnbGF0aXR1ZGluZScsJ0xpdmVsbG8nLCd0aXBvbG9naWEnLCdjb2RpY2UnLCdjb2RpY2UgYXJjbycsJ2NvZGljZSB2aWEnLCdOb21lIHZpYScsICdzdGF0bycsJ2RpcmV6aW9uZScsJ2FuZ29sbycsJ2dlb3BvaW50J10KCkBoYW5kbGVyKG91dHB1dHM9WyJkYXRhc2V0LXNwaXJlIl0pCmRlZiBwcm9jZXNzKHByb2plY3QsIGRpKToKICAgIGRmID0gZGkuYXNfZGYoKQogICAgc2RmPSBkZi5ncm91cGJ5KFsnY29kaWNlIHNwaXJhJ10pLmZpcnN0KCkucmVzZXRfaW5kZXgoKVtLRVlTXQogICAgcmV0dXJuIHNkZgo=
           lang: python
     - id: 2dc45041-6cdd-4792-9d35-68c34a0a9ead
-      key: store://demo-etl-ci/function/python/process-measures:2dc45041-6cdd-4792-9d35-68c34a0a9ead
+      key: store://project-etl-ci/function/python/process-measures:2dc45041-6cdd-4792-9d35-68c34a0a9ead
       kind: python
       metadata:
         name: process-measures
-        project: demo-etl-ci
+        project: project-etl-ci
       name: process-measures
-      project: demo-etl-ci
+      project: project-etl-ci
       spec:
         python_version: PYTHON3_10
         source:
@@ -39,16 +39,14 @@ spec:
           handler: process
           base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX3B5dGhvbiBpbXBvcnQgaGFuZGxlcgppbXBvcnQgcGFuZGFzIGFzIHBkCgpLRVlTID0gWycwMDowMC0wMTowMCcsICcwMTowMC0wMjowMCcsICcwMjowMC0wMzowMCcsICcwMzowMC0wNDowMCcsICcwNDowMC0wNTowMCcsICcwNTowMC0wNjowMCcsICcwNjowMC0wNzowMCcsICcwNzowMC0wODowMCcsICcwODowMC0wOTowMCcsICcwOTowMC0xMDowMCcsICcxMDowMC0xMTowMCcsICcxMTowMC0xMjowMCcsICcxMjowMC0xMzowMCcsICcxMzowMC0xNDowMCcsICcxNDowMC0xNTowMCcsICcxNTowMC0xNjowMCcsICcxNjowMC0xNzowMCcsICcxNzowMC0xODowMCcsICcxODowMC0xOTowMCcsICcxOTowMC0yMDowMCcsICcyMDowMC0yMTowMCcsICcyMTowMC0yMjowMCcsICcyMjowMC0yMzowMCcsICcyMzowMC0yNDowMCddCkNPTFVNTlM9WydkYXRhJywnY29kaWNlIHNwaXJhJ10KCkBoYW5kbGVyKG91dHB1dHM9WyJkYXRhc2V0LW1lYXN1cmVzIl0pCmRlZiBwcm9jZXNzKHByb2plY3QsIGRpKToKICAgIGRmID0gZGkuYXNfZGYoKQogICAgcmRmID0gZGZbQ09MVU1OUytLRVlTXQogICAgbHMgPSBbXQogICAgZm9yIGtleSBpbiBLRVlTOgogICAgICAgIGsgPSBrZXkuc3BsaXQoIi0iKVswXQogICAgICAgIHhkZiA9IHJkZltDT0xVTU5TICsgW2tleV1dCiAgICAgICAgeGRmWyd0aW1lJ10gPSB4ZGYuZGF0YS5hcHBseShsYW1iZGEgeDogeCsnICcgK2spCiAgICAgICAgeGRmWyd2YWx1ZSddID0geGRmW2tleV0KICAgICAgICBscy5hcHBlbmQoeGRmW1sndGltZScsJ2NvZGljZSBzcGlyYScsJ3ZhbHVlJ11dKQogICAgZWRmID0gcGQuY29uY2F0KGxzKQogICAgcmV0dXJuIGVkZgo=
           lang: python
-      status:
-        state: CREATED
     - id: 24b03448-6de6-4e74-a057-129cbe033ab2
-      key: store://demo-etl-ci/function/python/download-data:24b03448-6de6-4e74-a057-129cbe033ab2
+      key: store://project-etl-ci/function/python/download-data:24b03448-6de6-4e74-a057-129cbe033ab2
       kind: python
       metadata:
         name: download-data
-        project: demo-etl-ci
+        project: project-etl-ci
       name: download-data
-      project: demo-etl-ci
+      project: project-etl-ci
       spec:
         python_version: PYTHON3_10
         source:
@@ -56,16 +54,14 @@ spec:
           handler: downloader
           base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX3B5dGhvbiBpbXBvcnQgaGFuZGxlcgoKQGhhbmRsZXIob3V0cHV0cz1bImRhdGFzZXQiXSkKZGVmIGRvd25sb2FkZXIodXJsKToKICAgICMgcmVhZCBhbmQgcmV3cml0ZSB0byBub3JtYWxpemUgYW5kIGV4cG9ydCBhcyBkYXRhCiAgICBkZiA9IHVybC5hc19kZihmaWxlX2Zvcm1hdD0nY3N2JyxzZXA9IjsiKQogICAgcmV0dXJuIGRmCg==
           lang: python
-      status:
-        state: CREATED
     - id: fa0ef681-78ed-410d-b47b-ff23cf0bce25
-      key: store://demo-etl-ci/function/python/api:fa0ef681-78ed-410d-b47b-ff23cf0bce25
+      key: store://project-etl-ci/function/python/api:fa0ef681-78ed-410d-b47b-ff23cf0bce25
       kind: python
       metadata:
         name: api
-        project: demo-etl-ci
+        project: project-etl-ci
       name: api
-      project: demo-etl-ci
+      project: project-etl-ci
       spec:
         python_version: PYTHON3_10
         source:
@@ -74,25 +70,19 @@ spec:
           base64: CmRlZiBpbml0X2NvbnRleHQoY29udGV4dCk6CiAgICBkaSA9IGNvbnRleHQucHJvamVjdC5nZXRfZGF0YWl0ZW0oJ2RhdGFzZXQtbWVhc3VyZXMnKQogICAgZGYgPSBkaS5hc19kZigpCiAgICBzZXRhdHRyKGNvbnRleHQsICJkZiIsIGRmKQoKZGVmIGhhbmRsZXIoY29udGV4dCwgZXZlbnQpOgogICAgZGYgPSBjb250ZXh0LmRmCgogICAgaWYgZGYgaXMgTm9uZToKICAgICAgICByZXR1cm4gIiIKCiAgICAjIG1vY2sgUkVTVCBhcGkKICAgIG1ldGhvZCA9IGV2ZW50Lm1ldGhvZAogICAgcGF0aCA9IGV2ZW50LnBhdGgKICAgIGZpZWxkcyA9IGV2ZW50LmZpZWxkcwoKICAgIGlkID0gRmFsc2UKCiAgICAjIHBhZ2luYXRpb24KICAgIHBhZ2UgPSAwCiAgICBwYWdlU2l6ZSA9IDUwCgogICAgaWYgInBhZ2UiIGluIGZpZWxkczoKICAgICAgICBwYWdlID0gaW50KGZpZWxkc1sncGFnZSddKQoKICAgIGlmICJzaXplIiBpbiBmaWVsZHM6CiAgICAgICAgcGFnZVNpemUgPSBpbnQoZmllbGRzWydzaXplJ10pCgogICAgaWYgcGFnZSA8IDA6CiAgICAgICAgcGFnZSA9IDAKCiAgICBpZiBwYWdlU2l6ZSA8IDE6CiAgICAgICAgcGFnZVNpemUgPSAxCgogICAgaWYgcGFnZVNpemUgPiAxMDA6CiAgICAgICAgcGFnZVNpemUgPSAxMDAKCiAgICBzdGFydCA9IHBhZ2UgKiBwYWdlU2l6ZQogICAgZW5kID0gc3RhcnQgKyBwYWdlU2l6ZQogICAgdG90YWwgPSBsZW4oZGYpCgogICAgaWYgZW5kID4gdG90YWw6CiAgICAgICAgZW5kID0gdG90YWwKCiAgICBkcyA9IGRmLmlsb2Nbc3RhcnQ6ZW5kXQogICAganNvbiA9IGRzLnRvX2pzb24ob3JpZW50PSJyZWNvcmRzIikKCiAgICByZXMgPSB7ImRhdGEiOiBqc29uLCAicGFnZSI6IHBhZ2UsICJzaXplIjogcGFnZVNpemUsICJ0b3RhbCI6IHRvdGFsfQoKICAgIHJldHVybiByZXMK
           lang: python
           init_function: init_context
-      status:
-        state: CREATED
   workflows:
     - id: b24cf917-fbbc-4557-bcc8-6b821870b16c
-      key: store://demo-etl-ci/workflow/kfp/pipeline:b24cf917-fbbc-4557-bcc8-6b821870b16c
+      key: store://project-etl-ci/workflow/kfp/pipeline:b24cf917-fbbc-4557-bcc8-6b821870b16c
       kind: kfp
       metadata:
         name: pipeline
-        project: demo-etl-ci
+        project: project-etl-ci
       name: pipeline
-      project: demo-etl-ci
+      project: project-etl-ci
       spec:
         source:
           source: src/pipeline.py
           handler: pipeline
           base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX2tmcC5kc2wgaW1wb3J0IHBpcGVsaW5lX2NvbnRleHQKCmRlZiBwaXBlbGluZSh1cmwpOgogICAgd2l0aCBwaXBlbGluZV9jb250ZXh0KCkgYXMgcGM6CiAgICAgICAgZG93bmxvYWRlciA9IHBjLnN0ZXAoCiAgICAgICAgICAgIG5hbWU9ImRvd25sb2FkLWRhdGEiLAogICAgICAgICAgICBmdW5jdGlvbj0iZG93bmxvYWQtZGF0YSIsCiAgICAgICAgICAgIGFjdGlvbj0iam9iIiwKICAgICAgICAgICAgaW5wdXRzPXsidXJsIjogdXJsfSwKICAgICAgICAgICAgb3V0cHV0cz17ImRhdGFzZXQiOiAiZGF0YXNldCJ9LAogICAgICAgICkKCiAgICAgICAgcHJvY2Vzc19zcGlyZSA9IHBjLnN0ZXAoCiAgICAgICAgICAgIG5hbWU9InByb2Nlc3Mtc3BpcmUiLAogICAgICAgICAgICBmdW5jdGlvbj0icHJvY2Vzcy1zcGlyZSIsCiAgICAgICAgICAgIGFjdGlvbj0iam9iIiwKICAgICAgICAgICAgaW5wdXRzPXsiZGkiOiBkb3dubG9hZGVyLm91dHB1dHNbImRhdGFzZXQiXX0KICAgICAgICApCgogICAgICAgIHByb2Nlc3NfbWVhc3VyZXMgPSBwYy5zdGVwKAogICAgICAgICAgICBuYW1lPSJwcm9jZXNzLW1lYXN1cmVzIiwKICAgICAgICAgICAgZnVuY3Rpb249InByb2Nlc3MtbWVhc3VyZXMiLAogICAgICAgICAgICBhY3Rpb249ImpvYiIsCiAgICAgICAgICAgIGlucHV0cz17ImRpIjogZG93bmxvYWRlci5vdXRwdXRzWyJkYXRhc2V0Il19CiAgICAgICAgKQo=
           lang: python
-      status:
-        state: CREATED
   artifacts: []
-status:
-  state: CREATED
