@@ -21,13 +21,13 @@ a jypter notebook and a digitalhub project.
    
    3. Create the input parameter from url
     ```
-    url = "https://gist.githubusercontent.com/kevin336/acbb2271e66c10a5b73aacf82ca82784/raw/e38afe62e088394d61ed30884dd50a6826eee0a8/employees.csv"
-    di_url = proj.new_dataitem(name="url_data_item",kind="table",path=url)
+    URL = "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rilevazione-flusso-veicoli-tramite-spire-anno-2023/exports/csv?lang=it&timezone=Europe%2FRome&use_labels=true&delimiter=%3B"
+	di= project.new_dataitem(name="url_data_item",kind="table",path=URL)
     ```
    
    4. Run the pipeline
     ```
-    workflow_run = proj.run('pipeline_dbt', parameters={"url": di_url.key})
+    workflow_run = proj.run('pipeline_dbt', parameters={"url": di.key})
     ```
 	
 	
