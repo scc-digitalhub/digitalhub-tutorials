@@ -11,7 +11,7 @@ a jypter notebook and a digitalhub project.
    1. Import the project inside the 'Coder' instance using the yaml file.
 	```
  	import digitalhub as dh
- 	proj = dh.import_project('project-etl-ci.yaml')
+ 	proj = dh.import_project('project-etl-ci.yml')
 	```
 
    2.  View the project details such as pipeline name.
