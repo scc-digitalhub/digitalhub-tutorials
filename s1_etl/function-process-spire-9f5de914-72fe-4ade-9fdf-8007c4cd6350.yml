@@ -1,0 +1,24 @@
+kind: python
+metadata:
+  project: project-etl-ci
+  name: process-spire
+  version: 9f5de914-72fe-4ade-9fdf-8007c4cd6350
+  created: '2024-10-24T11:24:23.608Z'
+  updated: '2024-10-24T11:24:23.608Z'
+  created_by: khurshid@fbk.eu
+  updated_by: khurshid@fbk.eu
+  embedded: false
+spec:
+  python_version: PYTHON3_10
+  source:
+    source: src/process-spire.py
+    base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX3B5dGhvbiBpbXBvcnQgaGFuZGxlcgoKS0VZUz1bJ2NvZGljZSBzcGlyYScsJ2xvbmdpdHVkaW5lJywnbGF0aXR1ZGluZScsJ0xpdmVsbG8nLCd0aXBvbG9naWEnLCdjb2RpY2UnLCdjb2RpY2UgYXJjbycsJ2NvZGljZSB2aWEnLCdOb21lIHZpYScsICdzdGF0bycsJ2RpcmV6aW9uZScsJ2FuZ29sbycsJ2dlb3BvaW50J10KCkBoYW5kbGVyKG91dHB1dHM9WyJkYXRhc2V0LXNwaXJlIl0pCmRlZiBwcm9jZXNzKHByb2plY3QsIGRpKToKICAgIGRmID0gZGkuYXNfZGYoKQogICAgc2RmPSBkZi5ncm91cGJ5KFsnY29kaWNlIHNwaXJhJ10pLmZpcnN0KCkucmVzZXRfaW5kZXgoKVtLRVlTXQogICAgcmV0dXJuIHNkZgo=
+    handler: process
+    lang: python
+status:
+  state: CREATED
+user: khurshid@fbk.eu
+project: project-etl-ci
+name: process-spire
+id: 9f5de914-72fe-4ade-9fdf-8007c4cd6350
+key: store://project-etl-ci/function/python/process-spire:9f5de914-72fe-4ade-9fdf-8007c4cd6350

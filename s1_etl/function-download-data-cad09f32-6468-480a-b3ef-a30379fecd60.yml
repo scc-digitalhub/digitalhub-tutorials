@@ -1,0 +1,24 @@
+kind: python
+metadata:
+  project: project-etl-ci
+  name: download-data
+  version: cad09f32-6468-480a-b3ef-a30379fecd60
+  created: '2024-10-24T11:22:04.66Z'
+  updated: '2024-10-24T11:22:04.66Z'
+  created_by: khurshid@fbk.eu
+  updated_by: khurshid@fbk.eu
+  embedded: false
+spec:
+  python_version: PYTHON3_10
+  source:
+    source: src/download-data.py
+    base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX3B5dGhvbiBpbXBvcnQgaGFuZGxlcgoKQGhhbmRsZXIob3V0cHV0cz1bImRhdGFzZXQiXSkKZGVmIGRvd25sb2FkZXIodXJsKToKICAgICMgcmVhZCBhbmQgcmV3cml0ZSB0byBub3JtYWxpemUgYW5kIGV4cG9ydCBhcyBkYXRhCiAgICBkZiA9IHVybC5hc19kZihmaWxlX2Zvcm1hdD0nY3N2JyxzZXA9IjsiKQogICAgcmV0dXJuIGRmCg==
+    handler: downloader
+    lang: python
+status:
+  state: CREATED
+user: khurshid@fbk.eu
+project: project-etl-ci
+name: download-data
+id: cad09f32-6468-480a-b3ef-a30379fecd60
+key: store://project-etl-ci/function/python/download-data:cad09f32-6468-480a-b3ef-a30379fecd60

@@ -1,0 +1,25 @@
+kind: python
+metadata:
+  project: project-etl-ci
+  name: api
+  version: 02125fed-2efb-48ea-a688-f90d6d6aab21
+  created: '2024-10-24T11:26:24.489Z'
+  updated: '2024-10-24T11:26:24.489Z'
+  created_by: khurshid@fbk.eu
+  updated_by: khurshid@fbk.eu
+  embedded: false
+spec:
+  python_version: PYTHON3_10
+  source:
+    source: src/api.py
+    base64: CmRlZiBpbml0X2NvbnRleHQoY29udGV4dCk6CiAgICBkaSA9IGNvbnRleHQucHJvamVjdC5nZXRfZGF0YWl0ZW0oJ2RhdGFzZXQtbWVhc3VyZXMnKQogICAgZGYgPSBkaS5hc19kZigpCiAgICBzZXRhdHRyKGNvbnRleHQsICJkZiIsIGRmKQoKZGVmIGhhbmRsZXIoY29udGV4dCwgZXZlbnQpOgogICAgZGYgPSBjb250ZXh0LmRmCgogICAgaWYgZGYgaXMgTm9uZToKICAgICAgICByZXR1cm4gIiIKCiAgICAjIG1vY2sgUkVTVCBhcGkKICAgIG1ldGhvZCA9IGV2ZW50Lm1ldGhvZAogICAgcGF0aCA9IGV2ZW50LnBhdGgKICAgIGZpZWxkcyA9IGV2ZW50LmZpZWxkcwoKICAgIGlkID0gRmFsc2UKCiAgICAjIHBhZ2luYXRpb24KICAgIHBhZ2UgPSAwCiAgICBwYWdlU2l6ZSA9IDUwCgogICAgaWYgInBhZ2UiIGluIGZpZWxkczoKICAgICAgICBwYWdlID0gaW50KGZpZWxkc1sncGFnZSddKQoKICAgIGlmICJzaXplIiBpbiBmaWVsZHM6CiAgICAgICAgcGFnZVNpemUgPSBpbnQoZmllbGRzWydzaXplJ10pCgogICAgaWYgcGFnZSA8IDA6CiAgICAgICAgcGFnZSA9IDAKCiAgICBpZiBwYWdlU2l6ZSA8IDE6CiAgICAgICAgcGFnZVNpemUgPSAxCgogICAgaWYgcGFnZVNpemUgPiAxMDA6CiAgICAgICAgcGFnZVNpemUgPSAxMDAKCiAgICBzdGFydCA9IHBhZ2UgKiBwYWdlU2l6ZQogICAgZW5kID0gc3RhcnQgKyBwYWdlU2l6ZQogICAgdG90YWwgPSBsZW4oZGYpCgogICAgaWYgZW5kID4gdG90YWw6CiAgICAgICAgZW5kID0gdG90YWwKCiAgICBkcyA9IGRmLmlsb2Nbc3RhcnQ6ZW5kXQogICAganNvbiA9IGRzLnRvX2pzb24ob3JpZW50PSJyZWNvcmRzIikKCiAgICByZXMgPSB7ImRhdGEiOiBqc29uLCAicGFnZSI6IHBhZ2UsICJzaXplIjogcGFnZVNpemUsICJ0b3RhbCI6IHRvdGFsfQoKICAgIHJldHVybiByZXMK
+    handler: handler
+    lang: python
+    init_function: init_context
+status:
+  state: CREATED
+user: khurshid@fbk.eu
+project: project-etl-ci
+name: api
+id: 02125fed-2efb-48ea-a688-f90d6d6aab21
+key: store://project-etl-ci/function/python/api:02125fed-2efb-48ea-a688-f90d6d6aab21
