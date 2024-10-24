@@ -1,6 +1,6 @@
 # digitalhub-tutorials
 
-The project aims at executing the documented scenarios of digitalhub platform. Currently there are eight different scenarios briefly explained below that allows to demonstrate the functionality of the platform. Inside each scenario folder prex with s<number>_<scenario_name> (for e.g. s1_etl), one can find 
+The project aims at executing the documented scenarios of digitalhub platform. Currently there are seven different scenarios briefly explained below that allows to demonstrate the functionality of the platform. Inside each scenario folder prex with s<number>-<scenario_name> (for e.g. s1-etl), one can find 
 
 - Jypter notebook 
 	- Import the Jupyter notebook for each scenariolocated inside project folder in the 'Coder' instance and execute it step by step.
@@ -35,11 +35,6 @@ This scenario depict how to create and serve LLM HuggingFace-compatible-models. 
 
 This scenario provides a quick overview of developing and deploying generic machine learning applications using the functionalities of the platform. For this purpose, we use ML algorithms for the time series management provided by the Darts framework.
 
-## 7. Dremio Transformation
-In this scenario we will learn how to use Dremio to transform data and create some virtual datasets on top of it. Then, we will visualize the transformed data in a dashboard created with Grafana, by importing a template. For this template to work with minimal changes, make sure you match the naming of entities indicated throughout the tutorial.
-
-In order to collect the initial data and make it accessible to Dremio, we will follow the first step of the ETL scenario #1 , in which we download some traffic data and store it in the DigitalHub datalake.
-
-## 8. Postgres REST API
+## 7. Postgres REST API
 
 In this scenario, we download some data into a Postgres database, then use PostgREST - a tool to make Postgres tables accessible via REST API - to expose this data and run a simple request to view the results.
