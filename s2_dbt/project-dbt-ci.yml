@@ -2,10 +2,6 @@ kind: project
 metadata:
   project: project-dbt-ci
   name: project-dbt-ci
-  created: '2024-10-24T12:27:26.583Z'
-  updated: '2024-10-24T12:28:47.145Z'
-  created_by: khurshid@fbk.eu
-  updated_by: khurshid@fbk.eu
 spec:
   context: ./
   functions:
@@ -13,32 +9,25 @@ spec:
     key: store://project-dbt-ci/function/dbt/function-dbt:7f6a2798-b1af-495d-84ba-695fd2fdcdab
     kind: dbt
     metadata:
-      created: '2024-10-24T12:27:44.006Z'
       name: function-dbt
       project: project-dbt-ci
-      updated: '2024-10-24T12:27:44.006Z'
       ref: function-function-dbt-7f6a2798-b1af-495d-84ba-695fd2fdcdab.yml
     name: function-dbt
     project: project-dbt-ci
-    user: khurshid@fbk.eu
   artifacts: []
   workflows:
   - id: e453cc5e-5d0d-4edb-a574-4a9f83901071
     key: store://project-dbt-ci/workflow/kfp/pipeline_dbt:e453cc5e-5d0d-4edb-a574-4a9f83901071
     kind: kfp
     metadata:
-      created: '2024-10-24T12:28:46.462Z'
       name: pipeline_dbt
       project: project-dbt-ci
-      updated: '2024-10-24T12:28:46.462Z'
       ref: workflow-pipeline_dbt-e453cc5e-5d0d-4edb-a574-4a9f83901071.yml
     name: pipeline_dbt
     project: project-dbt-ci
-    user: khurshid@fbk.eu
   models: []
 status:
   state: CREATED
-user: khurshid@fbk.eu
 id: project-dbt-ci
 name: project-dbt-ci
 key: store://project-dbt-ci

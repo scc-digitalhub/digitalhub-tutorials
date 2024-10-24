@@ -2,11 +2,6 @@ kind: kfp
 metadata:
   project: project-dbt-ci
   name: pipeline_dbt
-  version: e453cc5e-5d0d-4edb-a574-4a9f83901071
-  created: '2024-10-24T12:28:46.462Z'
-  updated: '2024-10-24T12:28:46.462Z'
-  created_by: khurshid@fbk.eu
-  updated_by: khurshid@fbk.eu
   embedded: false
 spec:
   source:
@@ -16,7 +11,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: khurshid@fbk.eu
 project: project-dbt-ci
 name: pipeline_dbt
 id: e453cc5e-5d0d-4edb-a574-4a9f83901071
