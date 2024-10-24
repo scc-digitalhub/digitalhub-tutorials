@@ -1,0 +1,21 @@
+kind: dbt
+metadata:
+  project: project-dbt-ci
+  name: function-dbt
+  version: 7f6a2798-b1af-495d-84ba-695fd2fdcdab
+  created: '2024-10-24T12:27:44.006Z'
+  updated: '2024-10-24T12:27:44.006Z'
+  created_by: khurshid@fbk.eu
+  updated_by: khurshid@fbk.eu
+  embedded: false
+spec:
+  source:
+    base64: CldJVEggdGFiIEFTICgKICAgIFNFTEVDVCAgKgogICAgRlJPTSAgICB7eyByZWYoJ2VtcGxveWVlcycpIH19CikKU0VMRUNUICAqCkZST00gICAgdGFiCldIRVJFICAgdGFiLiJERVBBUlRNRU5UX0lEIiA9ICc1MCcK
+    lang: sql
+status:
+  state: CREATED
+user: khurshid@fbk.eu
+project: project-dbt-ci
+name: function-dbt
+id: 7f6a2798-b1af-495d-84ba-695fd2fdcdab
+key: store://project-dbt-ci/function/dbt/function-dbt:7f6a2798-b1af-495d-84ba-695fd2fdcdab
