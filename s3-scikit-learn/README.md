@@ -1,4 +1,4 @@
-# DBT (Database transformation) scenario
+# Scikit Learn Scenario
 This scenario provides a quick overview of developing and deploying a scikit-learn machine learning application using the functionalities of the platform. We will prepare data, train a generic model and expose it as a service.The 's2-ml' folder contains a jypter notebook and a digitalhub project yaml descriptor.
 
 - Jypter notebook 
