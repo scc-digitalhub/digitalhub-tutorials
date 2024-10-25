@@ -1,0 +1,14 @@
+kind: huggingfaceserve
+metadata:
+  project: llm-ci
+  name: llm_classification
+  embedded: false
+spec:
+  path: huggingface://distilbert/distilbert-base-uncased-finetuned-sst-2-english
+  model_name: mymodel
+status:
+  state: CREATED
+project: llm-ci
+name: llm_classification
+id: 6da5afcf-ee73-4142-a7cc-9c8cf4fdbfce
+key: store://llm-ci/function/huggingfaceserve/llm_classification:6da5afcf-ee73-4142-a7cc-9c8cf4fdbfce
