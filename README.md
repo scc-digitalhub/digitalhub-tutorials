@@ -1,6 +1,6 @@
 # digitalhub-tutorials
 
-The project aims at executing the documented scenarios of digitalhub platform. Currently there are seven different scenarios briefly explained below that allows to demonstrate the functionality of the platform. Inside each scenario folder prex with s<number>-<scenario_name> (for e.g. s1-etl), one can find 
+The project aims at executing the documented scenarios of digitalhub platform. Currently there are six different scenarios briefly explained below that allows to demonstrate the functionality of the platform. Inside each scenario folder prex with s<number>-<scenario_name> (for e.g. s1-etl), one can find 
 
 - Jypter notebook 
 	- Import the Jupyter notebook for each scenariolocated inside project folder in the 'Coder' instance and execute it step by step.
@@ -34,7 +34,3 @@ This scenario depict how to create and serve LLM HuggingFace-compatible-models. 
 ## 6. Custom ML FLow Model Training and Serving
 
 This scenario provides a quick overview of developing and deploying generic machine learning applications using the functionalities of the platform. For this purpose, we use ML algorithms for the time series management provided by the Darts framework.
-
-## 7. Postgres REST API
-
-In this scenario, we download some data into a Postgres database, then use PostgREST - a tool to make Postgres tables accessible via REST API - to expose this data and run a simple request to view the results.

@@ -1,0 +1,28 @@
+kind: model
+metadata:
+  project: project-cml-darts-ci
+  name: darts_model
+  version: 79454614-67de-4db3-93f1-91c52578304f
+  created: '2024-10-25T09:51:07.003Z'
+  updated: '2024-10-25T09:51:07.543Z'
+  created_by: khurshid@fbk.eu
+  updated_by: khurshid@fbk.eu
+  embedded: false
+spec:
+  path: zip+s3://datalake/project-cml-darts-ci/model/darts_model/79454614-67de-4db3-93f1-91c52578304f/predictor_model.pt.zip
+  framework: darts
+  algorithm: darts.models.NBEATSModel
+status:
+  state: CREATED
+  files:
+  - path: predictor_model.pt.zip
+    name: predictor_model.pt.zip
+    content_type: application/zip
+    size: 49758418
+    hash: LiteralETag:ddcb40113dbfd0e0d97dec61513ecafd-6
+    last_modified: '2024-10-25T09:51:07+00:00'
+user: khurshid@fbk.eu
+project: project-cml-darts-ci
+name: darts_model
+id: 79454614-67de-4db3-93f1-91c52578304f
+key: store://project-cml-darts-ci/model/model/darts_model:79454614-67de-4db3-93f1-91c52578304f
