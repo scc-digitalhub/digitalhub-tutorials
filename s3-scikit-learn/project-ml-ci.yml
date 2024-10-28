@@ -43,16 +43,6 @@ spec:
       ref: workflow-pipeline_ml-57197af4-39e0-426f-885e-1e122bf7102d.yml
     name: pipeline_ml
     project: project-ml-ci
-  dataitems:
-  - id: f6dc1964-db74-4487-8a74-0620dc384f0f
-    key: store://project-ml-ci/dataitem/table/dataset:f6dc1964-db74-4487-8a74-0620dc384f0f
-    kind: table
-    metadata:
-      name: dataset
-      project: project-ml-ci
-      ref: dataitem-dataset-f6dc1964-db74-4487-8a74-0620dc384f0f.yml
-    name: dataset
-    project: project-ml-ci
 status:
   state: CREATED
 id: project-ml-ci
