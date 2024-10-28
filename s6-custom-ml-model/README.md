@@ -66,7 +66,16 @@ This scenario provides a quick overview of developing and deploying generic mach
       ```
       workflow_run = proj.run('pipeline_cml_darts')
       ```
-      
+      We can now explore the results of the function. We can fetch the list of data model using digithub sdk.
+      ```
+      data_model = dh.list_models(project='project-cml-darts-ci')
+      ```
+      ```
+      print((data_model))
+      ```
+      ```
+      [{'kind': 'model', 'metadata': {'project': 'project-cml-darts-ci', 'name': 'darts_model', 'version': '428d2a95-9885-4cc7-a465-cb921b902c17', 'created': '2024-10-28T10:30:15.011Z', 'updated': '2024-10-28T10:30:15.733Z', 'created_by': 'khurshid@fbk.eu', 'updated_by': 'khurshid@fbk.eu', 'embedded': False}, 'spec': {'path': 'zip+s3://datalake/project-cml-darts-ci/model/darts_model/428d2a95-9885-4cc7-a465-cb921b902c17/predictor_model.pt.zip', 'framework': 'darts', 'algorithm': 'darts.models.NBEATSModel'}, 'status': {'state': 'CREATED', 'files': [{'path': 'predictor_model.pt.zip', 'name': 'predictor_model.pt.zip', 'content_type': 'application/zip', 'size': 49758418, 'hash': 'LiteralETag:32850d806e9704208bf1176211d38445-6', 'last_modified': '2024-10-28T10:30:15+00:00'}]}, 'user': 'khurshid@fbk.eu', 'project': 'project-cml-darts-ci', 'name': 'darts_model', 'id': '428d2a95-9885-4cc7-a465-cb921b902c17', 'key': 'store://project-cml-darts-ci/model/model/darts_model:428d2a95-9885-4cc7-a465-cb921b902c17'}]
+      ```
 	
 	
 
