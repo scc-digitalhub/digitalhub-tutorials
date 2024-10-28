@@ -2,7 +2,7 @@ kind: python
 metadata:
   project: project-cml-darts-ci
   name: train-darts
-  version: e03fe55f-2007-4ad4-a7e3-367fe774b821
+  version: b6fe7680-f353-4dce-a986-2aaab69227ea
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -15,5 +15,5 @@ status:
   state: CREATED
 project: project-cml-darts-ci
 name: train-darts
-id: e03fe55f-2007-4ad4-a7e3-367fe774b821
-key: store://project-cml-darts-ci/function/python/train-darts:e03fe55f-2007-4ad4-a7e3-367fe774b821
+id: b6fe7680-f353-4dce-a986-2aaab69227ea
+key: store://project-cml-darts-ci/function/python/train-darts:b6fe7680-f353-4dce-a986-2aaab69227ea

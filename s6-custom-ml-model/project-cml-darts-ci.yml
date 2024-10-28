@@ -1,0 +1,32 @@
+kind: project
+metadata:
+  project: project-cml-darts-ci
+  name: project-cml-darts-ci
+spec:
+  context: ./
+  functions:
+  - id: b6fe7680-f353-4dce-a986-2aaab69227ea
+    key: store://project-cml-darts-ci/function/python/train-darts:b6fe7680-f353-4dce-a986-2aaab69227ea
+    kind: python
+    metadata:
+      name: train-darts
+      project: project-cml-darts-ci
+      ref: function-train-darts-b6fe7680-f353-4dce-a986-2aaab69227ea.yml
+    name: train-darts
+    project: project-cml-darts-ci
+  artifacts: []
+  workflows:
+  - id: e5d5e75b-2e86-4a49-8446-800512949ba3
+    key: store://project-cml-darts-ci/workflow/kfp/pipeline_cml_darts:e5d5e75b-2e86-4a49-8446-800512949ba3
+    kind: kfp
+    metadata:
+      name: pipeline_cml_darts
+      project: project-cml-darts-ci
+      ref: workflow-pipeline_cml_darts-e5d5e75b-2e86-4a49-8446-800512949ba3.yml
+    name: pipeline_cml_darts
+    project: project-cml-darts-ci
+status:
+  state: CREATED
+id: project-cml-darts-ci
+name: project-cml-darts-ci
+key: store://project-cml-darts-ci
