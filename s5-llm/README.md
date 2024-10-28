@@ -19,7 +19,7 @@ This scenario depict how to create and serve LLM HuggingFace-compatible-models. 
 
    3. In this scenario functions are self-contained so one execute the pipeline directly.
      ```
-     workflow_run()
+     workflow_run = proj.run('pipeline_ml')
      ```
 	
 	
