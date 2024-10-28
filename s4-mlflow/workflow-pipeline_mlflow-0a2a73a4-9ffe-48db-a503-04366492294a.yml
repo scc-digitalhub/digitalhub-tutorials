@@ -1,0 +1,18 @@
+kind: kfp
+metadata:
+  project: project-mlflow-model-ci
+  name: pipeline_mlflow
+  version: 0a2a73a4-9ffe-48db-a503-04366492294a
+  embedded: false
+spec:
+  source:
+    source: src/mlflow_pipeline.py
+    base64: CmZyb20gZGlnaXRhbGh1Yl9ydW50aW1lX2tmcC5kc2wgaW1wb3J0IHBpcGVsaW5lX2NvbnRleHQKCmRlZiBteWhhbmRsZXIoKTogCiAgICB3aXRoIHBpcGVsaW5lX2NvbnRleHQoKSBhcyBwYzoKICAgICAgICB0cmFpbiA9IHBjLnN0ZXAobmFtZT0idHJhaW4iLCBmdW5jdGlvbj0idHJhaW4iLCBhY3Rpb249ImpvYiIpCiAgICAgICAgI3NlcnZlID0gcGMuc3RlcChuYW1lPSJzZXJ2ZSIsIGZ1bmN0aW9uPSJzZXJ2ZV9tbGZsb3dtb2RlbCIsIGFjdGlvbj0ic2VydmUiKQo=
+    handler: myhandler
+    lang: python
+status:
+  state: CREATED
+project: project-mlflow-model-ci
+name: pipeline_mlflow
+id: 0a2a73a4-9ffe-48db-a503-04366492294a
+key: store://project-mlflow-model-ci/workflow/kfp/pipeline_mlflow:0a2a73a4-9ffe-48db-a503-04366492294a

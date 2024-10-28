@@ -1,0 +1,41 @@
+kind: project
+metadata:
+  project: project-mlflow-model-ci
+  name: project-mlflow-model-ci
+spec:
+  context: ./
+  functions:
+  - id: 7736a88a-156c-47cc-822b-c8a86987970b
+    key: store://project-mlflow-model-ci/function/python/train:7736a88a-156c-47cc-822b-c8a86987970b
+    kind: python
+    metadata:
+      name: train
+      project: project-mlflow-model-ci
+      ref: function-train-7736a88a-156c-47cc-822b-c8a86987970b.yml
+    name: train
+    project: project-mlflow-model-ci
+  - id: 8dd171f1-1fdb-4f51-9f3c-412c73f1c8d9
+    key: store://project-mlflow-model-ci/function/mlflowserve/serve_mlflowmodel:8dd171f1-1fdb-4f51-9f3c-412c73f1c8d9
+    kind: mlflowserve
+    metadata:
+      name: serve_mlflowmodel
+      project: project-mlflow-model-ci
+      ref: function-serve_mlflowmodel-8dd171f1-1fdb-4f51-9f3c-412c73f1c8d9.yml
+    name: serve_mlflowmodel
+    project: project-mlflow-model-ci
+  artifacts: []
+  workflows:
+  - id: 0a2a73a4-9ffe-48db-a503-04366492294a
+    key: store://project-mlflow-model-ci/workflow/kfp/pipeline_mlflow:0a2a73a4-9ffe-48db-a503-04366492294a
+    kind: kfp
+    metadata:
+      name: pipeline_mlflow
+      project: project-mlflow-model-ci
+      ref: workflow-pipeline_mlflow-0a2a73a4-9ffe-48db-a503-04366492294a.yml
+    name: pipeline_mlflow
+    project: project-mlflow-model-ci
+status:
+  state: CREATED
+id: project-mlflow-model-ci
+name: project-mlflow-model-ci
+key: store://project-mlflow-model-ci

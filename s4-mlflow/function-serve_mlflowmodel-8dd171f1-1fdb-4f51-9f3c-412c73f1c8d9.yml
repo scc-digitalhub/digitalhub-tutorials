@@ -1,0 +1,15 @@
+kind: mlflowserve
+metadata:
+  project: project-mlflow-model-ci
+  name: serve_mlflowmodel
+  version: 8dd171f1-1fdb-4f51-9f3c-412c73f1c8d9
+  embedded: false
+spec:
+  path: s3://datalake/project-mlflow-model-ci/model/model-mlflow/2c1e14ec-d061-4cca-b1ed-50714b9c4324/model/
+  model_name: mlflow_model
+status:
+  state: CREATED
+project: project-mlflow-model-ci
+name: serve_mlflowmodel
+id: 8dd171f1-1fdb-4f51-9f3c-412c73f1c8d9
+key: store://project-mlflow-model-ci/function/mlflowserve/serve_mlflowmodel:8dd171f1-1fdb-4f51-9f3c-412c73f1c8d9
