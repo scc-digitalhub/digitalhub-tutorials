@@ -51,12 +51,15 @@ This scenario provides a quick overview of developing and deploying a machine le
    3. Run the pipeline
       ```
       workflow_run = proj.run('pipeline_mlflow')
+      workflow_run
       ```
-      We can now explore the results of the function. We can fetch the list of data model using digithub sdk.
+      Wait until workflow execution is completed. One can view the state of workflow run using console or using sdk api as shown below.
+      ```
+      workflow_run.get_state()
+      ```
+      Once completed, one can explore the results of the function by fetching the list of data model using digithub sdk.
       ```
       data_model = dh.list_models(project='project-mlflow-model-ci')
-      ```
-      ```
       print((data_model))
       ```
       ```
