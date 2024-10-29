@@ -60,17 +60,22 @@ This scenario provides a quick overview of developing and deploying generic mach
       ```
       train_fn.run(action="build", instructions=["pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu","pip3 install darts patsy scikit-learn"])
       ```
-      wait for build to be completed
+      wait for build to be completed. One can check the status of 'Run' using console or by typing the following command
+      ```
+      train_fn.get_state()
+      ```
       
-   4. Run the pipeline
+   5. Run the pipeline
       ```
       workflow_run = proj.run('pipeline_cml_darts')
       ```
-      We can now explore the results of the function. We can fetch the list of data model using digithub sdk.
+      Wait for workflow pipeline to be completed. One can check the status of 'Run' using console or by typing the following command.
+      ```
+      workflow_run.get_state()
+      ```
+      Once completed, one can explore the results by fetching the list of newly created data model using digithub sdk API.
       ```
       data_model = dh.list_models(project='project-cml-darts-ci')
-      ```
-      ```
       print((data_model))
       ```
       ```
