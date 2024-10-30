@@ -63,6 +63,9 @@ This scenario depict how to create and serve LLM HuggingFace-compatible-models. 
      ```
      workflow_run = proj.run('pipeline_llm')
      ```
+     ```
+     workflow_run.refresh().status.state
+     ```
      As a result of this scenario workflow, a serving function 'llm_classification' is created which is availabe to make an API call, it is also possible to expose the service using the KRM API gateway functionality.
 	
 	
