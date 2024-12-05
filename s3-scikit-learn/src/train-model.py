@@ -10,7 +10,7 @@ from pickle import dump
 import sklearn.metrics
 import os
 
-@handler(outputs=["dataset"])
+@handler(outputs=["model"])
 def train(project, di):
 
     df_cancer = di.as_df()
@@ -33,9 +33,8 @@ def train(project, di):
         "precision": sklearn.metrics.precision_score(y_test, y_predict),
         "recall": sklearn.metrics.recall_score(y_test, y_predict),
     }
-    return (project.log_model(
+    return project.log_model(
             name="cancer_classifier",
             kind="sklearn",
             source="./model/",
             metrics=metrics)
-    )

@@ -1,0 +1,23 @@
+kind: python
+metadata:
+  project: project-etl
+  name: process-measures
+  version: 76d9d17806364896b7c37cc976cb47dc
+  created: '2024-12-05T14:22:32.629Z'
+  updated: '2024-12-05T14:22:32.629Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+spec:
+  python_version: PYTHON3_10
+  source:
+    source: src/process-measures.py
+    handler: process
+    lang: python
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+project: project-etl
+name: process-measures
+id: 76d9d17806364896b7c37cc976cb47dc
+key: store://project-etl/function/python/process-measures:76d9d17806364896b7c37cc976cb47dc

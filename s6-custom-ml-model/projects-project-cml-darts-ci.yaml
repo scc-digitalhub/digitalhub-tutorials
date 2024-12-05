@@ -1,0 +1,69 @@
+kind: project
+metadata:
+  project: project-cml-darts-ci
+  name: project-cml-darts-ci
+  created: '2024-12-05T12:27:50.917Z'
+  updated: '2024-12-05T13:19:31.15Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+spec:
+  context: ./
+  functions:
+  - id: 28181ba53cae4296b84a70665dbce62f
+    key: store://project-cml-darts-ci/function/python/train-darts:28181ba53cae4296b84a70665dbce62f
+    kind: python
+    metadata:
+      name: train-darts
+      project: project-cml-darts-ci
+      ref: functions-28181ba53cae4296b84a70665dbce62f.yaml
+      updated: '2024-12-05T13:07:29.294Z'
+      created: '2024-12-05T13:03:38.132Z'
+    name: train-darts
+    project: project-cml-darts-ci
+    user: mmartini@fbk.eu
+  - id: 4e86485725bc451f9b9467804b3a69a1
+    key: store://project-cml-darts-ci/function/python/serve_darts_model:4e86485725bc451f9b9467804b3a69a1
+    kind: python
+    metadata:
+      name: serve_darts_model
+      project: project-cml-darts-ci
+      ref: functions-4e86485725bc451f9b9467804b3a69a1.yaml
+      updated: '2024-12-05T13:13:29.686Z'
+      created: '2024-12-05T13:09:39.125Z'
+    name: serve_darts_model
+    project: project-cml-darts-ci
+    user: mmartini@fbk.eu
+  artifacts: []
+  workflows:
+  - id: d9769ff08afc4560a72524d6a078035a
+    key: store://project-cml-darts-ci/workflow/kfp/pipeline_cml_darts:d9769ff08afc4560a72524d6a078035a
+    kind: kfp
+    metadata:
+      name: pipeline_cml_darts
+      project: project-cml-darts-ci
+      ref: workflows-d9769ff08afc4560a72524d6a078035a.yaml
+      updated: '2024-12-05T13:19:31.056Z'
+      created: '2024-12-05T13:18:25.58Z'
+    name: pipeline_cml_darts
+    project: project-cml-darts-ci
+    user: mmartini@fbk.eu
+  dataitems: []
+  models:
+  - id: 82c162a2cf514cac8bc7dc0c2b0cc087
+    key: store://project-cml-darts-ci/model/model/darts_model:82c162a2cf514cac8bc7dc0c2b0cc087
+    kind: model
+    metadata:
+      name: darts_model
+      project: project-cml-darts-ci
+      ref: models-82c162a2cf514cac8bc7dc0c2b0cc087.yaml
+      updated: '2024-12-05T13:08:57.295Z'
+      created: '2024-12-05T13:08:56.767Z'
+    name: darts_model
+    project: project-cml-darts-ci
+    user: mmartini@fbk.eu
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+id: project-cml-darts-ci
+name: project-cml-darts-ci
+key: store://project-cml-darts-ci

@@ -1,0 +1,23 @@
+kind: python
+metadata:
+  project: project-etl
+  name: process-spire
+  version: 568faef803164fca8459b6f0c3e35b91
+  created: '2024-12-05T14:21:31.065Z'
+  updated: '2024-12-05T14:21:31.065Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+spec:
+  python_version: PYTHON3_10
+  source:
+    source: src/process-spire.py
+    handler: process
+    lang: python
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+project: project-etl
+name: process-spire
+id: 568faef803164fca8459b6f0c3e35b91
+key: store://project-etl/function/python/process-spire:568faef803164fca8459b6f0c3e35b91

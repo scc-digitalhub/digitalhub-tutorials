@@ -2,6 +2,11 @@ kind: dbt
 metadata:
   project: project-dbt-ci
   name: function-dbt
+  version: 776571353e9d433aa58f10627b0d0b80
+  created: '2024-12-05T14:01:36.852Z'
+  updated: '2024-12-05T14:01:36.852Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
   embedded: false
 spec:
   source:
@@ -9,7 +14,8 @@ spec:
     lang: sql
 status:
   state: CREATED
+user: mmartini@fbk.eu
 project: project-dbt-ci
 name: function-dbt
-id: 7f6a2798-b1af-495d-84ba-695fd2fdcdab
-key: store://project-dbt-ci/function/dbt/function-dbt:7f6a2798-b1af-495d-84ba-695fd2fdcdab
+id: 776571353e9d433aa58f10627b0d0b80
+key: store://project-dbt-ci/function/dbt/function-dbt:776571353e9d433aa58f10627b0d0b80

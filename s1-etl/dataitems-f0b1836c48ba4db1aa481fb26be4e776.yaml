@@ -1,0 +1,77 @@
+kind: table
+metadata:
+  project: project-etl
+  name: dataset-measures
+  version: f0b1836c48ba4db1aa481fb26be4e776
+  created: '2024-12-05T14:22:40.373Z'
+  updated: '2024-12-05T14:22:40.814Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+  relationships:
+  - type: produced_by
+    source: store://project-etl/dataitem/table/dataset-measures:f0b1836c48ba4db1aa481fb26be4e776
+    dest: store://project-etl/run/python+run/2ccc22c220b54ff7b39cdb0eb5ee9550:2ccc22c220b54ff7b39cdb0eb5ee9550
+spec:
+  path: s3://datalake/project-etl/dataitem/dataset-measures/f0b1836c48ba4db1aa481fb26be4e776/dataset-measures.parquet
+  schema:
+    fields:
+    - name: time
+      type: string
+    - name: codice spira
+      type: string
+    - name: value
+      type: integer
+status:
+  state: CREATED
+  files:
+  - path: dataset-measures.parquet
+    name: dataset-measures.parquet
+    content_type: binary/octet-stream
+    size: 20814226
+    hash: md5:e75130d8e5096cb9305e76371930d0f8-3
+    last_modified: '2024-12-05T14:22:40+00:00'
+  preview:
+    cols:
+    - name: time
+      value:
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+      - 2023-04-01 00:00
+    - name: codice spira
+      value:
+      - 0.127 1.5 2 1
+      - 0.127 1.5 5 1
+      - 0.127 1.13 6 1
+      - 0.127 1.15 6 1
+      - 0.127 1.82 2 2
+      - 0.127 2.3 1 1
+      - 0.127 2.6 1 1_2
+      - 0.127 2.6 10 1
+      - 0.127 2.6 10 1
+      - 0.127 2.7 4 1
+    - name: value
+      value:
+      - 34
+      - 38
+      - 0
+      - 68
+      - 86
+      - 53
+      - 26
+      - 93
+      - 93
+      - 58
+    rows: 7513608
+user: mmartini@fbk.eu
+project: project-etl
+name: dataset-measures
+id: f0b1836c48ba4db1aa481fb26be4e776
+key: store://project-etl/dataitem/table/dataset-measures:f0b1836c48ba4db1aa481fb26be4e776

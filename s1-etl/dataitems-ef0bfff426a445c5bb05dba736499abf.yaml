@@ -1,0 +1,19 @@
+kind: table
+metadata:
+  project: project-etl
+  name: url_data_item
+  version: ef0bfff426a445c5bb05dba736499abf
+  created: '2024-12-05T14:18:53.033Z'
+  updated: '2024-12-05T14:18:53.033Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+spec:
+  path: https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rilevazione-flusso-veicoli-tramite-spire-anno-2023/exports/csv?lang=it&timezone=Europe%2FRome&use_labels=true&delimiter=%3B
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+project: project-etl
+name: url_data_item
+id: ef0bfff426a445c5bb05dba736499abf
+key: store://project-etl/dataitem/table/url_data_item:ef0bfff426a445c5bb05dba736499abf

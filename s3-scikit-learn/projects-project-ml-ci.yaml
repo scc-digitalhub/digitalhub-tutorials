@@ -1,0 +1,93 @@
+kind: project
+metadata:
+  project: project-ml-ci
+  name: project-ml-ci
+  created: '2024-12-05T10:09:03.855Z'
+  updated: '2024-12-05T13:35:32.271Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+spec:
+  context: ./
+  functions:
+  - id: b7a3ebb2c05148acbe676c3f60549763
+    key: store://project-ml-ci/function/python/data-prep:b7a3ebb2c05148acbe676c3f60549763
+    kind: python
+    metadata:
+      name: data-prep
+      project: project-ml-ci
+      ref: functions-b7a3ebb2c05148acbe676c3f60549763.yaml
+      updated: '2024-12-05T13:31:44.94Z'
+      created: '2024-12-05T13:31:44.94Z'
+    name: data-prep
+    project: project-ml-ci
+    user: mmartini@fbk.eu
+  - id: 4a2d36a45a8a47e29e727650266af099
+    key: store://project-ml-ci/function/python/train:4a2d36a45a8a47e29e727650266af099
+    kind: python
+    metadata:
+      name: train
+      project: project-ml-ci
+      ref: functions-4a2d36a45a8a47e29e727650266af099.yaml
+      updated: '2024-12-05T13:32:41.405Z'
+      created: '2024-12-05T13:32:41.405Z'
+    name: train
+    project: project-ml-ci
+    user: mmartini@fbk.eu
+  - id: be5142f8567b42b2a0ce51d7b5768b94
+    key: store://project-ml-ci/function/sklearnserve/serve_sklearnmodel:be5142f8567b42b2a0ce51d7b5768b94
+    kind: sklearnserve
+    metadata:
+      name: serve_sklearnmodel
+      project: project-ml-ci
+      ref: functions-be5142f8567b42b2a0ce51d7b5768b94.yaml
+      updated: '2024-12-05T13:33:37.847Z'
+      created: '2024-12-05T13:33:37.847Z'
+    name: serve_sklearnmodel
+    project: project-ml-ci
+    user: mmartini@fbk.eu
+  artifacts: []
+  workflows:
+  - id: 96bfed5dcd4245b38b398ae4653f8fc1
+    key: store://project-ml-ci/workflow/kfp/pipeline_ml:96bfed5dcd4245b38b398ae4653f8fc1
+    kind: kfp
+    metadata:
+      name: pipeline_ml
+      project: project-ml-ci
+      ref: workflows-96bfed5dcd4245b38b398ae4653f8fc1.yaml
+      updated: '2024-12-05T13:35:32.178Z'
+      created: '2024-12-05T13:34:34.27Z'
+    name: pipeline_ml
+    project: project-ml-ci
+    user: mmartini@fbk.eu
+  dataitems:
+  - id: beacabe28fb44d068fe01cebcf36bb19
+    key: store://project-ml-ci/dataitem/table/dataset:beacabe28fb44d068fe01cebcf36bb19
+    kind: table
+    metadata:
+      name: dataset
+      project: project-ml-ci
+      ref: dataitems-beacabe28fb44d068fe01cebcf36bb19.yaml
+      updated: '2024-12-05T13:31:49.687Z'
+      created: '2024-12-05T13:31:49.52Z'
+    name: dataset
+    project: project-ml-ci
+    user: mmartini@fbk.eu
+  models:
+  - id: 18a377271b81470d86bf97530a90014e
+    key: store://project-ml-ci/model/sklearn/cancer_classifier:18a377271b81470d86bf97530a90014e
+    kind: sklearn
+    metadata:
+      name: cancer_classifier
+      project: project-ml-ci
+      ref: models-18a377271b81470d86bf97530a90014e.yaml
+      updated: '2024-12-05T13:32:50.412Z'
+      created: '2024-12-05T13:32:50.153Z'
+    name: cancer_classifier
+    project: project-ml-ci
+    user: mmartini@fbk.eu
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+id: project-ml-ci
+name: project-ml-ci
+key: store://project-ml-ci

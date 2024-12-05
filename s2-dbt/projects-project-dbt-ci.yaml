@@ -1,0 +1,81 @@
+kind: project
+metadata:
+  project: project-dbt-ci
+  name: project-dbt-ci
+  created: '2024-12-05T14:01:36.577Z'
+  updated: '2024-12-05T14:03:50.162Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+spec:
+  context: ./
+  functions:
+  - id: 776571353e9d433aa58f10627b0d0b80
+    key: store://project-dbt-ci/function/dbt/function-dbt:776571353e9d433aa58f10627b0d0b80
+    kind: dbt
+    metadata:
+      name: function-dbt
+      project: project-dbt-ci
+      ref: functions-776571353e9d433aa58f10627b0d0b80.yaml
+      updated: '2024-12-05T14:01:36.852Z'
+      created: '2024-12-05T14:01:36.852Z'
+    name: function-dbt
+    project: project-dbt-ci
+    user: mmartini@fbk.eu
+  artifacts: []
+  workflows:
+  - id: adad0c205fd84ae5824a184e47eee7de
+    key: store://project-dbt-ci/workflow/kfp/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de
+    kind: kfp
+    metadata:
+      name: pipeline_dbt
+      project: project-dbt-ci
+      ref: workflows-adad0c205fd84ae5824a184e47eee7de.yaml
+      updated: '2024-12-05T14:03:34.173Z'
+      created: '2024-12-05T14:02:43.518Z'
+    name: pipeline_dbt
+    project: project-dbt-ci
+    user: mmartini@fbk.eu
+  dataitems:
+  - id: afd47e3b2ac54f709ad001121233fb72
+    key: store://project-dbt-ci/dataitem/table/employees-dbt:afd47e3b2ac54f709ad001121233fb72
+    kind: table
+    metadata:
+      name: employees-dbt
+      project: project-dbt-ci
+      ref: dataitems-afd47e3b2ac54f709ad001121233fb72.yaml
+      updated: '2024-12-05T14:01:36.656Z'
+      created: '2024-12-05T14:01:36.656Z'
+    name: employees-dbt
+    project: project-dbt-ci
+    user: mmartini@fbk.eu
+  - id: 30345d05f15f441281389d8055bd7e54
+    key: store://project-dbt-ci/dataitem/table/employees_vafd47e3b2ac54f709ad001121233fb72:30345d05f15f441281389d8055bd7e54
+    kind: table
+    metadata:
+      name: employees_vafd47e3b2ac54f709ad001121233fb72
+      project: project-dbt-ci
+      ref: dataitems-30345d05f15f441281389d8055bd7e54.yaml
+      updated: '2024-12-05T14:03:47.679Z'
+      created: '2024-12-05T14:03:47.679Z'
+    name: employees_vafd47e3b2ac54f709ad001121233fb72
+    project: project-dbt-ci
+    user: mmartini@fbk.eu
+  - id: 0e3ef278d42a410caf015a0604b086b9
+    key: store://project-dbt-ci/dataitem/table/department-50:0e3ef278d42a410caf015a0604b086b9
+    kind: table
+    metadata:
+      name: department-50
+      project: project-dbt-ci
+      ref: dataitems-0e3ef278d42a410caf015a0604b086b9.yaml
+      updated: '2024-12-05T14:03:50.09Z'
+      created: '2024-12-05T14:03:50.09Z'
+    name: department-50
+    project: project-dbt-ci
+    user: mmartini@fbk.eu
+  models: []
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+id: project-dbt-ci
+name: project-dbt-ci
+key: store://project-dbt-ci

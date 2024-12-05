@@ -6,5 +6,5 @@ KEYS=['codice spira','longitudine','latitudine','Livello','tipologia','codice','
 @handler(outputs=["dataset-spire"])
 def process(project, di):
     df = di.as_df()
-    sdf= df.groupby(['codice spira']).first().reset_index()[KEYS]
+    sdf = df.groupby(['codice spira']).first().reset_index()[KEYS]
     return sdf

@@ -1,0 +1,19 @@
+kind: sklearnserve
+metadata:
+  project: project-ml-ci
+  name: serve_sklearnmodel
+  version: be5142f8567b42b2a0ce51d7b5768b94
+  created: '2024-12-05T13:33:37.847Z'
+  updated: '2024-12-05T13:33:37.847Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+spec:
+  path: s3://datalake/project-ml-ci/model/cancer_classifier/18a377271b81470d86bf97530a90014e/cancer_classifier.pkl
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+project: project-ml-ci
+name: serve_sklearnmodel
+id: be5142f8567b42b2a0ce51d7b5768b94
+key: store://project-ml-ci/function/sklearnserve/serve_sklearnmodel:be5142f8567b42b2a0ce51d7b5768b94

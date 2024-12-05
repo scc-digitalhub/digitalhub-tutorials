@@ -1,0 +1,182 @@
+kind: table
+metadata:
+  project: project-dbt-ci
+  name: department-50
+  version: 0e3ef278d42a410caf015a0604b086b9
+  created: '2024-12-05T14:03:50.09Z'
+  updated: '2024-12-05T14:03:50.09Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+  relationships:
+  - type: produced_by
+    source: store://project-dbt-ci/dataitem/table/department-50:0e3ef278d42a410caf015a0604b086b9
+    dest: store://project-dbt-ci/run/dbt+run/228275a5814b4acb9615803870d54634:228275a5814b4acb9615803870d54634
+spec:
+  path: sql://digitalhub/public/department-50_v0e3ef278d42a410caf015a0604b086b9
+  schema:
+    fields:
+    - name: EMPLOYEE_ID
+      type: integer
+    - name: FIRST_NAME
+      type: string
+    - name: LAST_NAME
+      type: string
+    - name: EMAIL
+      type: string
+    - name: PHONE_NUMBER
+      type: string
+    - name: HIRE_DATE
+      type: string
+    - name: JOB_ID
+      type: string
+    - name: SALARY
+      type: integer
+    - name: COMMISSION_PCT
+      type: string
+    - name: MANAGER_ID
+      type: string
+    - name: DEPARTMENT_ID
+      type: integer
+status:
+  state: CREATED
+  preview:
+    cols:
+    - name: EMPLOYEE_ID
+      value:
+      - 198
+      - 199
+      - 120
+      - 121
+      - 122
+      - 123
+      - 124
+      - 125
+      - 126
+      - 127
+    - name: FIRST_NAME
+      value:
+      - Donald
+      - Douglas
+      - Matthew
+      - Adam
+      - Payam
+      - Shanta
+      - Kevin
+      - Julia
+      - Irene
+      - James
+    - name: LAST_NAME
+      value:
+      - OConnell
+      - Grant
+      - Weiss
+      - Fripp
+      - Kaufling
+      - Vollman
+      - Mourgos
+      - Nayer
+      - Mikkilineni
+      - Landry
+    - name: EMAIL
+      value:
+      - DOCONNEL
+      - DGRANT
+      - MWEISS
+      - AFRIPP
+      - PKAUFLIN
+      - SVOLLMAN
+      - KMOURGOS
+      - JNAYER
+      - IMIKKILI
+      - JLANDRY
+    - name: PHONE_NUMBER
+      value:
+      - 650.507.9833
+      - 650.507.9844
+      - 650.123.1234
+      - 650.123.2234
+      - 650.123.3234
+      - 650.123.4234
+      - 650.123.5234
+      - 650.124.1214
+      - 650.124.1224
+      - 650.124.1334
+    - name: HIRE_DATE
+      value:
+      - 21-JUN-07
+      - 13-JAN-08
+      - 18-JUL-04
+      - 10-APR-05
+      - 01-MAY-03
+      - 10-OCT-05
+      - 16-NOV-07
+      - 16-JUL-05
+      - 28-SEP-06
+      - 14-JAN-07
+    - name: JOB_ID
+      value:
+      - SH_CLERK
+      - SH_CLERK
+      - ST_MAN
+      - ST_MAN
+      - ST_MAN
+      - ST_MAN
+      - ST_MAN
+      - ST_CLERK
+      - ST_CLERK
+      - ST_CLERK
+    - name: SALARY
+      value:
+      - 2600
+      - 2600
+      - 8000
+      - 8200
+      - 7900
+      - 6500
+      - 5800
+      - 3200
+      - 2700
+      - 2400
+    - name: COMMISSION_PCT
+      value:
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+      - ' - '
+    - name: MANAGER_ID
+      value:
+      - '124'
+      - '124'
+      - '100'
+      - '100'
+      - '100'
+      - '100'
+      - '100'
+      - '120'
+      - '120'
+      - '120'
+    - name: DEPARTMENT_ID
+      value:
+      - 50
+      - 50
+      - 50
+      - 50
+      - 50
+      - 50
+      - 50
+      - 50
+      - 50
+      - 50
+    rows: 23
+user: mmartini@fbk.eu
+project: project-dbt-ci
+name: department-50
+id: 0e3ef278d42a410caf015a0604b086b9
+key: store://project-dbt-ci/dataitem/table/department-50:0e3ef278d42a410caf015a0604b086b9

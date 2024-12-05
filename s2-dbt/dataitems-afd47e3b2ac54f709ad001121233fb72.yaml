@@ -1,0 +1,19 @@
+kind: table
+metadata:
+  project: project-dbt-ci
+  name: employees-dbt
+  version: afd47e3b2ac54f709ad001121233fb72
+  created: '2024-12-05T14:01:36.656Z'
+  updated: '2024-12-05T14:01:36.656Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+spec:
+  path: https://gist.githubusercontent.com/kevin336/acbb2271e66c10a5b73aacf82ca82784/raw/e38afe62e088394d61ed30884dd50a6826eee0a8/employees.csv
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+project: project-dbt-ci
+name: employees-dbt
+id: afd47e3b2ac54f709ad001121233fb72
+key: store://project-dbt-ci/dataitem/table/employees-dbt:afd47e3b2ac54f709ad001121233fb72

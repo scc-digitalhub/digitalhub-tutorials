@@ -1,0 +1,25 @@
+kind: python
+metadata:
+  project: project-cml-darts-ci
+  name: serve_darts_model
+  version: 4e86485725bc451f9b9467804b3a69a1
+  created: '2024-12-05T13:09:39.125Z'
+  updated: '2024-12-05T13:13:29.686Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+spec:
+  image: registry.tenant2.digitalhub-dev.smartcommunitylab.it/digitalhub-tenant2-project-cml-darts-ci-serve_darts_model:172f3
+  python_version: PYTHON3_10
+  source:
+    source: src/serve_darts_model.py
+    handler: serve
+    init_function: init
+    lang: python
+status:
+  state: CREATED
+user: mmartini@fbk.eu
+project: project-cml-darts-ci
+name: serve_darts_model
+id: 4e86485725bc451f9b9467804b3a69a1
+key: store://project-cml-darts-ci/function/python/serve_darts_model:4e86485725bc451f9b9467804b3a69a1

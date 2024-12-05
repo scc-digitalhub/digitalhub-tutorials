@@ -1,0 +1,217 @@
+kind: table
+metadata:
+  project: project-etl
+  name: dataset-spire
+  version: 07ac37d0ea0d4708a264d30ea5a7987b
+  created: '2024-12-05T14:21:36.227Z'
+  updated: '2024-12-05T14:21:36.348Z'
+  created_by: mmartini@fbk.eu
+  updated_by: mmartini@fbk.eu
+  embedded: false
+  relationships:
+  - type: produced_by
+    source: store://project-etl/dataitem/table/dataset-spire:07ac37d0ea0d4708a264d30ea5a7987b
+    dest: store://project-etl/run/python+run/ccc589f615804d499f4d4db1463481e7:ccc589f615804d499f4d4db1463481e7
+spec:
+  path: s3://datalake/project-etl/dataitem/dataset-spire/07ac37d0ea0d4708a264d30ea5a7987b/dataset-spire.parquet
+  schema:
+    fields:
+    - name: codice spira
+      type: string
+    - name: longitudine
+      type: number
+    - name: latitudine
+      type: number
+    - name: Livello
+      type: integer
+    - name: tipologia
+      type: string
+    - name: codice
+      type: number
+    - name: codice arco
+      type: integer
+    - name: codice via
+      type: integer
+    - name: Nome via
+      type: string
+    - name: stato
+      type: string
+    - name: direzione
+      type: string
+    - name: angolo
+      type: number
+    - name: geopoint
+      type: string
+status:
+  state: CREATED
+  files:
+  - path: dataset-spire.parquet
+    name: dataset-spire.parquet
+    content_type: binary/octet-stream
+    size: 72417
+    hash: md5:ea6b4837776ce6e8910b1bd90c9e69f3
+    last_modified: '2024-12-05T14:21:36+00:00'
+  preview:
+    cols:
+    - name: codice spira
+      value:
+      - 0.127 1.1 6 1
+      - 0.127 1.12 8 1
+      - 0.127 1.13 6 1
+      - 0.127 1.14 4 1
+      - 0.127 1.15 2 1
+      - 0.127 1.15 6 1
+      - 0.127 1.16 2 1
+      - 0.127 1.16 8 1
+      - 0.127 1.17 4 1
+      - 0.127 1.18 1 1
+    - name: longitudine
+      value:
+      - 11.3541657967424
+      - 11.338970003537
+      - 11.3464200565732
+      - 11.3398356513878
+      - 11.3433581064329
+      - 11.3434427397635
+      - 11.3519809631422
+      - 11.3520841867509
+      - 11.3509026754331
+      - 11.338564528943
+    - name: latitudine
+      value:
+      - 44.4985349106485
+      - 44.4952505129043
+      - 44.4916483847646
+      - 44.4901162203284
+      - 44.4895074220971
+      - 44.4900271601578
+      - 44.4941035248986
+      - 44.4943294432991
+      - 44.4923692879684
+      - 44.4992226472054
+    - name: Livello
+      value:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    - name: tipologia
+      value:
+      - spira
+      - spira
+      - spira
+      - spira
+      - spira
+      - spira
+      - spira
+      - spira
+      - spira
+      - spira
+    - name: codice
+      value:
+      - 498.0
+      - 1045.0
+      - 130.0
+      - 521.0
+      - 132.0
+      - 133.0
+      - 1073.0
+      - 313.0
+      - 310.0
+      - 947.0
+    - name: codice arco
+      value:
+      - 3312
+      - 1016
+      - 1169
+      - 1050
+      - 1064
+      - 1059
+      - 1405
+      - 1743
+      - 1187
+      - 2904
+    - name: codice via
+      value:
+      - 19900
+      - 5900
+      - 14700
+      - 59900
+      - 25800
+      - 25800
+      - 1400
+      - 45400
+      - 9600
+      - 35200
+    - name: Nome via
+      value:
+      - VIA G.BATTISTA DE ROLANDIS
+      - VIA CESARE BATTISTI
+      - VIA CASTIGLIONE
+      - VIA URBANA
+      - VIA GARIBALDI
+      - VIA GARIBALDI
+      - PIAZZA ALDROVANDI
+      - VIA GIUSEPPE PETRONI
+      - VIA BORGONUOVO
+      - VIA GUGLIELMO MARCONI
+    - name: stato
+      value:
+      - A
+      - A
+      - A
+      - A
+      - A
+      - A
+      - A
+      - A
+      - A
+      - A
+    - name: direzione
+      value:
+      - N
+      - N
+      - S
+      - E
+      - N
+      - S
+      - 'NO'
+      - S
+      - NE
+      - S
+    - name: angolo
+      value:
+      - 342.0
+      - 350.0
+      - 198.0
+      - 264.0
+      - 347.0
+      - 168.0
+      - 352.0
+      - 193.0
+      - 333.0
+      - 163.0
+    - name: geopoint
+      value:
+      - 44.4985349106485, 11.3541657967424
+      - 44.4952505129043, 11.338970003537
+      - 44.4916483847646, 11.3464200565732
+      - 44.4901162203284, 11.3398356513878
+      - 44.4895074220971, 11.3433581064329
+      - 44.4900271601578, 11.3434427397635
+      - 44.4941035248986, 11.3519809631422
+      - 44.4943294432991, 11.3520841867509
+      - 44.4923692879684, 11.3509026754331
+      - 44.4992226472054, 11.338564528943
+    rows: 905
+user: mmartini@fbk.eu
+project: project-etl
+name: dataset-spire
+id: 07ac37d0ea0d4708a264d30ea5a7987b
+key: store://project-etl/dataitem/table/dataset-spire:07ac37d0ea0d4708a264d30ea5a7987b
