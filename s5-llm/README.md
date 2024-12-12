@@ -1,6 +1,6 @@
-# DBT (Database transformation) scenario
+# ML Flow Model Training and Serving
 
-This scenario depict how to collect some data regarding organizations, analyze and transform it, then expose the resulting dataset. The "s2-dbt" folder contains a jupyter notebook and a digitalhub project yaml descriptor.
+This scenario provides a quick overview of developing and deploying a machine learning application based on model tracked with MLFlow framework using the functionalities of the platform. The "s5-llm" folder contains a jupyter notebook and a digitalhub project.
 
 ## Jypter notebook
 
@@ -12,19 +12,13 @@ Import the project using the yaml file.
 
 ```python
 import digitalhub as dh
-proj = dh.import_project("projects-project-dbt.yaml")
+proj = dh.import_project("projects-llm-ci.yaml")
 ```
 
 View the project details such as pipeline name.
 
 ```python
 wkfl = proj.spec.workflows[0].name
-```
-
-Get the input parameter for workflow (dataitem is imported above with the project)
-
-```python
-di = proj.get_dataitem("employees-dbt")
 ```
 
 Run the pipeline through the project
