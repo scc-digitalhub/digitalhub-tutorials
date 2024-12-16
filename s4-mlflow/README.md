@@ -12,7 +12,7 @@ Import the project using the yaml file.
 
 ```python
 import digitalhub as dh
-proj = dh.import_project("projects-llm-ci.yaml")
+proj = dh.import_project("projects-project-mlflow-model-ci.yaml")
 ```
 
 View the project details such as pipeline name.
@@ -24,6 +24,5 @@ wkfl = proj.spec.workflows[0]["name"]
 Run the pipeline through the project
 
 ```python
-model_path = "huggingface://distilbert/distilbert-base-uncased-finetuned-sst-2-english"
-workflow_run = proj.run(wkfl, action="pipeline", parameters={"path": model_path}, wait=True)
+workflow_run = proj.run(wkfl, action="pipeline", wait=True)
 ```

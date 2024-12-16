@@ -24,5 +24,5 @@ wkfl = proj.spec.workflows[0]["name"]
 Run the pipeline through the project
 
 ```python
-workflow_run = proj.run(wkfl, action="pipeline", parameters={"url": di.key}, wait=True)
+workflow_run = proj.run(wkfl, action="pipeline", wait=True)
 ```
