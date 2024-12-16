@@ -18,7 +18,7 @@ proj = dh.import_project("projects-project-dbt.yaml")
 View the project details such as pipeline name.
 
 ```python
-wkfl = proj.spec.workflows[0].name
+wkfl = proj.spec.workflows[0]["name"]
 ```
 
 Get the input parameter for workflow (dataitem is imported above with the project)

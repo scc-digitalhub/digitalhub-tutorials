@@ -18,7 +18,7 @@ proj = dh.import_project("projects-project-ml-ci.yaml")
 View the project details such as pipeline name.
 
 ```python
-wkfl = proj.spec.workflows[0].name
+wkfl = proj.spec.workflows[0]["name"]
 ```
 
 Run the pipeline through the project

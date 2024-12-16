@@ -18,7 +18,7 @@ proj = dh.import_project("projects-project-cml-darts-ci.yaml")
 View the project details such as pipeline name.
 
 ```python
-wkfl = proj.spec.workflows[0].name
+wkfl = proj.spec.workflows[0]["name"]
 ```
 
 Build the container. Fetch the training function and build it.
