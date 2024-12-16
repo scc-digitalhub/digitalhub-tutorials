@@ -65,17 +65,6 @@ spec:
       name: pipeline
       project: project-etl
   dataitems:
-    - id: d19cfa4146e7415f98f5d516bbc8828c
-      key: store://project-etl/dataitem/table/dataset:d19cfa4146e7415f98f5d516bbc8828c
-      kind: table
-      metadata:
-        name: dataset
-        project: project-etl
-        ref: dataitems-d19cfa4146e7415f98f5d516bbc8828c.yaml
-        updated: "2024-12-05T14:26:04.681Z"
-        created: "2024-12-05T14:26:04.347Z"
-      name: dataset
-      project: project-etl
     - id: ef0bfff426a445c5bb05dba736499abf
       key: store://project-etl/dataitem/table/url_data_item:ef0bfff426a445c5bb05dba736499abf
       kind: table
@@ -86,28 +75,6 @@ spec:
         updated: "2024-12-05T14:18:53.033Z"
         created: "2024-12-05T14:18:53.033Z"
       name: url_data_item
-      project: project-etl
-    - id: 07ac37d0ea0d4708a264d30ea5a7987b
-      key: store://project-etl/dataitem/table/dataset-spire:07ac37d0ea0d4708a264d30ea5a7987b
-      kind: table
-      metadata:
-        name: dataset-spire
-        project: project-etl
-        ref: dataitems-07ac37d0ea0d4708a264d30ea5a7987b.yaml
-        updated: "2024-12-05T14:21:36.348Z"
-        created: "2024-12-05T14:21:36.227Z"
-      name: dataset-spire
-      project: project-etl
-    - id: f0b1836c48ba4db1aa481fb26be4e776
-      key: store://project-etl/dataitem/table/dataset-measures:f0b1836c48ba4db1aa481fb26be4e776
-      kind: table
-      metadata:
-        name: dataset-measures
-        project: project-etl
-        ref: dataitems-f0b1836c48ba4db1aa481fb26be4e776.yaml
-        updated: "2024-12-05T14:22:40.814Z"
-        created: "2024-12-05T14:22:40.373Z"
-      name: dataset-measures
       project: project-etl
   models: []
 status:

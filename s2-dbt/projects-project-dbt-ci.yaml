@@ -43,28 +43,6 @@ spec:
         created: "2024-12-05T14:01:36.656Z"
       name: employees-dbt
       project: project-dbt-ci
-    - id: 30345d05f15f441281389d8055bd7e54
-      key: store://project-dbt-ci/dataitem/table/employees_vafd47e3b2ac54f709ad001121233fb72:30345d05f15f441281389d8055bd7e54
-      kind: table
-      metadata:
-        name: employees_vafd47e3b2ac54f709ad001121233fb72
-        project: project-dbt-ci
-        ref: dataitems-30345d05f15f441281389d8055bd7e54.yaml
-        updated: "2024-12-05T14:03:47.679Z"
-        created: "2024-12-05T14:03:47.679Z"
-      name: employees_vafd47e3b2ac54f709ad001121233fb72
-      project: project-dbt-ci
-    - id: 0e3ef278d42a410caf015a0604b086b9
-      key: store://project-dbt-ci/dataitem/table/department-50:0e3ef278d42a410caf015a0604b086b9
-      kind: table
-      metadata:
-        name: department-50
-        project: project-dbt-ci
-        ref: dataitems-0e3ef278d42a410caf015a0604b086b9.yaml
-        updated: "2024-12-05T14:03:50.09Z"
-        created: "2024-12-05T14:03:50.09Z"
-      name: department-50
-      project: project-dbt-ci
   models: []
 status:
   state: CREATED

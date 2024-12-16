@@ -53,30 +53,8 @@ spec:
         created: "2024-12-05T13:34:34.27Z"
       name: pipeline_ml
       project: project-ml-ci
-  dataitems:
-    - id: beacabe28fb44d068fe01cebcf36bb19
-      key: store://project-ml-ci/dataitem/table/dataset:beacabe28fb44d068fe01cebcf36bb19
-      kind: table
-      metadata:
-        name: dataset
-        project: project-ml-ci
-        ref: dataitems-beacabe28fb44d068fe01cebcf36bb19.yaml
-        updated: "2024-12-05T13:31:49.687Z"
-        created: "2024-12-05T13:31:49.52Z"
-      name: dataset
-      project: project-ml-ci
-  models:
-    - id: 18a377271b81470d86bf97530a90014e
-      key: store://project-ml-ci/model/sklearn/cancer_classifier:18a377271b81470d86bf97530a90014e
-      kind: sklearn
-      metadata:
-        name: cancer_classifier
-        project: project-ml-ci
-        ref: models-18a377271b81470d86bf97530a90014e.yaml
-        updated: "2024-12-05T13:32:50.412Z"
-        created: "2024-12-05T13:32:50.153Z"
-      name: cancer_classifier
-      project: project-ml-ci
+  dataitems: []
+  models: []
 status:
   state: CREATED
 id: project-ml-ci

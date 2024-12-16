@@ -43,18 +43,7 @@ spec:
       name: pipeline_cml_darts
       project: project-cml-darts-ci
   dataitems: []
-  models:
-    - id: 82c162a2cf514cac8bc7dc0c2b0cc087
-      key: store://project-cml-darts-ci/model/model/darts_model:82c162a2cf514cac8bc7dc0c2b0cc087
-      kind: model
-      metadata:
-        name: darts_model
-        project: project-cml-darts-ci
-        ref: models-82c162a2cf514cac8bc7dc0c2b0cc087.yaml
-        updated: "2024-12-05T13:08:57.295Z"
-        created: "2024-12-05T13:08:56.767Z"
-      name: darts_model
-      project: project-cml-darts-ci
+  models: []
 status:
   state: CREATED
 id: project-cml-darts-ci

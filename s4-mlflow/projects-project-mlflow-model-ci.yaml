@@ -43,18 +43,7 @@ spec:
       name: pipeline_mlflow
       project: project-mlflow-model-ci
   dataitems: []
-  models:
-    - id: 12fa19bbe41b46b1b1621fc9034ece80
-      key: store://project-mlflow-model-ci/model/mlflow/model-mlflow:12fa19bbe41b46b1b1621fc9034ece80
-      kind: mlflow
-      metadata:
-        name: model-mlflow
-        project: project-mlflow-model-ci
-        ref: models-12fa19bbe41b46b1b1621fc9034ece80.yaml
-        updated: "2024-12-05T13:46:06.575Z"
-        created: "2024-12-05T13:46:06.259Z"
-      name: model-mlflow
-      project: project-mlflow-model-ci
+  models: []
 status:
   state: CREATED
 id: project-mlflow-model-ci
