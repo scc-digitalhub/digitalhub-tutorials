@@ -12,7 +12,7 @@ Import the project using the yaml file.
 
 ```python
 import digitalhub as dh
-proj = dh.import_project("projects-project-dbt.yaml")
+proj = dh.import_project("projects-project-dbt-ci.yaml")
 ```
 
 View the project details such as pipeline name.
@@ -31,5 +31,5 @@ Build and run the pipeline through the project:
 
 ```python
 proj.run(wkfl, action="build", wait=True)
-workflow_run = proj.run(wkfl, action="pipeline", parameters={"url": di.key}, wait=True)
+workflow_run = proj.run(wkfl, action="pipeline", parameters={"di": di.key}, wait=True)
 ```
