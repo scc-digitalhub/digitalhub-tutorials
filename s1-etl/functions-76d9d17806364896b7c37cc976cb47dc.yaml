@@ -3,10 +3,8 @@ metadata:
   project: project-etl
   name: process-measures
   version: 76d9d17806364896b7c37cc976cb47dc
-  created: '2024-12-05T14:22:32.629Z'
-  updated: '2024-12-05T14:22:32.629Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:22:32.629Z"
+  updated: "2024-12-05T14:22:32.629Z"
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -16,7 +14,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-etl
 name: process-measures
 id: 76d9d17806364896b7c37cc976cb47dc

@@ -3,10 +3,8 @@ metadata:
   project: project-cml-darts-ci
   name: train-darts
   version: 28181ba53cae4296b84a70665dbce62f
-  created: '2024-12-05T13:03:38.132Z'
-  updated: '2024-12-05T13:07:29.294Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:03:38.132Z"
+  updated: "2024-12-05T13:07:29.294Z"
   embedded: false
 spec:
   image: registry.tenant2.digitalhub-dev.smartcommunitylab.it/digitalhub-tenant2-project-cml-darts-ci-train-darts:982cd
@@ -17,7 +15,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-cml-darts-ci
 name: train-darts
 id: 28181ba53cae4296b84a70665dbce62f

@@ -3,16 +3,13 @@ metadata:
   project: project-dbt-ci
   name: employees_vafd47e3b2ac54f709ad001121233fb72
   version: 30345d05f15f441281389d8055bd7e54
-  created: '2024-12-05T14:03:47.679Z'
-  updated: '2024-12-05T14:03:47.679Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:03:47.679Z"
+  updated: "2024-12-05T14:03:47.679Z"
   embedded: false
 spec:
   path: sql://digitalhub/public/employees_vafd47e3b2ac54f709ad001121233fb72
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-dbt-ci
 name: employees_vafd47e3b2ac54f709ad001121233fb72
 id: 30345d05f15f441281389d8055bd7e54

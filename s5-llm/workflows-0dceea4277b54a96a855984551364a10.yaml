@@ -3,10 +3,8 @@ metadata:
   project: llm-ci
   name: pipeline_llm
   version: 0dceea4277b54a96a855984551364a10
-  created: '2024-12-11T10:29:21.659Z'
-  updated: '2024-12-11T10:31:10.492Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-11T10:29:21.659Z"
+  updated: "2024-12-11T10:31:10.492Z"
   embedded: false
 spec:
   source:
@@ -18,7 +16,6 @@ spec:
     lang: yaml
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: llm-ci
 name: pipeline_llm
 id: 0dceea4277b54a96a855984551364a10

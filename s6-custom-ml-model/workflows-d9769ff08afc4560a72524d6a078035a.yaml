@@ -3,10 +3,8 @@ metadata:
   project: project-cml-darts-ci
   name: pipeline_cml_darts
   version: d9769ff08afc4560a72524d6a078035a
-  created: '2024-12-05T13:18:25.58Z'
-  updated: '2024-12-05T13:19:31.056Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:18:25.58Z"
+  updated: "2024-12-05T13:19:31.056Z"
   embedded: false
 spec:
   source:
@@ -18,7 +16,6 @@ spec:
     lang: yaml
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-cml-darts-ci
 name: pipeline_cml_darts
 id: d9769ff08afc4560a72524d6a078035a

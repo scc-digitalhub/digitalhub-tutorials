@@ -2,44 +2,39 @@ kind: project
 metadata:
   project: llm-ci
   name: llm-ci
-  created: '2024-12-11T10:28:39.258Z'
-  updated: '2024-12-11T10:31:10.65Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-11T10:28:39.258Z"
+  updated: "2024-12-11T10:31:10.65Z"
 spec:
   context: ./
   functions:
-  - id: 993e33bf88344a4f8b8847736b62b2ee
-    key: store://llm-ci/function/huggingfaceserve/llm_classification:993e33bf88344a4f8b8847736b62b2ee
-    kind: huggingfaceserve
-    metadata:
+    - id: 993e33bf88344a4f8b8847736b62b2ee
+      key: store://llm-ci/function/huggingfaceserve/llm_classification:993e33bf88344a4f8b8847736b62b2ee
+      kind: huggingfaceserve
+      metadata:
+        name: llm_classification
+        project: llm-ci
+        ref: functions-993e33bf88344a4f8b8847736b62b2ee.yaml
+        updated: "2024-12-11T10:28:40.473Z"
+        created: "2024-12-11T10:28:40.473Z"
       name: llm_classification
       project: llm-ci
-      ref: functions-993e33bf88344a4f8b8847736b62b2ee.yaml
-      updated: '2024-12-11T10:28:40.473Z'
-      created: '2024-12-11T10:28:40.473Z'
-    name: llm_classification
-    project: llm-ci
-    user: mmartini@fbk.eu
   artifacts: []
   workflows:
-  - id: 0dceea4277b54a96a855984551364a10
-    key: store://llm-ci/workflow/kfp/pipeline_llm:0dceea4277b54a96a855984551364a10
-    kind: kfp
-    metadata:
+    - id: 0dceea4277b54a96a855984551364a10
+      key: store://llm-ci/workflow/kfp/pipeline_llm:0dceea4277b54a96a855984551364a10
+      kind: kfp
+      metadata:
+        name: pipeline_llm
+        project: llm-ci
+        ref: workflows-0dceea4277b54a96a855984551364a10.yaml
+        updated: "2024-12-11T10:31:10.492Z"
+        created: "2024-12-11T10:29:21.659Z"
       name: pipeline_llm
       project: llm-ci
-      ref: workflows-0dceea4277b54a96a855984551364a10.yaml
-      updated: '2024-12-11T10:31:10.492Z'
-      created: '2024-12-11T10:29:21.659Z'
-    name: pipeline_llm
-    project: llm-ci
-    user: mmartini@fbk.eu
   dataitems: []
   models: []
 status:
   state: CREATED
-user: mmartini@fbk.eu
 id: llm-ci
 name: llm-ci
 key: store://llm-ci

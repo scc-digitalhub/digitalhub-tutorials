@@ -3,10 +3,8 @@ metadata:
   project: project-mlflow-model-ci
   name: pipeline_mlflow
   version: 4d51288b219b41c2ad8c7591917e24ba
-  created: '2024-12-05T13:49:21.93Z'
-  updated: '2024-12-05T13:50:33.245Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:49:21.93Z"
+  updated: "2024-12-05T13:50:33.245Z"
   embedded: false
 spec:
   source:
@@ -18,7 +16,6 @@ spec:
     lang: yaml
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-mlflow-model-ci
 name: pipeline_mlflow
 id: 4d51288b219b41c2ad8c7591917e24ba

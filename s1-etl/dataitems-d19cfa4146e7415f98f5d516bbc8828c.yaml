@@ -3,662 +3,658 @@ metadata:
   project: project-etl
   name: dataset
   version: d19cfa4146e7415f98f5d516bbc8828c
-  created: '2024-12-05T14:26:04.347Z'
-  updated: '2024-12-05T14:26:04.681Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:26:04.347Z"
+  updated: "2024-12-05T14:26:04.681Z"
   embedded: false
   relationships:
-  - type: produced_by
-    source: store://project-etl/dataitem/table/dataset:d19cfa4146e7415f98f5d516bbc8828c
-    dest: store://project-etl/run/python+run/541c83199c1740a69fde6550352d78a6:541c83199c1740a69fde6550352d78a6
+    - type: produced_by
+      dest: store://project-etl/run/python+run/541c83199c1740a69fde6550352d78a6:541c83199c1740a69fde6550352d78a6
 spec:
   path: s3://datalake/project-etl/dataitem/dataset/d19cfa4146e7415f98f5d516bbc8828c/dataset.parquet
   schema:
     fields:
-    - name: data
-      type: string
-    - name: codice spira
-      type: string
-    - name: 00:00-01:00
-      type: integer
-    - name: 01:00-02:00
-      type: integer
-    - name: 02:00-03:00
-      type: integer
-    - name: 03:00-04:00
-      type: integer
-    - name: 04:00-05:00
-      type: integer
-    - name: 05:00-06:00
-      type: integer
-    - name: 06:00-07:00
-      type: integer
-    - name: 07:00-08:00
-      type: integer
-    - name: 08:00-09:00
-      type: integer
-    - name: 09:00-10:00
-      type: integer
-    - name: 10:00-11:00
-      type: integer
-    - name: 11:00-12:00
-      type: integer
-    - name: 12:00-13:00
-      type: integer
-    - name: 13:00-14:00
-      type: integer
-    - name: 14:00-15:00
-      type: integer
-    - name: 15:00-16:00
-      type: integer
-    - name: 16:00-17:00
-      type: integer
-    - name: 17:00-18:00
-      type: integer
-    - name: 18:00-19:00
-      type: integer
-    - name: 19:00-20:00
-      type: integer
-    - name: 20:00-21:00
-      type: integer
-    - name: 21:00-22:00
-      type: integer
-    - name: 22:00-23:00
-      type: integer
-    - name: 23:00-24:00
-      type: integer
-    - name: id_uni
-      type: integer
-    - name: Livello
-      type: integer
-    - name: tipologia
-      type: string
-    - name: codice
-      type: number
-    - name: codice arco
-      type: integer
-    - name: codice via
-      type: integer
-    - name: Nome via
-      type: string
-    - name: Nodo da
-      type: integer
-    - name: Nodo a
-      type: integer
-    - name: ordinanza
-      type: string
-    - name: stato
-      type: string
-    - name: codimpsem
-      type: integer
-    - name: direzione
-      type: string
-    - name: angolo
-      type: number
-    - name: longitudine
-      type: number
-    - name: latitudine
-      type: number
-    - name: geopoint
-      type: string
-    - name: ID_univoco_stazione_spira
-      type: number
-    - name: giorno settimana
-      type: string
+      - name: data
+        type: string
+      - name: codice spira
+        type: string
+      - name: 00:00-01:00
+        type: integer
+      - name: 01:00-02:00
+        type: integer
+      - name: 02:00-03:00
+        type: integer
+      - name: 03:00-04:00
+        type: integer
+      - name: 04:00-05:00
+        type: integer
+      - name: 05:00-06:00
+        type: integer
+      - name: 06:00-07:00
+        type: integer
+      - name: 07:00-08:00
+        type: integer
+      - name: 08:00-09:00
+        type: integer
+      - name: 09:00-10:00
+        type: integer
+      - name: 10:00-11:00
+        type: integer
+      - name: 11:00-12:00
+        type: integer
+      - name: 12:00-13:00
+        type: integer
+      - name: 13:00-14:00
+        type: integer
+      - name: 14:00-15:00
+        type: integer
+      - name: 15:00-16:00
+        type: integer
+      - name: 16:00-17:00
+        type: integer
+      - name: 17:00-18:00
+        type: integer
+      - name: 18:00-19:00
+        type: integer
+      - name: 19:00-20:00
+        type: integer
+      - name: 20:00-21:00
+        type: integer
+      - name: 21:00-22:00
+        type: integer
+      - name: 22:00-23:00
+        type: integer
+      - name: 23:00-24:00
+        type: integer
+      - name: id_uni
+        type: integer
+      - name: Livello
+        type: integer
+      - name: tipologia
+        type: string
+      - name: codice
+        type: number
+      - name: codice arco
+        type: integer
+      - name: codice via
+        type: integer
+      - name: Nome via
+        type: string
+      - name: Nodo da
+        type: integer
+      - name: Nodo a
+        type: integer
+      - name: ordinanza
+        type: string
+      - name: stato
+        type: string
+      - name: codimpsem
+        type: integer
+      - name: direzione
+        type: string
+      - name: angolo
+        type: number
+      - name: longitudine
+        type: number
+      - name: latitudine
+        type: number
+      - name: geopoint
+        type: string
+      - name: ID_univoco_stazione_spira
+        type: number
+      - name: giorno settimana
+        type: string
 status:
   state: CREATED
   files:
-  - path: dataset.parquet
-    name: dataset.parquet
-    content_type: binary/octet-stream
-    size: 16592072
-    hash: md5:d2c4c8b58c7292e377e759b0a989b120-2
-    last_modified: '2024-12-05T14:26:04+00:00'
+    - path: dataset.parquet
+      name: dataset.parquet
+      content_type: binary/octet-stream
+      size: 16592072
+      hash: md5:d2c4c8b58c7292e377e759b0a989b120-2
+      last_modified: "2024-12-05T14:26:04+00:00"
   preview:
     cols:
-    - name: data
-      value:
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-      - '2023-04-01'
-    - name: codice spira
-      value:
-      - 0.127 1.5 2 1
-      - 0.127 1.5 5 1
-      - 0.127 1.13 6 1
-      - 0.127 1.15 6 1
-      - 0.127 1.82 2 2
-      - 0.127 2.3 1 1
-      - 0.127 2.6 1 1_2
-      - 0.127 2.6 10 1
-      - 0.127 2.6 10 1
-      - 0.127 2.7 4 1
-    - name: 00:00-01:00
-      value:
-      - 34
-      - 38
-      - 0
-      - 68
-      - 86
-      - 53
-      - 26
-      - 93
-      - 93
-      - 58
-    - name: 01:00-02:00
-      value:
-      - 31
-      - 29
-      - 0
-      - 50
-      - 55
-      - 31
-      - 10
-      - 85
-      - 85
-      - 36
-    - name: 02:00-03:00
-      value:
-      - 14
-      - 20
-      - 0
-      - 38
-      - 37
-      - 18
-      - 2
-      - 40
-      - 40
-      - 17
-    - name: 03:00-04:00
-      value:
-      - 7
-      - 6
-      - 0
-      - 13
-      - 30
-      - 9
-      - 6
-      - 18
-      - 18
-      - 15
-    - name: 04:00-05:00
-      value:
-      - 9
-      - 13
-      - 0
-      - 12
-      - 27
-      - 8
-      - 0
-      - 16
-      - 16
-      - 14
-    - name: 05:00-06:00
-      value:
-      - 12
-      - 12
-      - 0
-      - 18
-      - 23
-      - 7
-      - 3
-      - 14
-      - 14
-      - 16
-    - name: 06:00-07:00
-      value:
-      - 22
-      - 18
-      - 0
-      - 32
-      - 51
-      - 12
-      - 4
-      - 35
-      - 35
-      - 12
-    - name: 07:00-08:00
-      value:
-      - 48
-      - 21
-      - 0
-      - 43
-      - 119
-      - 32
-      - 11
-      - 98
-      - 98
-      - 62
-    - name: 08:00-09:00
-      value:
-      - 112
-      - 48
-      - 0
-      - 68
-      - 171
-      - 57
-      - 60
-      - 192
-      - 192
-      - 101
-    - name: 09:00-10:00
-      value:
-      - 237
-      - 90
-      - 0
-      - 101
-      - 224
-      - 83
-      - 59
-      - 207
-      - 207
-      - 138
-    - name: 10:00-11:00
-      value:
-      - 170
-      - 88
-      - 0
-      - 113
-      - 267
-      - 108
-      - 73
-      - 230
-      - 230
-      - 196
-    - name: 11:00-12:00
-      value:
-      - 196
-      - 101
-      - 0
-      - 99
-      - 254
-      - 138
-      - 63
-      - 274
-      - 274
-      - 176
-    - name: 12:00-13:00
-      value:
-      - 204
-      - 102
-      - 0
-      - 130
-      - 246
-      - 141
-      - 62
-      - 277
-      - 277
-      - 217
-    - name: 13:00-14:00
-      value:
-      - 145
-      - 95
-      - 0
-      - 96
-      - 204
-      - 113
-      - 35
-      - 253
-      - 253
-      - 143
-    - name: 14:00-15:00
-      value:
-      - 138
-      - 74
-      - 0
-      - 99
-      - 175
-      - 88
-      - 26
-      - 231
-      - 231
-      - 139
-    - name: 15:00-16:00
-      value:
-      - 190
-      - 84
-      - 0
-      - 89
-      - 197
-      - 127
-      - 46
-      - 267
-      - 267
-      - 151
-    - name: 16:00-17:00
-      value:
-      - 210
-      - 106
-      - 0
-      - 100
-      - 219
-      - 141
-      - 42
-      - 214
-      - 214
-      - 168
-    - name: 17:00-18:00
-      value:
-      - 186
-      - 111
-      - 0
-      - 108
-      - 224
-      - 164
-      - 56
-      - 261
-      - 261
-      - 167
-    - name: 18:00-19:00
-      value:
-      - 244
-      - 104
-      - 0
-      - 110
-      - 248
-      - 191
-      - 66
-      - 230
-      - 230
-      - 161
-    - name: 19:00-20:00
-      value:
-      - 198
-      - 113
-      - 0
-      - 125
-      - 265
-      - 130
-      - 66
-      - 182
-      - 182
-      - 191
-    - name: 20:00-21:00
-      value:
-      - 175
-      - 93
-      - 0
-      - 132
-      - 279
-      - 95
-      - 79
-      - 144
-      - 144
-      - 129
-    - name: 21:00-22:00
-      value:
-      - 146
-      - 71
-      - 0
-      - 61
-      - 196
-      - 69
-      - 60
-      - 60
-      - 60
-      - 65
-    - name: 22:00-23:00
-      value:
-      - 104
-      - 60
-      - 0
-      - 70
-      - 163
-      - 65
-      - 64
-      - 51
-      - 51
-      - 61
-    - name: 23:00-24:00
-      value:
-      - 89
-      - 69
-      - 0
-      - 101
-      - 204
-      - 80
-      - 39
-      - 71
-      - 71
-      - 65
-    - name: id_uni
-      value:
-      - 520
-      - 531
-      - 380
-      - 382
-      - 605
-      - 242
-      - 956
-      - 955
-      - 916
-      - 595
-    - name: Livello
-      value:
-      - 1
-      - 1
-      - 1
-      - 1
-      - 1
-      - 1
-      - 1
-      - 1
-      - 2
-      - 1
-    - name: tipologia
-      value:
-      - spira
-      - spira
-      - spira
-      - spira
-      - spira
-      - spira
-      - spira
-      - spira
-      - spira
-      - spira
-    - name: codice
-      value:
-      - 906.0
-      - 511.0
-      - 130.0
-      - 133.0
-      - 953.0
-      - 530.0
-      - 1252.0
-      - 1253.0
-      - 1094.0
-      - 544.0
-    - name: codice arco
-      value:
-      - 3125
-      - 3050
-      - 1169
-      - 1059
-      - 1166
-      - 5316
-      - 11145
-      - 8709
-      - 8619
-      - 178
-    - name: codice via
-      value:
-      - 25200
-      - 25200
-      - 14700
-      - 25800
-      - 56100
-      - 32650
-      - 50350
-      - 1350
-      - 1350
-      - 41060
-    - name: Nome via
-      value:
-      - VIA GALLIERA
-      - VIA GALLIERA
-      - VIA CASTIGLIONE
-      - VIA GARIBALDI
-      - VIA S.STEFANO
-      - VIA DI S.LUCA
-      - VIALE DEL RISORGIMENTO
-      - VIALE ANTONIO ALDINI
-      - VIALE ANTONIO ALDINI
-      - VIA PIETRO NENNI
-    - name: Nodo da
-      value:
-      - 10241
-      - 10253
-      - 6125
-      - 6061
-      - 6124
-      - 13277
-      - 1
-      - 16657
-      - 16521
-      - 4518
-    - name: Nodo a
-      value:
-      - 10242
-      - 10242
-      - 6108
-      - 6053
-      - 6114
-      - 16166
-      - 17692
-      - 16652
-      - 16644
-      - 4463
-    - name: ordinanza
-      value:
-      - 4000/343434
-      - 4000/343434
-      - 4000/343434
-      - 4000/343434
-      - 4000/343434
-      - 4000/343434
-      - 4000/343434
-      - 4000/343435
-      - 4000/343434
-      - 4000/343434
-    - name: stato
-      value:
-      - A
-      - A
-      - A
-      - A
-      - A
-      - A
-      - A
-      - A
-      - A
-      - A
-    - name: codimpsem
-      value:
-      - 250
-      - 250
-      - 323
-      - 324
-      - 85
-      - 336
-      - 49
-      - 49
-      - 50
-      - 36
-    - name: direzione
-      value:
-      - S
-      - N
-      - S
-      - S
-      - SE
-      - NE
-      - N
-      - 'NO'
-      - null
-      - SO
-    - name: angolo
-      value:
-      - 163.0
-      - 343.0
-      - 198.0
-      - 168.0
-      - 217.0
-      - 291.0
-      - 347.0
-      - 5.0
-      - 243.0
-      - 141.0
-    - name: longitudine
-      value:
-      - 11.3435953508993
-      - 11.3434083495971
-      - 11.3464200565732
-      - 11.3434427397635
-      - 11.34979980231
-      - 11.3106312013806
-      - 11.328894892
-      - 11.32963801
-      - 11.3332516740634
-      - 11.2953728099641
-    - name: latitudine
-      value:
-      - 44.5016875497437
-      - 44.5011734938257
-      - 44.4916483847646
-      - 44.4900271601578
-      - 44.4904584072207
-      - 44.4900651982211
-      - 44.490415183
-      - 44.49047298
-      - 44.488760887266
-      - 44.4947987486551
-    - name: geopoint
-      value:
-      - 44.5016875497437, 11.3435953508993
-      - 44.5011734938257, 11.3434083495971
-      - 44.4916483847646, 11.3464200565732
-      - 44.4900271601578, 11.3434427397635
-      - 44.4904584072207, 11.34979980231
-      - 44.4900651982211, 11.3106312013806
-      - 44.490415183, 11.328894892
-      - 44.49047298, 11.32963801
-      - 44.488760887266, 11.3332516740634
-      - 44.4947987486551, 11.2953728099641
-    - name: ID_univoco_stazione_spira
-      value:
-      - 16.0
-      - 17.0
-      - 3.0
-      - 7.0
-      - 20.0
-      - 51.0
-      - null
-      - 74.0
-      - 74.0
-      - 76.0
-    - name: giorno settimana
-      value:
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
-      - Sabato
+      - name: data
+        value:
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+          - "2023-04-01"
+      - name: codice spira
+        value:
+          - 0.127 1.5 2 1
+          - 0.127 1.5 5 1
+          - 0.127 1.13 6 1
+          - 0.127 1.15 6 1
+          - 0.127 1.82 2 2
+          - 0.127 2.3 1 1
+          - 0.127 2.6 1 1_2
+          - 0.127 2.6 10 1
+          - 0.127 2.6 10 1
+          - 0.127 2.7 4 1
+      - name: 00:00-01:00
+        value:
+          - 34
+          - 38
+          - 0
+          - 68
+          - 86
+          - 53
+          - 26
+          - 93
+          - 93
+          - 58
+      - name: 01:00-02:00
+        value:
+          - 31
+          - 29
+          - 0
+          - 50
+          - 55
+          - 31
+          - 10
+          - 85
+          - 85
+          - 36
+      - name: 02:00-03:00
+        value:
+          - 14
+          - 20
+          - 0
+          - 38
+          - 37
+          - 18
+          - 2
+          - 40
+          - 40
+          - 17
+      - name: 03:00-04:00
+        value:
+          - 7
+          - 6
+          - 0
+          - 13
+          - 30
+          - 9
+          - 6
+          - 18
+          - 18
+          - 15
+      - name: 04:00-05:00
+        value:
+          - 9
+          - 13
+          - 0
+          - 12
+          - 27
+          - 8
+          - 0
+          - 16
+          - 16
+          - 14
+      - name: 05:00-06:00
+        value:
+          - 12
+          - 12
+          - 0
+          - 18
+          - 23
+          - 7
+          - 3
+          - 14
+          - 14
+          - 16
+      - name: 06:00-07:00
+        value:
+          - 22
+          - 18
+          - 0
+          - 32
+          - 51
+          - 12
+          - 4
+          - 35
+          - 35
+          - 12
+      - name: 07:00-08:00
+        value:
+          - 48
+          - 21
+          - 0
+          - 43
+          - 119
+          - 32
+          - 11
+          - 98
+          - 98
+          - 62
+      - name: 08:00-09:00
+        value:
+          - 112
+          - 48
+          - 0
+          - 68
+          - 171
+          - 57
+          - 60
+          - 192
+          - 192
+          - 101
+      - name: 09:00-10:00
+        value:
+          - 237
+          - 90
+          - 0
+          - 101
+          - 224
+          - 83
+          - 59
+          - 207
+          - 207
+          - 138
+      - name: 10:00-11:00
+        value:
+          - 170
+          - 88
+          - 0
+          - 113
+          - 267
+          - 108
+          - 73
+          - 230
+          - 230
+          - 196
+      - name: 11:00-12:00
+        value:
+          - 196
+          - 101
+          - 0
+          - 99
+          - 254
+          - 138
+          - 63
+          - 274
+          - 274
+          - 176
+      - name: 12:00-13:00
+        value:
+          - 204
+          - 102
+          - 0
+          - 130
+          - 246
+          - 141
+          - 62
+          - 277
+          - 277
+          - 217
+      - name: 13:00-14:00
+        value:
+          - 145
+          - 95
+          - 0
+          - 96
+          - 204
+          - 113
+          - 35
+          - 253
+          - 253
+          - 143
+      - name: 14:00-15:00
+        value:
+          - 138
+          - 74
+          - 0
+          - 99
+          - 175
+          - 88
+          - 26
+          - 231
+          - 231
+          - 139
+      - name: 15:00-16:00
+        value:
+          - 190
+          - 84
+          - 0
+          - 89
+          - 197
+          - 127
+          - 46
+          - 267
+          - 267
+          - 151
+      - name: 16:00-17:00
+        value:
+          - 210
+          - 106
+          - 0
+          - 100
+          - 219
+          - 141
+          - 42
+          - 214
+          - 214
+          - 168
+      - name: 17:00-18:00
+        value:
+          - 186
+          - 111
+          - 0
+          - 108
+          - 224
+          - 164
+          - 56
+          - 261
+          - 261
+          - 167
+      - name: 18:00-19:00
+        value:
+          - 244
+          - 104
+          - 0
+          - 110
+          - 248
+          - 191
+          - 66
+          - 230
+          - 230
+          - 161
+      - name: 19:00-20:00
+        value:
+          - 198
+          - 113
+          - 0
+          - 125
+          - 265
+          - 130
+          - 66
+          - 182
+          - 182
+          - 191
+      - name: 20:00-21:00
+        value:
+          - 175
+          - 93
+          - 0
+          - 132
+          - 279
+          - 95
+          - 79
+          - 144
+          - 144
+          - 129
+      - name: 21:00-22:00
+        value:
+          - 146
+          - 71
+          - 0
+          - 61
+          - 196
+          - 69
+          - 60
+          - 60
+          - 60
+          - 65
+      - name: 22:00-23:00
+        value:
+          - 104
+          - 60
+          - 0
+          - 70
+          - 163
+          - 65
+          - 64
+          - 51
+          - 51
+          - 61
+      - name: 23:00-24:00
+        value:
+          - 89
+          - 69
+          - 0
+          - 101
+          - 204
+          - 80
+          - 39
+          - 71
+          - 71
+          - 65
+      - name: id_uni
+        value:
+          - 520
+          - 531
+          - 380
+          - 382
+          - 605
+          - 242
+          - 956
+          - 955
+          - 916
+          - 595
+      - name: Livello
+        value:
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 2
+          - 1
+      - name: tipologia
+        value:
+          - spira
+          - spira
+          - spira
+          - spira
+          - spira
+          - spira
+          - spira
+          - spira
+          - spira
+          - spira
+      - name: codice
+        value:
+          - 906.0
+          - 511.0
+          - 130.0
+          - 133.0
+          - 953.0
+          - 530.0
+          - 1252.0
+          - 1253.0
+          - 1094.0
+          - 544.0
+      - name: codice arco
+        value:
+          - 3125
+          - 3050
+          - 1169
+          - 1059
+          - 1166
+          - 5316
+          - 11145
+          - 8709
+          - 8619
+          - 178
+      - name: codice via
+        value:
+          - 25200
+          - 25200
+          - 14700
+          - 25800
+          - 56100
+          - 32650
+          - 50350
+          - 1350
+          - 1350
+          - 41060
+      - name: Nome via
+        value:
+          - VIA GALLIERA
+          - VIA GALLIERA
+          - VIA CASTIGLIONE
+          - VIA GARIBALDI
+          - VIA S.STEFANO
+          - VIA DI S.LUCA
+          - VIALE DEL RISORGIMENTO
+          - VIALE ANTONIO ALDINI
+          - VIALE ANTONIO ALDINI
+          - VIA PIETRO NENNI
+      - name: Nodo da
+        value:
+          - 10241
+          - 10253
+          - 6125
+          - 6061
+          - 6124
+          - 13277
+          - 1
+          - 16657
+          - 16521
+          - 4518
+      - name: Nodo a
+        value:
+          - 10242
+          - 10242
+          - 6108
+          - 6053
+          - 6114
+          - 16166
+          - 17692
+          - 16652
+          - 16644
+          - 4463
+      - name: ordinanza
+        value:
+          - 4000/343434
+          - 4000/343434
+          - 4000/343434
+          - 4000/343434
+          - 4000/343434
+          - 4000/343434
+          - 4000/343434
+          - 4000/343435
+          - 4000/343434
+          - 4000/343434
+      - name: stato
+        value:
+          - A
+          - A
+          - A
+          - A
+          - A
+          - A
+          - A
+          - A
+          - A
+          - A
+      - name: codimpsem
+        value:
+          - 250
+          - 250
+          - 323
+          - 324
+          - 85
+          - 336
+          - 49
+          - 49
+          - 50
+          - 36
+      - name: direzione
+        value:
+          - S
+          - N
+          - S
+          - S
+          - SE
+          - NE
+          - N
+          - "NO"
+          - null
+          - SO
+      - name: angolo
+        value:
+          - 163.0
+          - 343.0
+          - 198.0
+          - 168.0
+          - 217.0
+          - 291.0
+          - 347.0
+          - 5.0
+          - 243.0
+          - 141.0
+      - name: longitudine
+        value:
+          - 11.3435953508993
+          - 11.3434083495971
+          - 11.3464200565732
+          - 11.3434427397635
+          - 11.34979980231
+          - 11.3106312013806
+          - 11.328894892
+          - 11.32963801
+          - 11.3332516740634
+          - 11.2953728099641
+      - name: latitudine
+        value:
+          - 44.5016875497437
+          - 44.5011734938257
+          - 44.4916483847646
+          - 44.4900271601578
+          - 44.4904584072207
+          - 44.4900651982211
+          - 44.490415183
+          - 44.49047298
+          - 44.488760887266
+          - 44.4947987486551
+      - name: geopoint
+        value:
+          - 44.5016875497437, 11.3435953508993
+          - 44.5011734938257, 11.3434083495971
+          - 44.4916483847646, 11.3464200565732
+          - 44.4900271601578, 11.3434427397635
+          - 44.4904584072207, 11.34979980231
+          - 44.4900651982211, 11.3106312013806
+          - 44.490415183, 11.328894892
+          - 44.49047298, 11.32963801
+          - 44.488760887266, 11.3332516740634
+          - 44.4947987486551, 11.2953728099641
+      - name: ID_univoco_stazione_spira
+        value:
+          - 16.0
+          - 17.0
+          - 3.0
+          - 7.0
+          - 20.0
+          - 51.0
+          - null
+          - 74.0
+          - 74.0
+          - 76.0
+      - name: giorno settimana
+        value:
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
+          - Sabato
     rows: 313067
-user: mmartini@fbk.eu
 project: project-etl
 name: dataset
 id: d19cfa4146e7415f98f5d516bbc8828c

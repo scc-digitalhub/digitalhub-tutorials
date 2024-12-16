@@ -3,23 +3,20 @@ metadata:
   project: project-mlflow-model-ci
   name: train
   version: f1f7380a721e4e05b5149066d303086b
-  created: '2024-12-05T13:45:55.625Z'
-  updated: '2024-12-05T13:45:55.625Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:45:55.625Z"
+  updated: "2024-12-05T13:45:55.625Z"
   embedded: false
 spec:
   python_version: PYTHON3_10
   requirements:
-  - scikit-learn
-  - mlflow
+    - scikit-learn
+    - mlflow
   source:
     source: src/train-model.py
     handler: train
     lang: python
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-mlflow-model-ci
 name: train
 id: f1f7380a721e4e05b5149066d303086b

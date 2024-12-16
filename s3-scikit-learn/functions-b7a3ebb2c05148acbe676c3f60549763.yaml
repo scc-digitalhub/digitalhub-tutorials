@@ -3,10 +3,8 @@ metadata:
   project: project-ml-ci
   name: data-prep
   version: b7a3ebb2c05148acbe676c3f60549763
-  created: '2024-12-05T13:31:44.94Z'
-  updated: '2024-12-05T13:31:44.94Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:31:44.94Z"
+  updated: "2024-12-05T13:31:44.94Z"
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -16,7 +14,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-ml-ci
 name: data-prep
 id: b7a3ebb2c05148acbe676c3f60549763

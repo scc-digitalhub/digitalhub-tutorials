@@ -3,10 +3,8 @@ metadata:
   project: project-etl
   name: api
   version: 44916ced4aeb4548973aa6b9c9fc48fd
-  created: '2024-12-05T14:26:52.823Z'
-  updated: '2024-12-05T14:26:52.823Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:26:52.823Z"
+  updated: "2024-12-05T14:26:52.823Z"
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -17,7 +15,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-etl
 name: api
 id: 44916ced4aeb4548973aa6b9c9fc48fd

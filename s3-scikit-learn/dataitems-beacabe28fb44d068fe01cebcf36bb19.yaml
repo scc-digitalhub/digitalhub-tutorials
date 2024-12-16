@@ -3,466 +3,462 @@ metadata:
   project: project-ml-ci
   name: dataset
   version: beacabe28fb44d068fe01cebcf36bb19
-  created: '2024-12-05T13:31:49.52Z'
-  updated: '2024-12-05T13:31:49.687Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:31:49.52Z"
+  updated: "2024-12-05T13:31:49.687Z"
   embedded: false
   relationships:
-  - type: produced_by
-    source: store://project-ml-ci/dataitem/table/dataset:beacabe28fb44d068fe01cebcf36bb19
-    dest: store://project-ml-ci/run/python+run/f7d13c900c6b4a239d7acd5b04d01f56:f7d13c900c6b4a239d7acd5b04d01f56
+    - type: produced_by
+      dest: store://project-ml-ci/run/python+run/f7d13c900c6b4a239d7acd5b04d01f56:f7d13c900c6b4a239d7acd5b04d01f56
 spec:
   path: s3://datalake/project-ml-ci/dataitem/dataset/beacabe28fb44d068fe01cebcf36bb19/dataset.parquet
   schema:
     fields:
-    - name: mean radius
-      type: number
-    - name: mean texture
-      type: number
-    - name: mean perimeter
-      type: number
-    - name: mean area
-      type: number
-    - name: mean smoothness
-      type: number
-    - name: mean compactness
-      type: number
-    - name: mean concavity
-      type: number
-    - name: mean concave points
-      type: number
-    - name: mean symmetry
-      type: number
-    - name: mean fractal dimension
-      type: number
-    - name: radius error
-      type: number
-    - name: texture error
-      type: number
-    - name: perimeter error
-      type: number
-    - name: area error
-      type: number
-    - name: smoothness error
-      type: number
-    - name: compactness error
-      type: number
-    - name: concavity error
-      type: number
-    - name: concave points error
-      type: number
-    - name: symmetry error
-      type: number
-    - name: fractal dimension error
-      type: number
-    - name: worst radius
-      type: number
-    - name: worst texture
-      type: number
-    - name: worst perimeter
-      type: number
-    - name: worst area
-      type: number
-    - name: worst smoothness
-      type: number
-    - name: worst compactness
-      type: number
-    - name: worst concavity
-      type: number
-    - name: worst concave points
-      type: number
-    - name: worst symmetry
-      type: number
-    - name: worst fractal dimension
-      type: number
-    - name: target
-      type: integer
+      - name: mean radius
+        type: number
+      - name: mean texture
+        type: number
+      - name: mean perimeter
+        type: number
+      - name: mean area
+        type: number
+      - name: mean smoothness
+        type: number
+      - name: mean compactness
+        type: number
+      - name: mean concavity
+        type: number
+      - name: mean concave points
+        type: number
+      - name: mean symmetry
+        type: number
+      - name: mean fractal dimension
+        type: number
+      - name: radius error
+        type: number
+      - name: texture error
+        type: number
+      - name: perimeter error
+        type: number
+      - name: area error
+        type: number
+      - name: smoothness error
+        type: number
+      - name: compactness error
+        type: number
+      - name: concavity error
+        type: number
+      - name: concave points error
+        type: number
+      - name: symmetry error
+        type: number
+      - name: fractal dimension error
+        type: number
+      - name: worst radius
+        type: number
+      - name: worst texture
+        type: number
+      - name: worst perimeter
+        type: number
+      - name: worst area
+        type: number
+      - name: worst smoothness
+        type: number
+      - name: worst compactness
+        type: number
+      - name: worst concavity
+        type: number
+      - name: worst concave points
+        type: number
+      - name: worst symmetry
+        type: number
+      - name: worst fractal dimension
+        type: number
+      - name: target
+        type: integer
 status:
   state: CREATED
   files:
-  - path: dataset.parquet
-    name: dataset.parquet
-    content_type: binary/octet-stream
-    size: 144261
-    hash: md5:e6b1598602791dd356adde60d04f4c5e
-    last_modified: '2024-12-05T13:31:49+00:00'
+    - path: dataset.parquet
+      name: dataset.parquet
+      content_type: binary/octet-stream
+      size: 144261
+      hash: md5:e6b1598602791dd356adde60d04f4c5e
+      last_modified: "2024-12-05T13:31:49+00:00"
   preview:
     cols:
-    - name: mean radius
-      value:
-      - 17.99
-      - 20.57
-      - 19.69
-      - 11.42
-      - 20.29
-      - 12.45
-      - 18.25
-      - 13.71
-      - 13.0
-      - 12.46
-    - name: mean texture
-      value:
-      - 10.38
-      - 17.77
-      - 21.25
-      - 20.38
-      - 14.34
-      - 15.7
-      - 19.98
-      - 20.83
-      - 21.82
-      - 24.04
-    - name: mean perimeter
-      value:
-      - 122.8
-      - 132.9
-      - 130.0
-      - 77.58
-      - 135.1
-      - 82.57
-      - 119.6
-      - 90.2
-      - 87.5
-      - 83.97
-    - name: mean area
-      value:
-      - 1001.0
-      - 1326.0
-      - 1203.0
-      - 386.1
-      - 1297.0
-      - 477.1
-      - 1040.0
-      - 577.9
-      - 519.8
-      - 475.9
-    - name: mean smoothness
-      value:
-      - 0.1184
-      - 0.08474
-      - 0.1096
-      - 0.1425
-      - 0.1003
-      - 0.1278
-      - 0.09463
-      - 0.1189
-      - 0.1273
-      - 0.1186
-    - name: mean compactness
-      value:
-      - 0.2776
-      - 0.07864
-      - 0.1599
-      - 0.2839
-      - 0.1328
-      - 0.17
-      - 0.109
-      - 0.1645
-      - 0.1932
-      - 0.2396
-    - name: mean concavity
-      value:
-      - 0.3001
-      - 0.0869
-      - 0.1974
-      - 0.2414
-      - 0.198
-      - 0.1578
-      - 0.1127
-      - 0.09366
-      - 0.1859
-      - 0.2273
-    - name: mean concave points
-      value:
-      - 0.1471
-      - 0.07017
-      - 0.1279
-      - 0.1052
-      - 0.1043
-      - 0.08089
-      - 0.074
-      - 0.05985
-      - 0.09353
-      - 0.08543
-    - name: mean symmetry
-      value:
-      - 0.2419
-      - 0.1812
-      - 0.2069
-      - 0.2597
-      - 0.1809
-      - 0.2087
-      - 0.1794
-      - 0.2196
-      - 0.235
-      - 0.203
-    - name: mean fractal dimension
-      value:
-      - 0.07871
-      - 0.05667
-      - 0.05999
-      - 0.09744
-      - 0.05883
-      - 0.07613
-      - 0.05742
-      - 0.07451
-      - 0.07389
-      - 0.08243
-    - name: radius error
-      value:
-      - 1.095
-      - 0.5435
-      - 0.7456
-      - 0.4956
-      - 0.7572
-      - 0.3345
-      - 0.4467
-      - 0.5835
-      - 0.3063
-      - 0.2976
-    - name: texture error
-      value:
-      - 0.9053
-      - 0.7339
-      - 0.7869
-      - 1.156
-      - 0.7813
-      - 0.8902
-      - 0.7732
-      - 1.377
-      - 1.002
-      - 1.599
-    - name: perimeter error
-      value:
-      - 8.589
-      - 3.398
-      - 4.585
-      - 3.445
-      - 5.438
-      - 2.217
-      - 3.18
-      - 3.856
-      - 2.406
-      - 2.039
-    - name: area error
-      value:
-      - 153.4
-      - 74.08
-      - 94.03
-      - 27.23
-      - 94.44
-      - 27.19
-      - 53.91
-      - 50.96
-      - 24.32
-      - 23.94
-    - name: smoothness error
-      value:
-      - 0.006399
-      - 0.005225
-      - 0.00615
-      - 0.00911
-      - 0.01149
-      - 0.00751
-      - 0.004314
-      - 0.008805
-      - 0.005731
-      - 0.007149
-    - name: compactness error
-      value:
-      - 0.04904
-      - 0.01308
-      - 0.04006
-      - 0.07458
-      - 0.02461
-      - 0.03345
-      - 0.01382
-      - 0.03029
-      - 0.03502
-      - 0.07217
-    - name: concavity error
-      value:
-      - 0.05373
-      - 0.0186
-      - 0.03832
-      - 0.05661
-      - 0.05688
-      - 0.03672
-      - 0.02254
-      - 0.02488
-      - 0.03553
-      - 0.07743
-    - name: concave points error
-      value:
-      - 0.01587
-      - 0.0134
-      - 0.02058
-      - 0.01867
-      - 0.01885
-      - 0.01137
-      - 0.01039
-      - 0.01448
-      - 0.01226
-      - 0.01432
-    - name: symmetry error
-      value:
-      - 0.03003
-      - 0.01389
-      - 0.0225
-      - 0.05963
-      - 0.01756
-      - 0.02165
-      - 0.01369
-      - 0.01486
-      - 0.02143
-      - 0.01789
-    - name: fractal dimension error
-      value:
-      - 0.006193
-      - 0.003532
-      - 0.004571
-      - 0.009208
-      - 0.005115
-      - 0.005082
-      - 0.002179
-      - 0.005412
-      - 0.003749
-      - 0.01008
-    - name: worst radius
-      value:
-      - 25.38
-      - 24.99
-      - 23.57
-      - 14.91
-      - 22.54
-      - 15.47
-      - 22.88
-      - 17.06
-      - 15.49
-      - 15.09
-    - name: worst texture
-      value:
-      - 17.33
-      - 23.41
-      - 25.53
-      - 26.5
-      - 16.67
-      - 23.75
-      - 27.66
-      - 28.14
-      - 30.73
-      - 40.68
-    - name: worst perimeter
-      value:
-      - 184.6
-      - 158.8
-      - 152.5
-      - 98.87
-      - 152.2
-      - 103.4
-      - 153.2
-      - 110.6
-      - 106.2
-      - 97.65
-    - name: worst area
-      value:
-      - 2019.0
-      - 1956.0
-      - 1709.0
-      - 567.7
-      - 1575.0
-      - 741.6
-      - 1606.0
-      - 897.0
-      - 739.3
-      - 711.4
-    - name: worst smoothness
-      value:
-      - 0.1622
-      - 0.1238
-      - 0.1444
-      - 0.2098
-      - 0.1374
-      - 0.1791
-      - 0.1442
-      - 0.1654
-      - 0.1703
-      - 0.1853
-    - name: worst compactness
-      value:
-      - 0.6656
-      - 0.1866
-      - 0.4245
-      - 0.8663
-      - 0.205
-      - 0.5249
-      - 0.2576
-      - 0.3682
-      - 0.5401
-      - 1.058
-    - name: worst concavity
-      value:
-      - 0.7119
-      - 0.2416
-      - 0.4504
-      - 0.6869
-      - 0.4
-      - 0.5355
-      - 0.3784
-      - 0.2678
-      - 0.539
-      - 1.105
-    - name: worst concave points
-      value:
-      - 0.2654
-      - 0.186
-      - 0.243
-      - 0.2575
-      - 0.1625
-      - 0.1741
-      - 0.1932
-      - 0.1556
-      - 0.206
-      - 0.221
-    - name: worst symmetry
-      value:
-      - 0.4601
-      - 0.275
-      - 0.3613
-      - 0.6638
-      - 0.2364
-      - 0.3985
-      - 0.3063
-      - 0.3196
-      - 0.4378
-      - 0.4366
-    - name: worst fractal dimension
-      value:
-      - 0.1189
-      - 0.08902
-      - 0.08758
-      - 0.173
-      - 0.07678
-      - 0.1244
-      - 0.08368
-      - 0.1151
-      - 0.1072
-      - 0.2075
-    - name: target
-      value:
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
-      - 0.0
+      - name: mean radius
+        value:
+          - 17.99
+          - 20.57
+          - 19.69
+          - 11.42
+          - 20.29
+          - 12.45
+          - 18.25
+          - 13.71
+          - 13.0
+          - 12.46
+      - name: mean texture
+        value:
+          - 10.38
+          - 17.77
+          - 21.25
+          - 20.38
+          - 14.34
+          - 15.7
+          - 19.98
+          - 20.83
+          - 21.82
+          - 24.04
+      - name: mean perimeter
+        value:
+          - 122.8
+          - 132.9
+          - 130.0
+          - 77.58
+          - 135.1
+          - 82.57
+          - 119.6
+          - 90.2
+          - 87.5
+          - 83.97
+      - name: mean area
+        value:
+          - 1001.0
+          - 1326.0
+          - 1203.0
+          - 386.1
+          - 1297.0
+          - 477.1
+          - 1040.0
+          - 577.9
+          - 519.8
+          - 475.9
+      - name: mean smoothness
+        value:
+          - 0.1184
+          - 0.08474
+          - 0.1096
+          - 0.1425
+          - 0.1003
+          - 0.1278
+          - 0.09463
+          - 0.1189
+          - 0.1273
+          - 0.1186
+      - name: mean compactness
+        value:
+          - 0.2776
+          - 0.07864
+          - 0.1599
+          - 0.2839
+          - 0.1328
+          - 0.17
+          - 0.109
+          - 0.1645
+          - 0.1932
+          - 0.2396
+      - name: mean concavity
+        value:
+          - 0.3001
+          - 0.0869
+          - 0.1974
+          - 0.2414
+          - 0.198
+          - 0.1578
+          - 0.1127
+          - 0.09366
+          - 0.1859
+          - 0.2273
+      - name: mean concave points
+        value:
+          - 0.1471
+          - 0.07017
+          - 0.1279
+          - 0.1052
+          - 0.1043
+          - 0.08089
+          - 0.074
+          - 0.05985
+          - 0.09353
+          - 0.08543
+      - name: mean symmetry
+        value:
+          - 0.2419
+          - 0.1812
+          - 0.2069
+          - 0.2597
+          - 0.1809
+          - 0.2087
+          - 0.1794
+          - 0.2196
+          - 0.235
+          - 0.203
+      - name: mean fractal dimension
+        value:
+          - 0.07871
+          - 0.05667
+          - 0.05999
+          - 0.09744
+          - 0.05883
+          - 0.07613
+          - 0.05742
+          - 0.07451
+          - 0.07389
+          - 0.08243
+      - name: radius error
+        value:
+          - 1.095
+          - 0.5435
+          - 0.7456
+          - 0.4956
+          - 0.7572
+          - 0.3345
+          - 0.4467
+          - 0.5835
+          - 0.3063
+          - 0.2976
+      - name: texture error
+        value:
+          - 0.9053
+          - 0.7339
+          - 0.7869
+          - 1.156
+          - 0.7813
+          - 0.8902
+          - 0.7732
+          - 1.377
+          - 1.002
+          - 1.599
+      - name: perimeter error
+        value:
+          - 8.589
+          - 3.398
+          - 4.585
+          - 3.445
+          - 5.438
+          - 2.217
+          - 3.18
+          - 3.856
+          - 2.406
+          - 2.039
+      - name: area error
+        value:
+          - 153.4
+          - 74.08
+          - 94.03
+          - 27.23
+          - 94.44
+          - 27.19
+          - 53.91
+          - 50.96
+          - 24.32
+          - 23.94
+      - name: smoothness error
+        value:
+          - 0.006399
+          - 0.005225
+          - 0.00615
+          - 0.00911
+          - 0.01149
+          - 0.00751
+          - 0.004314
+          - 0.008805
+          - 0.005731
+          - 0.007149
+      - name: compactness error
+        value:
+          - 0.04904
+          - 0.01308
+          - 0.04006
+          - 0.07458
+          - 0.02461
+          - 0.03345
+          - 0.01382
+          - 0.03029
+          - 0.03502
+          - 0.07217
+      - name: concavity error
+        value:
+          - 0.05373
+          - 0.0186
+          - 0.03832
+          - 0.05661
+          - 0.05688
+          - 0.03672
+          - 0.02254
+          - 0.02488
+          - 0.03553
+          - 0.07743
+      - name: concave points error
+        value:
+          - 0.01587
+          - 0.0134
+          - 0.02058
+          - 0.01867
+          - 0.01885
+          - 0.01137
+          - 0.01039
+          - 0.01448
+          - 0.01226
+          - 0.01432
+      - name: symmetry error
+        value:
+          - 0.03003
+          - 0.01389
+          - 0.0225
+          - 0.05963
+          - 0.01756
+          - 0.02165
+          - 0.01369
+          - 0.01486
+          - 0.02143
+          - 0.01789
+      - name: fractal dimension error
+        value:
+          - 0.006193
+          - 0.003532
+          - 0.004571
+          - 0.009208
+          - 0.005115
+          - 0.005082
+          - 0.002179
+          - 0.005412
+          - 0.003749
+          - 0.01008
+      - name: worst radius
+        value:
+          - 25.38
+          - 24.99
+          - 23.57
+          - 14.91
+          - 22.54
+          - 15.47
+          - 22.88
+          - 17.06
+          - 15.49
+          - 15.09
+      - name: worst texture
+        value:
+          - 17.33
+          - 23.41
+          - 25.53
+          - 26.5
+          - 16.67
+          - 23.75
+          - 27.66
+          - 28.14
+          - 30.73
+          - 40.68
+      - name: worst perimeter
+        value:
+          - 184.6
+          - 158.8
+          - 152.5
+          - 98.87
+          - 152.2
+          - 103.4
+          - 153.2
+          - 110.6
+          - 106.2
+          - 97.65
+      - name: worst area
+        value:
+          - 2019.0
+          - 1956.0
+          - 1709.0
+          - 567.7
+          - 1575.0
+          - 741.6
+          - 1606.0
+          - 897.0
+          - 739.3
+          - 711.4
+      - name: worst smoothness
+        value:
+          - 0.1622
+          - 0.1238
+          - 0.1444
+          - 0.2098
+          - 0.1374
+          - 0.1791
+          - 0.1442
+          - 0.1654
+          - 0.1703
+          - 0.1853
+      - name: worst compactness
+        value:
+          - 0.6656
+          - 0.1866
+          - 0.4245
+          - 0.8663
+          - 0.205
+          - 0.5249
+          - 0.2576
+          - 0.3682
+          - 0.5401
+          - 1.058
+      - name: worst concavity
+        value:
+          - 0.7119
+          - 0.2416
+          - 0.4504
+          - 0.6869
+          - 0.4
+          - 0.5355
+          - 0.3784
+          - 0.2678
+          - 0.539
+          - 1.105
+      - name: worst concave points
+        value:
+          - 0.2654
+          - 0.186
+          - 0.243
+          - 0.2575
+          - 0.1625
+          - 0.1741
+          - 0.1932
+          - 0.1556
+          - 0.206
+          - 0.221
+      - name: worst symmetry
+        value:
+          - 0.4601
+          - 0.275
+          - 0.3613
+          - 0.6638
+          - 0.2364
+          - 0.3985
+          - 0.3063
+          - 0.3196
+          - 0.4378
+          - 0.4366
+      - name: worst fractal dimension
+        value:
+          - 0.1189
+          - 0.08902
+          - 0.08758
+          - 0.173
+          - 0.07678
+          - 0.1244
+          - 0.08368
+          - 0.1151
+          - 0.1072
+          - 0.2075
+      - name: target
+        value:
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
     rows: 569
-user: mmartini@fbk.eu
 project: project-ml-ci
 name: dataset
 id: beacabe28fb44d068fe01cebcf36bb19

@@ -3,10 +3,8 @@ metadata:
   project: project-dbt-ci
   name: pipeline_dbt
   version: adad0c205fd84ae5824a184e47eee7de
-  created: '2024-12-05T14:02:43.518Z'
-  updated: '2024-12-05T14:03:34.173Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:02:43.518Z"
+  updated: "2024-12-05T14:03:34.173Z"
   embedded: false
 spec:
   source:
@@ -18,7 +16,6 @@ spec:
     lang: yaml
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-dbt-ci
 name: pipeline_dbt
 id: adad0c205fd84ae5824a184e47eee7de

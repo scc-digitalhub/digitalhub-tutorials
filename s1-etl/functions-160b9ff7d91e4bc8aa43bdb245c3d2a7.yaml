@@ -3,10 +3,8 @@ metadata:
   project: project-etl
   name: download-data
   version: 160b9ff7d91e4bc8aa43bdb245c3d2a7
-  created: '2024-12-05T14:18:52.916Z'
-  updated: '2024-12-05T14:18:52.916Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:18:52.916Z"
+  updated: "2024-12-05T14:18:52.916Z"
   embedded: false
 spec:
   python_version: PYTHON3_10
@@ -16,7 +14,6 @@ spec:
     lang: python
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-etl
 name: download-data
 id: 160b9ff7d91e4bc8aa43bdb245c3d2a7

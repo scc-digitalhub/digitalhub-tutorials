@@ -3,10 +3,8 @@ metadata:
   project: project-ml-ci
   name: pipeline_ml
   version: 96bfed5dcd4245b38b398ae4653f8fc1
-  created: '2024-12-05T13:34:34.27Z'
-  updated: '2024-12-05T13:35:32.178Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:34:34.27Z"
+  updated: "2024-12-05T13:35:32.178Z"
   embedded: false
 spec:
   source:
@@ -18,7 +16,6 @@ spec:
     lang: yaml
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-ml-ci
 name: pipeline_ml
 id: 96bfed5dcd4245b38b398ae4653f8fc1

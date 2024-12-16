@@ -3,17 +3,14 @@ metadata:
   project: project-mlflow-model-ci
   name: serve_mlflowmodel
   version: 9d6576772cd74df2ac7d2b36bcc89528
-  created: '2024-12-05T13:46:42.08Z'
-  updated: '2024-12-05T13:46:42.08Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T13:46:42.08Z"
+  updated: "2024-12-05T13:46:42.08Z"
   embedded: false
 spec:
   path: s3://datalake/project-mlflow-model-ci/model/model-mlflow/12fa19bbe41b46b1b1621fc9034ece80/model/
   model_name: model-mlflow
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-mlflow-model-ci
 name: serve_mlflowmodel
 id: 9d6576772cd74df2ac7d2b36bcc89528

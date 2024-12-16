@@ -3,10 +3,8 @@ metadata:
   project: project-etl
   name: pipeline
   version: 5e2a878074ef432daafa104819c1bec5
-  created: '2024-12-05T14:23:34.305Z'
-  updated: '2024-12-05T14:24:25.701Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:23:34.305Z"
+  updated: "2024-12-05T14:24:25.701Z"
   embedded: false
 spec:
   source:
@@ -18,7 +16,6 @@ spec:
     lang: yaml
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-etl
 name: pipeline
 id: 5e2a878074ef432daafa104819c1bec5

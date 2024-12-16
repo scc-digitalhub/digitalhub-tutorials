@@ -3,10 +3,8 @@ metadata:
   project: project-dbt-ci
   name: function-dbt
   version: 776571353e9d433aa58f10627b0d0b80
-  created: '2024-12-05T14:01:36.852Z'
-  updated: '2024-12-05T14:01:36.852Z'
-  created_by: mmartini@fbk.eu
-  updated_by: mmartini@fbk.eu
+  created: "2024-12-05T14:01:36.852Z"
+  updated: "2024-12-05T14:01:36.852Z"
   embedded: false
 spec:
   source:
@@ -14,7 +12,6 @@ spec:
     lang: sql
 status:
   state: CREATED
-user: mmartini@fbk.eu
 project: project-dbt-ci
 name: function-dbt
 id: 776571353e9d433aa58f10627b0d0b80
