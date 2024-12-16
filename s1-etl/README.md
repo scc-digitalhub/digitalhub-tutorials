@@ -27,8 +27,9 @@ Get the input parameter for workflow (dataitem is imported above with the projec
 di = proj.get_dataitem("url_data_item")
 ```
 
-Run the pipeline through the project
+Build and run the pipeline through the project:
 
 ```python
+proj.run(wkfl, action="build", wait=True)
 workflow_run = proj.run(wkfl, action="pipeline", parameters={"url": di.key}, wait=True)
 ```

@@ -21,8 +21,9 @@ View the project details such as pipeline name.
 wkfl = proj.spec.workflows[0]["name"]
 ```
 
-Run the pipeline through the project
+Build and run the pipeline through the project:
 
 ```python
+proj.run(wkfl, action="build", wait=True)
 workflow_run = proj.run(wkfl, action="pipeline", parameters={"url": di.key}, wait=True)
 ```
