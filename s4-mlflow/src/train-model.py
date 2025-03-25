@@ -1,6 +1,6 @@
 
 from digitalhub_runtime_python import handler
-from digitalhub import from_mlflow_run
+from digitalhub import from_mlflow_run, get_mlflow_model_metrics
 import mlflow
 
 from sklearn import datasets, svm
@@ -20,9 +20,13 @@ def train(project):
 
     # utility to map mlflow run artifacts to model metadata
     model_params = from_mlflow_run(run_id)
+    metrics = get_mlflow_model_metrics(run_id)
 
-    return (project.log_model(
+    model = project.log_model(
         name="model-mlflow",
         kind="mlflow",
         **model_params
-))
+    )
+    for metric in metrics:
+        model.log_metric(metric, metrics[metric], single_value=True)
+    return model

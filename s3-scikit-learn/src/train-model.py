@@ -33,8 +33,9 @@ def train(project, di):
         "precision": sklearn.metrics.precision_score(y_test, y_predict),
         "recall": sklearn.metrics.recall_score(y_test, y_predict),
     }
-    return project.log_model(
-            name="cancer_classifier",
-            kind="sklearn",
-            source="./model/",
-            metrics=metrics)
+    model = project.log_model(name="cancer_classifier",
+                              kind="sklearn",
+                              source="./model/")
+    for metric in metrics:
+        model.log_metric(metric, metrics[metric], single_value=True)
+    return model
