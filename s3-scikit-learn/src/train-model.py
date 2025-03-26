@@ -36,6 +36,5 @@ def train(project, di):
     model = project.log_model(name="cancer_classifier",
                               kind="sklearn",
                               source="./model/")
-    for metric in metrics:
-        model.log_metric(metric, metrics[metric], single_value=True)
+    model.log_metrics(metrics)
     return model

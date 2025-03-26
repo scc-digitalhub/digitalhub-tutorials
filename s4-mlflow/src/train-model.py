@@ -27,6 +27,5 @@ def train(project):
         kind="mlflow",
         **model_params
     )
-    for metric in metrics:
-        model.log_metric(metric, metrics[metric], single_value=True)
+    model.log_metrics(metrics)
     return model

@@ -36,11 +36,12 @@ def train_model(project):
         "mae": mae(series, pred)
     }
 
-    project.log_model(
+    model = project.log_model(
         name="darts_model",
         kind="model",
         source="predictor_model.pt.zip",
         algorithm="darts.models.NBEATSModel",
-        framework="darts",
-        metrics=metrics
+        framework="darts"
     )
+    model.log_metrics(metrics)
+    return model
