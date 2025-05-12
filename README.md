@@ -25,7 +25,7 @@ This scenario provides a quick overview of developing and deploying a machine le
 
 ## LLM Flow Model Training and Serving
 
-This scenario demonstrates how to create and serve LLM HuggingFace-compatible models. Specifically, it is possible to serve directly the LLM models from the HuggingFace catalog provided the id of the model or to serve the fine-tuned model from the specified path, such as S3.
+This scenario demonstrates how to create and serve LLM HuggingFace-compatible models. Specifically, it is possible to serve directly the LLM models from the HuggingFace catalog provided the id of the model or to serve the fine-tuned model from the specified path, such as S3. The scenario uses a GPU and a profile defined by the cluster owner.
 
 ## Custom ML Flow Model Training and Serving
 
