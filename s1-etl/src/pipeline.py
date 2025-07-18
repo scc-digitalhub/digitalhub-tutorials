@@ -8,7 +8,7 @@ def pipeline(url):
             function="download-data",
             action="job",
             inputs={"url": url},
-            outputs={"dataset": "dataset"},
+            step_outputs={"dataset": "dataset"},
         )
 
         process_spire = pc.step(
