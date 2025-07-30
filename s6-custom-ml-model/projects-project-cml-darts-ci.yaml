@@ -32,8 +32,8 @@ spec:
   artifacts: []
   workflows:
     - id: d9769ff08afc4560a72524d6a078035a
-      key: store://project-cml-darts-ci/workflow/kfp/pipeline_cml_darts:d9769ff08afc4560a72524d6a078035a
-      kind: kfp
+      key: store://project-cml-darts-ci/workflow/hera/pipeline_cml_darts:d9769ff08afc4560a72524d6a078035a
+      kind: hera
       metadata:
         name: pipeline_cml_darts
         project: project-cml-darts-ci

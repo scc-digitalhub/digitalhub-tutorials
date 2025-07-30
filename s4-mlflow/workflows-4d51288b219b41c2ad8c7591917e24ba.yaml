@@ -1,4 +1,4 @@
-kind: kfp
+kind: hera
 metadata:
   project: project-mlflow-model-ci
   name: pipeline_mlflow
@@ -8,12 +8,12 @@ metadata:
   embedded: false
 spec:
   source:
-    source: src/mlflow_pipeline.py
-    handler: myhandler
+    source: src/pipeline.py
+    handler: pipeline
     lang: python
 status:
   state: CREATED
 project: project-mlflow-model-ci
 name: pipeline_mlflow
 id: 4d51288b219b41c2ad8c7591917e24ba
-key: store://project-mlflow-model-ci/workflow/kfp/pipeline_mlflow:4d51288b219b41c2ad8c7591917e24ba
+key: store://project-mlflow-model-ci/workflow/hera/pipeline_mlflow:4d51288b219b41c2ad8c7591917e24ba

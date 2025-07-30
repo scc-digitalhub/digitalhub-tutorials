@@ -1,4 +1,4 @@
-kind: kfp
+kind: hera
 metadata:
   project: project-dbt-ci
   name: pipeline_dbt
@@ -8,12 +8,12 @@ metadata:
   embedded: false
 spec:
   source:
-    source: src/dbt_pipeline.py
-    handler: myhandler
+    source: src/pipeline.py
+    handler: pipeline
     lang: python
 status:
   state: CREATED
 project: project-dbt-ci
 name: pipeline_dbt
 id: adad0c205fd84ae5824a184e47eee7de
-key: store://project-dbt-ci/workflow/kfp/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de
+key: store://project-dbt-ci/workflow/hera/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de

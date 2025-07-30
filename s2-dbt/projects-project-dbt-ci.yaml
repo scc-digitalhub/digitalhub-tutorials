@@ -21,8 +21,8 @@ spec:
   artifacts: []
   workflows:
     - id: adad0c205fd84ae5824a184e47eee7de
-      key: store://project-dbt-ci/workflow/kfp/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de
-      kind: kfp
+      key: store://project-dbt-ci/workflow/hera/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de
+      kind: hera
       metadata:
         name: pipeline_dbt
         project: project-dbt-ci

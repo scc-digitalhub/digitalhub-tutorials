@@ -43,8 +43,8 @@ spec:
   artifacts: []
   workflows:
     - id: 96bfed5dcd4245b38b398ae4653f8fc1
-      key: store://project-ml-ci/workflow/kfp/pipeline_ml:96bfed5dcd4245b38b398ae4653f8fc1
-      kind: kfp
+      key: store://project-ml-ci/workflow/hera/pipeline_ml:96bfed5dcd4245b38b398ae4653f8fc1
+      kind: hera
       metadata:
         name: pipeline_ml
         project: project-ml-ci

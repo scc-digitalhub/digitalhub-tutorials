@@ -54,8 +54,8 @@ spec:
   artifacts: []
   workflows:
     - id: 5e2a878074ef432daafa104819c1bec5
-      key: store://project-etl/workflow/kfp/pipeline:5e2a878074ef432daafa104819c1bec5
-      kind: kfp
+      key: store://project-etl/workflow/hera/pipeline:5e2a878074ef432daafa104819c1bec5
+      kind: hera
       metadata:
         name: pipeline
         project: project-etl

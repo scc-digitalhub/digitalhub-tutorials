@@ -1,4 +1,4 @@
-kind: kfp
+kind: hera
 metadata:
   project: project-cml-darts-ci
   name: pipeline_cml_darts
@@ -8,12 +8,12 @@ metadata:
   embedded: false
 spec:
   source:
-    source: src/cml_darts_pipeline.py
-    handler: myhandler
+    source: src/pipeline.py
+    handler: pipeline
     lang: python
 status:
   state: CREATED
 project: project-cml-darts-ci
 name: pipeline_cml_darts
 id: d9769ff08afc4560a72524d6a078035a
-key: store://project-cml-darts-ci/workflow/kfp/pipeline_cml_darts:d9769ff08afc4560a72524d6a078035a
+key: store://project-cml-darts-ci/workflow/hera/pipeline_cml_darts:d9769ff08afc4560a72524d6a078035a

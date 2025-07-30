@@ -1,26 +1,24 @@
+from hera.workflows import Workflow, DAG, Parameter
+from digitalhub_runtime_hera.dsl import step
 
-from digitalhub_runtime_kfp.dsl import pipeline_context
 
-def pipeline(url):
-    with pipeline_context() as pc:
-        downloader = pc.step(
-            name="download-data",
-            function="download-data",
-            action="job",
-            inputs={"url": url},
-            step_outputs={"dataset": "dataset"},
-        )
+def pipeline():
+    with Workflow(entrypoint="dag", arguments=Parameter(name="url")) as w:
 
-        process_spire = pc.step(
-            name="process-spire",
-            function="process-spire",
-            action="job",
-            inputs={"di": downloader.outputs["dataset"]}
-        )
-
-        process_measures = pc.step(
-            name="process-measures",
-            function="process-measures",
-            action="job",
-            inputs={"di": downloader.outputs["dataset"]}
-        )
+        with DAG(name="dag"):
+            A = step(template={"action":"job", "inputs": {"url": "{{workflow.parameters.url}}"}},
+                     function="download-data",
+                     outputs=["dataset"])
+            B = step(template={"action":"job", "inputs": {"di": "{{inputs.parameters.di}}"}},
+                     function="process-spire",
+                     inputs={"di": A.get_parameter("dataset")})
+            C = step(template={"action":"job", "inputs": {"di": "{{inputs.parameters.di}}"}},
+                     function="process-measures",
+                     inputs={"di": A.get_parameter("dataset")},
+                     outputs=["dataset-measures"])
+            D = step(template={"action": "serve", "init_parameters": {"dataitem": "{{inputs.parameters.dataitem}}"}},
+                     function="api",
+                     inputs={"dataitem": C.get_parameter("dataset-measures")})
+            A >> [B, C]
+            C >> D
+    return w
