@@ -18,12 +18,6 @@ except:
     proj = dh.load_project("projects-tutorial-project.yaml")
 ```
 
-View the project details such as pipeline name.
-
-```python
-wkfl = proj.spec.workflows[0]["name"]
-```
-
 Get the input parameter for workflow (dataitem is imported above with the project)
 
 ```python
@@ -33,6 +27,6 @@ di = proj.get_dataitem("url-data-item")
 Build and run the pipeline through the project:
 
 ```python
-proj.run(wkfl, action="build", wait=True)
-workflow_run = proj.run(wkfl, action="pipeline", parameters={"url": di.key}, wait=True)
+proj.run("pipeline", action="build", wait=True)
+workflow_run = proj.run("pipeline", action="pipeline", parameters={"url": di.key}, wait=True)
 ```
