@@ -1,8 +1,8 @@
-
 def init_context(context):
-    di = context.project.get_dataitem('dataset-measures')
+    di = context.project.get_dataitem("dataset-measures")
     df = di.as_df()
     setattr(context, "df", df)
+
 
 def handler(context, event):
     df = context.df
@@ -22,10 +22,10 @@ def handler(context, event):
     pageSize = 50
 
     if "page" in fields:
-        page = int(fields['page'])
+        page = int(fields["page"])
 
     if "size" in fields:
-        pageSize = int(fields['size'])
+        pageSize = int(fields["size"])
 
     if page < 0:
         page = 0

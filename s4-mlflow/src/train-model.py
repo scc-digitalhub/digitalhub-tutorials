@@ -1,10 +1,9 @@
-
-from digitalhub_runtime_python import handler
-from digitalhub import from_mlflow_run, get_mlflow_model_metrics
 import mlflow
-
+from digitalhub import from_mlflow_run, get_mlflow_model_metrics
+from digitalhub_runtime_python import handler
 from sklearn import datasets, svm
 from sklearn.model_selection import GridSearchCV
+
 
 @handler(outputs=["model"])
 def train(project):
@@ -22,10 +21,6 @@ def train(project):
     model_params = from_mlflow_run(run_id)
     metrics = get_mlflow_model_metrics(run_id)
 
-    model = project.log_model(
-        name="model-mlflow",
-        kind="mlflow",
-        **model_params
-    )
+    model = project.log_model(name="model-mlflow", kind="mlflow", **model_params)
     model.log_metrics(metrics)
     return model
