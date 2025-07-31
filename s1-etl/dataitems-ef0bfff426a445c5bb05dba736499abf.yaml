@@ -1,7 +1,7 @@
 kind: table
 metadata:
   project: tutorial-project
-  name: url_data_item
+  name: url-data-item
   version: ef0bfff426a445c5bb05dba736499abf
   created: "2024-12-05T14:18:53.033Z"
   updated: "2024-12-05T14:18:53.033Z"
@@ -11,6 +11,6 @@ spec:
 status:
   state: CREATED
 project: tutorial-project
-name: url_data_item
+name: url-data-item
 id: ef0bfff426a445c5bb05dba736499abf
-key: store://tutorial-project/dataitem/table/url_data_item:ef0bfff426a445c5bb05dba736499abf
+key: store://tutorial-project/dataitem/table/url-data-item:ef0bfff426a445c5bb05dba736499abf

@@ -12,7 +12,10 @@ Import the project using the yaml file.
 
 ```python
 import digitalhub as dh
-proj = dh.import_project("projects-project-etl.yaml")
+try:
+    proj = dh.import_project("projects-tutorial-project.yaml")
+except:
+    proj = dh.load_project("projects-tutorial-project.yaml")
 ```
 
 View the project details such as pipeline name.
@@ -24,7 +27,7 @@ wkfl = proj.spec.workflows[0]["name"]
 Get the input parameter for workflow (dataitem is imported above with the project)
 
 ```python
-di = proj.get_dataitem("url_data_item")
+di = proj.get_dataitem("url-data-item")
 ```
 
 Build and run the pipeline through the project:

@@ -12,25 +12,15 @@ Import the project using the yaml file.
 
 ```python
 import digitalhub as dh
-proj = dh.import_project("projects-project-cml-darts-ci.yaml")
-```
-
-View the project details such as pipeline name.
-
-```python
-wkfl = proj.spec.workflows[0]["name"]
-```
-
-Build the container. Fetch the training function and build it.
-
-```python
-train_fn = proj.get_function("train-darts")
-train_run =  train_fn.run("build", instructions=["pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu","pip3 install darts patsy scikit-learn"], wait=True)
+try:
+    proj = dh.import_project("projects-tutorial-project.yaml")
+except:
+    proj = dh.load_project("projects-tutorial-project.yaml")
 ```
 
 Build and run the pipeline through the project:
 
 ```python
-proj.run(wkfl, action="build", wait=True)
-workflow_run = proj.run(wkfl, action="pipeline", wait=True)
+proj.run("pipeline", action="build", wait=True)
+workflow_run = proj.run("pipeline", action="pipeline", wait=True)
 ```

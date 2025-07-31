@@ -9,8 +9,8 @@ metadata:
 spec:
   python_version: PYTHON3_10
   requirements:
-    - scikit-learn
-    - mlflow
+    - numpy<2
+    - mlflow<3
   source:
     source: src/functions.py
     handler: train_model

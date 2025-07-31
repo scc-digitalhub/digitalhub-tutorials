@@ -1,0 +1,84 @@
+kind: project
+metadata:
+  project: tutorial-project
+  name: tutorial-project
+  created: "2024-12-05T14:18:52.842Z"
+  updated: "2024-12-05T14:26:52.897Z"
+spec:
+  context: ./
+  functions:
+    - id: 568faef803164fca8459b6f0c3e35b91
+      key: store://tutorial-project/function/python/process-spire:568faef803164fca8459b6f0c3e35b91
+      kind: python
+      metadata:
+        name: process-spire
+        project: tutorial-project
+        ref: functions-568faef803164fca8459b6f0c3e35b91.yaml
+        updated: "2024-12-05T14:21:31.065Z"
+        created: "2024-12-05T14:21:31.065Z"
+      name: process-spire
+      project: tutorial-project
+    - id: 76d9d17806364896b7c37cc976cb47dc
+      key: store://tutorial-project/function/python/process-measures:76d9d17806364896b7c37cc976cb47dc
+      kind: python
+      metadata:
+        name: process-measures
+        project: tutorial-project
+        ref: functions-76d9d17806364896b7c37cc976cb47dc.yaml
+        updated: "2024-12-05T14:22:32.629Z"
+        created: "2024-12-05T14:22:32.629Z"
+      name: process-measures
+      project: tutorial-project
+    - id: 44916ced4aeb4548973aa6b9c9fc48fd
+      key: store://tutorial-project/function/python/api:44916ced4aeb4548973aa6b9c9fc48fd
+      kind: python
+      metadata:
+        name: api
+        project: tutorial-project
+        ref: functions-44916ced4aeb4548973aa6b9c9fc48fd.yaml
+        updated: "2024-12-05T14:26:52.823Z"
+        created: "2024-12-05T14:26:52.823Z"
+      name: api
+      project: tutorial-project
+    - id: 160b9ff7d91e4bc8aa43bdb245c3d2a7
+      key: store://tutorial-project/function/python/download-data:160b9ff7d91e4bc8aa43bdb245c3d2a7
+      kind: python
+      metadata:
+        name: download-data
+        project: tutorial-project
+        ref: functions-160b9ff7d91e4bc8aa43bdb245c3d2a7.yaml
+        updated: "2024-12-05T14:18:52.916Z"
+        created: "2024-12-05T14:18:52.916Z"
+      name: download-data
+      project: tutorial-project
+  artifacts: []
+  workflows:
+    - id: 5e2a878074ef432daafa104819c1bec5
+      key: store://tutorial-project/workflow/hera/pipeline:5e2a878074ef432daafa104819c1bec5
+      kind: hera
+      metadata:
+        name: pipeline
+        project: tutorial-project
+        ref: workflows-5e2a878074ef432daafa104819c1bec5.yaml
+        updated: "2024-12-05T14:24:25.701Z"
+        created: "2024-12-05T14:23:34.305Z"
+      name: pipeline
+      project: tutorial-project
+  dataitems:
+    - id: ef0bfff426a445c5bb05dba736499abf
+      key: store://tutorial-project/dataitem/table/url-data-item:ef0bfff426a445c5bb05dba736499abf
+      kind: table
+      metadata:
+        name: url-data-item
+        project: tutorial-project
+        ref: dataitems-ef0bfff426a445c5bb05dba736499abf.yaml
+        updated: "2024-12-05T14:18:53.033Z"
+        created: "2024-12-05T14:18:53.033Z"
+      name: url-data-item
+      project: tutorial-project
+  models: []
+status:
+  state: CREATED
+id: tutorial-project
+name: tutorial-project
+key: store://tutorial-project

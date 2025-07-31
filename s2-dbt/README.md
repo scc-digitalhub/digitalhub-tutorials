@@ -12,7 +12,10 @@ Import the project using the yaml file.
 
 ```python
 import digitalhub as dh
-proj = dh.import_project("projects-project-dbt-ci.yaml")
+try:
+    proj = dh.import_project("projects-tutorial-project.yaml")
+except:
+    proj = dh.load_project("projects-tutorial-project.yaml")
 ```
 
 View the project details such as pipeline name.
