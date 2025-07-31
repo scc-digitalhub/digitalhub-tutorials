@@ -1,7 +1,7 @@
 kind: python
 metadata:
-  project: project-ml-ci
-  name: data-prep
+  project: tutorial-project
+  name: prepare-data
   version: b7a3ebb2c05148acbe676c3f60549763
   created: "2024-12-05T13:31:44.94Z"
   updated: "2024-12-05T13:31:44.94Z"
@@ -9,12 +9,12 @@ metadata:
 spec:
   python_version: PYTHON3_10
   source:
-    source: src/data-prep.py
-    handler: breast_cancer_generator
+    source: src/functions.py
+    handler: data_generator
     lang: python
 status:
   state: CREATED
-project: project-ml-ci
-name: data-prep
+project: tutorial-project
+name: prepare-data
 id: b7a3ebb2c05148acbe676c3f60549763
-key: store://project-ml-ci/function/python/data-prep:b7a3ebb2c05148acbe676c3f60549763
+key: store://tutorial-project/function/python/prepare-data:b7a3ebb2c05148acbe676c3f60549763

@@ -1,6 +1,6 @@
 kind: python
 metadata:
-  project: project-etl
+  project: tutorial-project
   name: download-data
   version: 160b9ff7d91e4bc8aa43bdb245c3d2a7
   created: "2024-12-05T14:18:52.916Z"
@@ -9,12 +9,12 @@ metadata:
 spec:
   python_version: PYTHON3_10
   source:
-    source: src/download-data.py
+    source: src/functions.py
     handler: downloader
     lang: python
 status:
   state: CREATED
-project: project-etl
+project: tutorial-project
 name: download-data
 id: 160b9ff7d91e4bc8aa43bdb245c3d2a7
-key: store://project-etl/function/python/download-data:160b9ff7d91e4bc8aa43bdb245c3d2a7
+key: store://tutorial-project/function/python/download-data:160b9ff7d91e4bc8aa43bdb245c3d2a7

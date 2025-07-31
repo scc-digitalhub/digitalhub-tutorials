@@ -1,6 +1,6 @@
 kind: hera
 metadata:
-  project: project-etl
+  project: tutorial-project
   name: pipeline
   version: 5e2a878074ef432daafa104819c1bec5
   created: "2024-12-05T14:23:34.305Z"
@@ -13,7 +13,7 @@ spec:
     lang: python
 status:
   state: CREATED
-project: project-etl
+project: tutorial-project
 name: pipeline
 id: 5e2a878074ef432daafa104819c1bec5
-key: store://project-etl/workflow/hera/pipeline:5e2a878074ef432daafa104819c1bec5
+key: store://tutorial-project/workflow/hera/pipeline:5e2a878074ef432daafa104819c1bec5

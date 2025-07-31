@@ -1,7 +1,7 @@
 kind: hera
 metadata:
-  project: project-mlflow-model-ci
-  name: pipeline_mlflow
+  project: tutorial-project
+  name: mlflow-pipeline
   version: 4d51288b219b41c2ad8c7591917e24ba
   created: "2024-12-05T13:49:21.93Z"
   updated: "2024-12-05T13:50:33.245Z"
@@ -13,7 +13,7 @@ spec:
     lang: python
 status:
   state: CREATED
-project: project-mlflow-model-ci
-name: pipeline_mlflow
+project: tutorial-project
+name: mlflow-pipeline
 id: 4d51288b219b41c2ad8c7591917e24ba
-key: store://project-mlflow-model-ci/workflow/hera/pipeline_mlflow:4d51288b219b41c2ad8c7591917e24ba
+key: store://tutorial-project/workflow/hera/mlflow-pipeline:4d51288b219b41c2ad8c7591917e24ba

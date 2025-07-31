@@ -1,7 +1,7 @@
 kind: python
 metadata:
-  project: project-ml-ci
-  name: train
+  project: tutorial-project
+  name: train-classifier
   version: 4a2d36a45a8a47e29e727650266af099
   created: "2024-12-05T13:32:41.405Z"
   updated: "2024-12-05T13:32:41.405Z"
@@ -11,12 +11,12 @@ spec:
   requirements:
     - numpy<2
   source:
-    source: src/train-model.py
-    handler: train
+    source: src/functions.py
+    handler: train_model
     lang: python
 status:
   state: CREATED
-project: project-ml-ci
-name: train
+project: tutorial-project
+name: train-classifier
 id: 4a2d36a45a8a47e29e727650266af099
-key: store://project-ml-ci/function/python/train:4a2d36a45a8a47e29e727650266af099
+key: store://tutorial-project/function/python/train-classifier:4a2d36a45a8a47e29e727650266af099

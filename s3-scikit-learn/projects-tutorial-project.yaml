@@ -1,62 +1,62 @@
 kind: project
 metadata:
-  project: project-ml-ci
-  name: project-ml-ci
+  project: tutorial-project
+  name: tutorial-project
   created: "2024-12-05T10:09:03.855Z"
   updated: "2024-12-05T13:35:32.271Z"
 spec:
   context: ./
   functions:
     - id: b7a3ebb2c05148acbe676c3f60549763
-      key: store://project-ml-ci/function/python/data-prep:b7a3ebb2c05148acbe676c3f60549763
+      key: store://tutorial-project/function/python/prepare-data:b7a3ebb2c05148acbe676c3f60549763
       kind: python
       metadata:
-        name: data-prep
-        project: project-ml-ci
+        name: prepare-data
+        project: tutorial-project
         ref: functions-b7a3ebb2c05148acbe676c3f60549763.yaml
         updated: "2024-12-05T13:31:44.94Z"
         created: "2024-12-05T13:31:44.94Z"
-      name: data-prep
-      project: project-ml-ci
+      name: prepare-data
+      project: tutorial-project
     - id: 4a2d36a45a8a47e29e727650266af099
-      key: store://project-ml-ci/function/python/train:4a2d36a45a8a47e29e727650266af099
+      key: store://tutorial-project/function/python/train-classifier:4a2d36a45a8a47e29e727650266af099
       kind: python
       metadata:
-        name: train
-        project: project-ml-ci
+        name: train-classifier
+        project: tutorial-project
         ref: functions-4a2d36a45a8a47e29e727650266af099.yaml
         updated: "2024-12-05T13:32:41.405Z"
         created: "2024-12-05T13:32:41.405Z"
-      name: train
-      project: project-ml-ci
+      name: train-classifier
+      project: tutorial-project
     - id: be5142f8567b42b2a0ce51d7b5768b94
-      key: store://project-ml-ci/function/sklearnserve/serve_sklearnmodel:be5142f8567b42b2a0ce51d7b5768b94
+      key: store://tutorial-project/function/sklearnserve/serve-classifier:be5142f8567b42b2a0ce51d7b5768b94
       kind: sklearnserve
       metadata:
-        name: serve_sklearnmodel
-        project: project-ml-ci
+        name: serve-classifier
+        project: tutorial-project
         ref: functions-be5142f8567b42b2a0ce51d7b5768b94.yaml
         updated: "2024-12-05T13:33:37.847Z"
         created: "2024-12-05T13:33:37.847Z"
-      name: serve_sklearnmodel
-      project: project-ml-ci
+      name: serve-classifier
+      project: tutorial-project
   artifacts: []
   workflows:
     - id: 96bfed5dcd4245b38b398ae4653f8fc1
-      key: store://project-ml-ci/workflow/hera/pipeline_ml:96bfed5dcd4245b38b398ae4653f8fc1
+      key: store://tutorial-project/workflow/hera/ml-pipeline:96bfed5dcd4245b38b398ae4653f8fc1
       kind: hera
       metadata:
-        name: pipeline_ml
-        project: project-ml-ci
+        name: ml-pipeline
+        project: tutorial-project
         ref: workflows-96bfed5dcd4245b38b398ae4653f8fc1.yaml
         updated: "2024-12-05T13:35:32.178Z"
         created: "2024-12-05T13:34:34.27Z"
-      name: pipeline_ml
-      project: project-ml-ci
+      name: ml-pipeline
+      project: tutorial-project
   dataitems: []
   models: []
 status:
   state: CREATED
-id: project-ml-ci
-name: project-ml-ci
-key: store://project-ml-ci
+id: tutorial-project
+name: tutorial-project
+key: store://tutorial-project

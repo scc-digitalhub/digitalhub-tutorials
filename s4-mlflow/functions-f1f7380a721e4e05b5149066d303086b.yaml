@@ -1,7 +1,7 @@
 kind: python
 metadata:
-  project: project-mlflow-model-ci
-  name: train
+  project: tutorial-project
+  name: train-mlflow-model
   version: f1f7380a721e4e05b5149066d303086b
   created: "2024-12-05T13:45:55.625Z"
   updated: "2024-12-05T13:45:55.625Z"
@@ -12,12 +12,12 @@ spec:
     - scikit-learn
     - mlflow
   source:
-    source: src/train-model.py
-    handler: train
+    source: src/functions.py
+    handler: train_model
     lang: python
 status:
   state: CREATED
-project: project-mlflow-model-ci
-name: train
+project: tutorial-project
+name: train-mlflow-model
 id: f1f7380a721e4e05b5149066d303086b
-key: store://project-mlflow-model-ci/function/python/train:f1f7380a721e4e05b5149066d303086b
+key: store://tutorial-project/function/python/train-mlflow-model:f1f7380a721e4e05b5149066d303086b

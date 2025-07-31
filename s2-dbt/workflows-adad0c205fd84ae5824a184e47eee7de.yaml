@@ -1,7 +1,7 @@
 kind: hera
 metadata:
-  project: project-dbt-ci
-  name: pipeline_dbt
+  project: tutorial-project
+  name: dbt-pipeline
   version: adad0c205fd84ae5824a184e47eee7de
   created: "2024-12-05T14:02:43.518Z"
   updated: "2024-12-05T14:03:34.173Z"
@@ -13,7 +13,7 @@ spec:
     lang: python
 status:
   state: CREATED
-project: project-dbt-ci
-name: pipeline_dbt
+project: tutorial-project
+name: dbt-pipeline
 id: adad0c205fd84ae5824a184e47eee7de
-key: store://project-dbt-ci/workflow/hera/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de
+key: store://tutorial-project/workflow/hera/dbt-pipeline:adad0c205fd84ae5824a184e47eee7de

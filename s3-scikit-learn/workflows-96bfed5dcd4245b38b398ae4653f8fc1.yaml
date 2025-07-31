@@ -1,7 +1,7 @@
 kind: hera
 metadata:
-  project: project-ml-ci
-  name: pipeline_ml
+  project: tutorial-project
+  name: ml-pipeline
   version: 96bfed5dcd4245b38b398ae4653f8fc1
   created: "2024-12-05T13:34:34.27Z"
   updated: "2024-12-05T13:35:32.178Z"
@@ -13,7 +13,7 @@ spec:
     lang: python
 status:
   state: CREATED
-project: project-ml-ci
-name: pipeline_ml
+project: tutorial-project
+name: ml-pipeline
 id: 96bfed5dcd4245b38b398ae4653f8fc1
-key: store://project-ml-ci/workflow/hera/pipeline_ml:96bfed5dcd4245b38b398ae4653f8fc1
+key: store://tutorial-project/workflow/hera/ml-pipeline:96bfed5dcd4245b38b398ae4653f8fc1

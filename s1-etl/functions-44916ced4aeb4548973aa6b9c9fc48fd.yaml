@@ -1,6 +1,6 @@
 kind: python
 metadata:
-  project: project-etl
+  project: tutorial-project
   name: api
   version: 44916ced4aeb4548973aa6b9c9fc48fd
   created: "2024-12-05T14:26:52.823Z"
@@ -9,13 +9,13 @@ metadata:
 spec:
   python_version: PYTHON3_10
   source:
-    source: src/api.py
-    handler: handler
+    source: src/functions.py
+    handler: serve
     init_function: init_context
     lang: python
 status:
   state: CREATED
-project: project-etl
+project: tutorial-project
 name: api
 id: 44916ced4aeb4548973aa6b9c9fc48fd
-key: store://project-etl/function/python/api:44916ced4aeb4548973aa6b9c9fc48fd
+key: store://tutorial-project/function/python/api:44916ced4aeb4548973aa6b9c9fc48fd

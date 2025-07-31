@@ -1,17 +1,17 @@
 kind: huggingfaceserve
 metadata:
-  project: llm-ci
-  name: llm_classification
+  project: tutorial-project
+  name: sentiment-classifier
   version: 993e33bf88344a4f8b8847736b62b2ee
   created: "2024-12-11T10:28:40.473Z"
   updated: "2024-12-11T10:28:40.473Z"
   embedded: false
 spec:
   path: huggingface://distilbert/distilbert-base-uncased-finetuned-sst-2-english
-  model_name: mymodel
+  model_name: sentiment-model
 status:
   state: CREATED
-project: llm-ci
-name: llm_classification
+project: tutorial-project
+name: sentiment-classifier
 id: 993e33bf88344a4f8b8847736b62b2ee
-key: store://llm-ci/function/huggingfaceserve/llm_classification:993e33bf88344a4f8b8847736b62b2ee
+key: store://tutorial-project/function/huggingfaceserve/sentiment-classifier:993e33bf88344a4f8b8847736b62b2ee

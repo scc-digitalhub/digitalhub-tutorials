@@ -1,6 +1,6 @@
 kind: table
 metadata:
-  project: project-etl
+  project: tutorial-project
   name: url_data_item
   version: ef0bfff426a445c5bb05dba736499abf
   created: "2024-12-05T14:18:53.033Z"
@@ -10,7 +10,7 @@ spec:
   path: https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rilevazione-flusso-veicoli-tramite-spire-anno-2023/exports/csv?lang=it&timezone=Europe%2FRome&use_labels=true&delimiter=%3B
 status:
   state: CREATED
-project: project-etl
+project: tutorial-project
 name: url_data_item
 id: ef0bfff426a445c5bb05dba736499abf
-key: store://project-etl/dataitem/table/url_data_item:ef0bfff426a445c5bb05dba736499abf
+key: store://tutorial-project/dataitem/table/url_data_item:ef0bfff426a445c5bb05dba736499abf

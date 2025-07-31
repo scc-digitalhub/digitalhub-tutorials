@@ -1,51 +1,51 @@
 kind: project
 metadata:
-  project: project-mlflow-model-ci
-  name: project-mlflow-model-ci
+  project: tutorial-project
+  name: tutorial-project
   created: "2024-12-05T13:40:37.708Z"
   updated: "2024-12-05T13:50:33.527Z"
 spec:
   context: ./
   functions:
     - id: f1f7380a721e4e05b5149066d303086b
-      key: store://project-mlflow-model-ci/function/python/train:f1f7380a721e4e05b5149066d303086b
+      key: store://tutorial-project/function/python/train-mlflow-model:f1f7380a721e4e05b5149066d303086b
       kind: python
       metadata:
-        name: train
-        project: project-mlflow-model-ci
+        name: train-mlflow-model
+        project: tutorial-project
         ref: functions-f1f7380a721e4e05b5149066d303086b.yaml
         updated: "2024-12-05T13:45:55.625Z"
         created: "2024-12-05T13:45:55.625Z"
-      name: train
-      project: project-mlflow-model-ci
+      name: train-mlflow-model
+      project: tutorial-project
     - id: 9d6576772cd74df2ac7d2b36bcc89528
-      key: store://project-mlflow-model-ci/function/mlflowserve/serve_mlflowmodel:9d6576772cd74df2ac7d2b36bcc89528
+      key: store://tutorial-project/function/mlflowserve/serve-mlflow-model:9d6576772cd74df2ac7d2b36bcc89528
       kind: mlflowserve
       metadata:
-        name: serve_mlflowmodel
-        project: project-mlflow-model-ci
+        name: serve-mlflow-model
+        project: tutorial-project
         ref: functions-9d6576772cd74df2ac7d2b36bcc89528.yaml
         updated: "2024-12-05T13:46:42.08Z"
         created: "2024-12-05T13:46:42.08Z"
-      name: serve_mlflowmodel
-      project: project-mlflow-model-ci
+      name: serve-mlflow-model
+      project: tutorial-project
   artifacts: []
   workflows:
     - id: 4d51288b219b41c2ad8c7591917e24ba
-      key: store://project-mlflow-model-ci/workflow/hera/pipeline_mlflow:4d51288b219b41c2ad8c7591917e24ba
+      key: store://tutorial-project/workflow/hera/mlflow-pipeline:4d51288b219b41c2ad8c7591917e24ba
       kind: hera
       metadata:
-        name: pipeline_mlflow
-        project: project-mlflow-model-ci
+        name: mlflow-pipeline
+        project: tutorial-project
         ref: workflows-4d51288b219b41c2ad8c7591917e24ba.yaml
         updated: "2024-12-05T13:50:33.245Z"
         created: "2024-12-05T13:49:21.93Z"
-      name: pipeline_mlflow
-      project: project-mlflow-model-ci
+      name: mlflow-pipeline
+      project: tutorial-project
   dataitems: []
   models: []
 status:
   state: CREATED
-id: project-mlflow-model-ci
-name: project-mlflow-model-ci
-key: store://project-mlflow-model-ci
+id: tutorial-project
+name: tutorial-project
+key: store://tutorial-project

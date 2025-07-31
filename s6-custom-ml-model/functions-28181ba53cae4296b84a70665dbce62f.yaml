@@ -1,21 +1,21 @@
 kind: python
 metadata:
-  project: project-cml-darts-ci
-  name: train-darts
+  project: tutorial-project
+  name: train-time-series-model
   version: 28181ba53cae4296b84a70665dbce62f
   created: "2024-12-05T13:03:38.132Z"
   updated: "2024-12-05T13:07:29.294Z"
   embedded: false
 spec:
-  image: registry.tenant2.digitalhub-dev.smartcommunitylab.it/digitalhub-tenant2-project-cml-darts-ci-train-darts:982cd
+  image: registry.tenant2.digitalhub-dev.smartcommunitylab.it/digitalhub-tenant2-tutorial-project-train-time-series-model:982cd
   python_version: PYTHON3_10
   source:
-    source: src/train-model.py
+    source: src/functions.py
     handler: train_model
     lang: python
 status:
   state: CREATED
-project: project-cml-darts-ci
-name: train-darts
+project: tutorial-project
+name: train-time-series-model
 id: 28181ba53cae4296b84a70665dbce62f
-key: store://project-cml-darts-ci/function/python/train-darts:28181ba53cae4296b84a70665dbce62f
+key: store://tutorial-project/function/python/train-time-series-model:28181ba53cae4296b84a70665dbce62f

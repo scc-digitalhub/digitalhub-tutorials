@@ -11,6 +11,6 @@ def pipeline():
                     "inputs": {"employees": "{{workflow.parameters.employees}}"},
                     "outputs": {"output_table": "department-50"},
                 },
-                function="function-dbt",
+                function="transform-employees",
             )
     return w

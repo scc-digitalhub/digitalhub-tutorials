@@ -1,51 +1,51 @@
 kind: project
 metadata:
-  project: project-dbt-ci
-  name: project-dbt-ci
+  project: tutorial-project
+  name: tutorial-project
   created: "2024-12-05T14:01:36.577Z"
   updated: "2024-12-05T14:03:50.162Z"
 spec:
   context: ./
   functions:
     - id: 776571353e9d433aa58f10627b0d0b80
-      key: store://project-dbt-ci/function/dbt/function-dbt:776571353e9d433aa58f10627b0d0b80
+      key: store://tutorial-project/function/dbt/transform-employees:776571353e9d433aa58f10627b0d0b80
       kind: dbt
       metadata:
-        name: function-dbt
-        project: project-dbt-ci
+        name: transform-employees
+        project: tutorial-project
         ref: functions-776571353e9d433aa58f10627b0d0b80.yaml
         updated: "2024-12-05T14:01:36.852Z"
         created: "2024-12-05T14:01:36.852Z"
-      name: function-dbt
-      project: project-dbt-ci
+      name: transform-employees
+      project: tutorial-project
   artifacts: []
   workflows:
     - id: adad0c205fd84ae5824a184e47eee7de
-      key: store://project-dbt-ci/workflow/hera/pipeline_dbt:adad0c205fd84ae5824a184e47eee7de
+      key: store://tutorial-project/workflow/hera/dbt-pipeline:adad0c205fd84ae5824a184e47eee7de
       kind: hera
       metadata:
-        name: pipeline_dbt
-        project: project-dbt-ci
+        name: dbt-pipeline
+        project: tutorial-project
         ref: workflows-adad0c205fd84ae5824a184e47eee7de.yaml
         updated: "2024-12-05T14:03:34.173Z"
         created: "2024-12-05T14:02:43.518Z"
-      name: pipeline_dbt
-      project: project-dbt-ci
+      name: dbt-pipeline
+      project: tutorial-project
   dataitems:
     - id: afd47e3b2ac54f709ad001121233fb72
-      key: store://project-dbt-ci/dataitem/table/employees-dbt:afd47e3b2ac54f709ad001121233fb72
+      key: store://tutorial-project/dataitem/table/employees-data:afd47e3b2ac54f709ad001121233fb72
       kind: table
       metadata:
-        name: employees-dbt
-        project: project-dbt-ci
+        name: employees-data
+        project: tutorial-project
         ref: dataitems-afd47e3b2ac54f709ad001121233fb72.yaml
         updated: "2024-12-05T14:01:36.656Z"
         created: "2024-12-05T14:01:36.656Z"
-      name: employees-dbt
-      project: project-dbt-ci
+      name: employees-data
+      project: tutorial-project
   models: []
 status:
   state: CREATED
-id: project-dbt-ci
-name: project-dbt-ci
-key: store://project-dbt-ci
+id: tutorial-project
+name: tutorial-project
+key: store://tutorial-project
