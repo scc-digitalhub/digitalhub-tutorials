@@ -1,5 +1,5 @@
-def init_context(context):
-    di = context.project.get_dataitem("dataset-measures")
+def init_context(context, dataitem):
+    di = context.project.get_dataitem(dataitem)
     df = di.as_df()
     setattr(context, "df", df)
 
