@@ -7,7 +7,6 @@ metadata:
   updated: "2024-12-05T13:07:29.294Z"
   embedded: false
 spec:
-  image: registry.tenant2.digitalhub-dev.smartcommunitylab.it/digitalhub-tenant2-tutorial-project-train-time-series-model:982cd
   python_version: PYTHON3_10
   source:
     source: src/functions.py

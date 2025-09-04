@@ -8,20 +8,14 @@ def pipeline():
             A = step(
                 template={
                     "action": "build",
-                    "instructions": [
-                        "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu",
-                        "pip3 install darts==0.30.0 patsy scikit-learn",
-                    ],
+                    "instructions": ["pip3 install torch'<2.6.0' darts==0.30.0 patsy"],
                 },
                 function="train-time-series-model",
             )
             B = step(
                 template={
                     "action": "build",
-                    "instructions": [
-                        "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu",
-                        "pip3 install darts==0.30.0 patsy scikit-learn",
-                    ],
+                    "instructions": ["pip3 install torch'<2.6.0' darts==0.30.0 patsy"],
                 },
                 function="serve-time-series-model",
             )

@@ -7,7 +7,6 @@ metadata:
   updated: "2024-12-05T13:13:29.686Z"
   embedded: false
 spec:
-  image: registry.tenant2.digitalhub-dev.smartcommunitylab.it/digitalhub-tenant2-tutorial-project-serve-time-series-model:172f3
   python_version: PYTHON3_10
   source:
     source: src/functions.py
