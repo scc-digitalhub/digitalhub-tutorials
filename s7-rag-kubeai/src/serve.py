@@ -19,18 +19,19 @@ class State(TypedDict):
 
 
 def init(context):
-    service_url = os.environ["EMBEDDING_SERVICE_URL"]
-    chat_model = os.environ["CHAT_MODEL_NAME"]
-    emb_model = os.environ["EMBEDDING_MODEL_NAME"]
+    chat_model_name = os.environ["CHAT_MODEL_NAME"]
+    chat_service_url = os.environ["CHAT_SERVICE_URL"]
+    embedding_model_name = os.environ["EMBEDDING_MODEL_NAME"]
+    embedding_service_url = os.environ["EMBEDDING_SERVICE_URL"]
 
     class CEmbeddings(OpenAIEmbeddings):
         def embed_documents(self, docs):
-            client = OpenAI(api_key="ignored", base_url=f"{service_url}/v1")
+            client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
             emb_arr = []
             for doc in docs:
                 embs = client.embeddings.create(
                     input=doc,
-                    model=emb_model
+                    model=embedding_model_name
                 )
                 emb_arr.append(embs.data[0].embedding)
             return emb_arr
@@ -42,12 +43,10 @@ def init(context):
         collection_name="my_docs",
         connection=os.environ["PG_CONN_URL"],
     )
-
-    chat_service_url = os.environ["CHAT_SERVICE_URL"]
     
     os.environ["OPENAI_API_KEY"] = "ignore"
 
-    llm = init_chat_model(chat_model, model_provider="openai", base_url=f"{chat_service_url}/v1/")
+    llm = init_chat_model(chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/")
     prompt = hub.pull("rlm/rag-prompt")
 
     def retrieve(state: State):

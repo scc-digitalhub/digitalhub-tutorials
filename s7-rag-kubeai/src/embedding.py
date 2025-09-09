@@ -7,16 +7,17 @@ from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
 
 def embed(url):
-    service_url = os.environ["EMBEDDING_SERVICE_URL"]
+    embedding_service_url = os.environ["EMBEDDING_SERVICE_URL"]
+    embedding_model_name = os.environ["EMBEDDING_MODEL_NAME"]
 
     class CEmbeddings(OpenAIEmbeddings):
         def embed_documents(self, docs):
-            client = OpenAI(api_key="ignored", base_url=f"{service_url}/v1")
+            client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
             emb_arr = []
             for doc in docs:
                 embs = client.embeddings.create(
                     input=doc,
-                    model=os.environ["EMBEDDING_MODEL_NAME"]
+                    model=embedding_model_name
                 )
                 emb_arr.append(embs.data[0].embedding)
             return emb_arr
