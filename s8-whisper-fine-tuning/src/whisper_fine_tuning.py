@@ -233,8 +233,8 @@ def train_and_log_model(
         save_steps (int): Number of steps between model checkpoints
     """
 
-    output_dir = '/app/local_data/checkpoints/ground'
-    final_dir = '/app/local_data/weights/ground'    
+    output_dir = '/shared/data/checkpoints/ground'
+    final_dir = '/shared/data/weights/ground'    
 
     hf_token = None
     wandb_key = None
