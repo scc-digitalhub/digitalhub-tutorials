@@ -1,5 +1,5 @@
 from datasets import load_dataset, DatasetDict, Audio
-from transformers import WhisperFeatureExtractor, WhisperTokenizer, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, TrainerCallback
+from transformers import WhisperFeatureExtractor, WhisperTokenizer, WhisperProcessor, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, TrainerCallback
 import os
 import huggingface_hub
 
@@ -109,7 +109,7 @@ def train(
 
     feature_extractor = WhisperFeatureExtractor.from_pretrained(model_id)
     tokenizer = WhisperTokenizer.from_pretrained(model_id, language=language, task="transcribe")            
-
+    processor = WhisperProcessor.from_pretrained(model_id, language=language, task="transcribe")
     def prepare_dataset(batch):
         # load and resample audio data from 48 to 16kHz
         audio = batch["audio"]
