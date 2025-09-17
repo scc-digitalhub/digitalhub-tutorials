@@ -1,5 +1,5 @@
 from datasets import load_dataset, DatasetDict, Audio
-from transformers import WhisperFeatureExtractor, WhisperTokenizer, WhisperProcessor, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, TrainerCallback
+from transformers import WhisperFeatureExtractor, WhisperTokenizer, WhisperProcessor, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, Seq2SeqTrainer, TrainerCallback
 import os
 import huggingface_hub
 
@@ -31,8 +31,10 @@ class LoggingCallback(TrainerCallback):
                 self.run.log_metric(k, metrics[k])
                 
 class DataCollatorSpeechSeq2SeqWithPadding:
-    processor: Any
-    decoder_start_token_id: int
+
+    def __init__(self, processor, decoder_start_token_id):
+        self.processor = processor
+        self.decoder_start_token_id = decoder_start_token_id
 
     def __call__(self, features: List[Dict[str, Union[List[int], torch.Tensor]]]) -> Dict[str, torch.Tensor]:
         # split inputs and labels since they have to be of different lengths and need different padding methods
@@ -62,6 +64,7 @@ def train(
     hf_dataset_name: str,
     language_code: str,
     language: str,
+    data_dir: str,
     output_dir: str,
     final_dir: str,
     max_sequence_length: int,
@@ -82,11 +85,11 @@ def train(
 
     Args:
         model_id (str): Model ID
-        hf_dataset_name (str): Name of the dataset on Hugging Face Hub.
         language_code (str): Language (2-letter ISO code)
         language (str): Language to use 
         output_dir (str): Output directory for model and checkpoints
         final_dir (str): Output directory for final model
+        data_dir (str): directory with data
         max_sequence_length (int): Maximum sequence length
         early_stopping_patience (int): Early stopping patience
         learning_rate (float): Learning rate for training
@@ -107,24 +110,10 @@ def train(
         except Exception as e:
             raise RuntimeError("Error logging into Hugging Face. Check your token.")
 
-    feature_extractor = WhisperFeatureExtractor.from_pretrained(model_id)
     tokenizer = WhisperTokenizer.from_pretrained(model_id, language=language, task="transcribe")            
     processor = WhisperProcessor.from_pretrained(model_id, language=language, task="transcribe")
-    def prepare_dataset(batch):
-        # load and resample audio data from 48 to 16kHz
-        audio = batch["audio"]
-        # compute log-Mel input features from input audio array 
-        batch["input_features"] = feature_extractor(audio["array"], sampling_rate=audio["sampling_rate"]).input_features[0]
-        # encode target text to label ids 
-        batch["labels"] = tokenizer(batch["sentence"]).input_ids
-        return batch
 
-    common_voice = DatasetDict()
-    common_voice["train"] = load_dataset(hf_dataset_name, language_code, split="train+validation", trust_remote_code=True)
-    common_voice["test"] = load_dataset(hf_dataset_name, language_code, split="test", trust_remote_code=True)
-    common_voice = common_voice.cast_column("audio", Audio(sampling_rate=16000))
-
-    common_voice = common_voice.map(prepare_dataset, remove_columns=common_voice.column_names["train"], num_proc=4)
+    common_voice = DatasetDict.load_from_disk(data_dir)
 
     model = WhisperForConditionalGeneration.from_pretrained(model_id)
     model.generation_config.language = language
@@ -163,7 +152,7 @@ def train(
         max_steps=max_steps,
         gradient_checkpointing=True,
         fp16=True,
-        evaluation_strategy="steps",
+        eval_strategy="steps",
         per_device_eval_batch_size=eval_batch_size,
         predict_with_generate=True,
         generation_max_length=max_sequence_length,
@@ -195,7 +184,8 @@ def train_and_log_model(
     project,
     model_name: str,
     model_id: str, 
-    hf_dataset_name: str,
+    hf_dataset_name: str = None,
+    artifact_name: str = None,
     language_code: str = "it",
     language: str = "Italian",
     max_sequence_length: int = 225,
@@ -215,7 +205,8 @@ def train_and_log_model(
     Args:
         model_id (str): Model ID
         model_name (str): name of the model to log
-        hf_dataset_name (str): Name of the dataset on Hugging Face Hub.
+        hf_dataset_name (str): Name of the dataset on Hugging Face Hub. If not specified, data is loaded from artifact
+        artifact_name (str): Name of the artifact to use for the data. If not specified, data is loaded from HuggingFace dataset
         language_code (str): Language (2-letter ISO code)
         language (str): Language to use 
         max_sequence_length (int): Maximum sequence length
@@ -234,7 +225,8 @@ def train_and_log_model(
     """
 
     output_dir = '/shared/data/checkpoints/ground'
-    final_dir = '/shared/data/weights/ground'    
+    final_dir = '/shared/data/weights/ground'   
+    data_dir = '/shared/data/dataset'
 
     hf_token = None
     wandb_key = None
@@ -243,11 +235,36 @@ def train_and_log_model(
     except Exception:
         pass
 
+    if artifact_name is not None:
+        project.get_artifact(artifact_name).download(data_dir)
+        
+    elif hf_dataset_name is not None:
+        feature_extractor = WhisperFeatureExtractor.from_pretrained(model_id)
+        tokenizer = WhisperTokenizer.from_pretrained(model_id, language=language, task="transcribe")  
+        
+        def prepare_dataset(batch):
+            # load and resample audio data from 48 to 16kHz
+            audio = batch["audio"]
+            # compute log-Mel input features from input audio array 
+            batch["input_features"] = feature_extractor(audio["array"], sampling_rate=audio["sampling_rate"]).input_features[0]
+            # encode target text to label ids 
+            batch["labels"] = tokenizer(batch["sentence"]).input_ids
+            return batch
+    
+        common_voice = DatasetDict()
+        common_voice["train"] = load_dataset(hf_dataset_name, language_code, split=f"train+validation", trust_remote_code=True)
+        common_voice["test"] = load_dataset(hf_dataset_name, language_code, split=f"test", trust_remote_code=True)
+        common_voice = common_voice.cast_column("audio", Audio(sampling_rate=16000))
+    
+        common_voice = common_voice.map(prepare_dataset, remove_columns=common_voice.column_names["train"], num_proc=4)
+        common_voice.save_to_disk(data_dir)
+        
     train(
         model_id, 
         hf_dataset_name,
         language_code,
         language,
+        data_dir,
         output_dir,
         final_dir,
         max_sequence_length,
