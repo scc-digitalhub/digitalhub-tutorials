@@ -25,7 +25,10 @@ def pipeline():
                 outputs=["model"],
             )
             D = step(
-                template={"action": "serve", "init_parameters": {"model_key": "{{inputs.parameters.model}}"}},
+                template={
+                    "action": "serve",
+                    "init_parameters": {"model_key": "{{inputs.parameters.model}}"},
+                },
                 function="serve-time-series-model",
                 inputs={"model": C.get_parameter("model")},
             )

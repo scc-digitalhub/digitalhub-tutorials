@@ -12,6 +12,7 @@ from typing_extensions import List, TypedDict
 from langgraph.graph import START, StateGraph
 from langchain.chat_models import init_chat_model
 
+
 class State(TypedDict):
     question: str
     context: List[Document]
@@ -29,10 +30,7 @@ def init(context):
             client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
             emb_arr = []
             for doc in docs:
-                embs = client.embeddings.create(
-                    input=doc,
-                    model=embedding_model_name
-                )
+                embs = client.embeddings.create(input=doc, model=embedding_model_name)
                 emb_arr.append(embs.data[0].embedding)
             return emb_arr
 
@@ -43,19 +41,23 @@ def init(context):
         collection_name="my_docs",
         connection=os.environ["PG_CONN_URL"],
     )
-    
+
     os.environ["OPENAI_API_KEY"] = "ignore"
 
-    llm = init_chat_model(chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/")
+    llm = init_chat_model(
+        chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/"
+    )
     prompt = hub.pull("rlm/rag-prompt")
 
     def retrieve(state: State):
         retrieved_docs = vector_store.similarity_search(state["question"])
         return {"context": retrieved_docs}
-    
+
     def generate(state: State):
         docs_content = "\n\n".join(doc.page_content for doc in state["context"])
-        messages = prompt.invoke({"question": state["question"], "context": docs_content})
+        messages = prompt.invoke(
+            {"question": state["question"], "context": docs_content}
+        )
         response = llm.invoke(messages)
         return {"answer": response.content}
 
@@ -65,16 +67,16 @@ def init(context):
 
     setattr(context, "graph", graph)
 
+
 def serve(context, event):
     graph = context.graph
     context.logger.info(f"Received event: {event}")
-    
+
     if isinstance(event.body, bytes):
         body = json.loads(event.body)
     else:
         body = event.body
-        
+
     question = body["question"]
     response = graph.invoke({"question": question})
     return {"answer": response["answer"]}
-    

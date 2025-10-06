@@ -11,13 +11,13 @@ from transformers import (
     BitsAndBytesConfig,
     TrainingArguments,
     EarlyStoppingCallback,
-    TrainerCallback
+    TrainerCallback,
 )
 from datasets import Dataset, load_dataset
 import sys
 
-class LoggingCallback(TrainerCallback):
 
+class LoggingCallback(TrainerCallback):
     def __init__(self, run):
         self.run = run
 
@@ -36,13 +36,15 @@ class LoggingCallback(TrainerCallback):
             if k in metrics:
                 self.run.log_metric(k, metrics[k])
 
+
 def formatting_func(example):
     output_texts = []
-    for i in range(len(example['question'])):
+    for i in range(len(example["question"])):
         text = f"<|begin_of_text|><|start_header_id|>system<|end_header_id>\nYou are a helpful assistant.<|eot_id><|start_header_id|>user<|end_header_id>{example['question'][i]}<|eot_id><|start_header_id|>assistant<|end_header_id>{example['answer'][i]}<|eot_id>"
         output_texts.append(text)
     return output_texts
-    
+
+
 def train(
     model_id: str,
     from_base: int,
@@ -72,7 +74,7 @@ def train(
     save_steps: int,
     hf_token: str = None,
     wandb_key: str = None,
-    logger: TrainerCallback = None
+    logger: TrainerCallback = None,
 ) -> None:
     """
     Train the LLM model with the given dataset and configuration.
@@ -113,7 +115,7 @@ def train(
             huggingface_hub.login(token=hf_token)
         except Exception as e:
             raise RuntimeError("Error logging into Hugging Face. Check your token.")
-        
+
     if wandb_key is not None:
         try:
             "Wandb configuration initialization..."
@@ -123,7 +125,7 @@ def train(
             raise RuntimeError("Error logging into WandB Face. Check your key.")
     else:
         wandb.init(mode="disabled")
-        
+
     # Loading the tokenizer
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     tokenizer.pad_token = "<|finetune_right_pad_id|>"
@@ -178,19 +180,23 @@ def train(
     model = get_peft_model(model, peft_config)
 
     try:
-        dataset = load_dataset(hf_dataset_name, data_files={
-        "train": train_data_path,
-        "validation": dev_data_path,
-        })
+        dataset = load_dataset(
+            hf_dataset_name,
+            data_files={
+                "train": train_data_path,
+                "validation": dev_data_path,
+            },
+        )
         train_dataset = dataset["train"].shuffle(seed=42)
         dev_dataset = dataset["validation"].shuffle(seed=42)
     except Exception as e:
         raise RuntimeError("Error loading dataset. Check your data paths.")
-        
 
     # Setting training arguments
     max_seq_length = max_sequence_length
-    early_stopping = EarlyStoppingCallback(early_stopping_patience=early_stopping_patience)
+    early_stopping = EarlyStoppingCallback(
+        early_stopping_patience=early_stopping_patience
+    )
     callbacks = [early_stopping]
     if logger is not None:
         callbacks.append(logger)
@@ -230,6 +236,7 @@ def train(
     trainer.train()
     model.save_pretrained(final_dir)
 
+
 def train_and_log_model(
     project,
     model_name: str,
@@ -242,7 +249,7 @@ def train_and_log_model(
     lora_rank: int = 16,
     lora_alpha: int = 16,
     lora_dropout: float = 0,
-    max_sequence_length: int =  6500,
+    max_sequence_length: int = 6500,
     early_stopping_patience: int = 5,
     learning_rate: float = 5e-5,
     scheduler_type: str = "cosine",
@@ -256,8 +263,8 @@ def train_and_log_model(
     eval_steps: int = 20,
     save_steps: int = 20,
     wandb_project: str = None,
-    wandb_run: str = None
-    ):
+    wandb_run: str = None,
+):
     """
     Train the LLM model with the given dataset and configuration.
 
@@ -287,24 +294,24 @@ def train_and_log_model(
         save_steps (int): Number of steps between model checkpoints
     """
 
-    output_dir = '/app/local_data/checkpoints/ground'
-    final_dir = '/app/local_data/weights/ground'    
+    output_dir = "/app/local_data/checkpoints/ground"
+    final_dir = "/app/local_data/weights/ground"
 
     hf_token = None
     wandb_key = None
-    try:    
+    try:
         hf_token = project.get_secret("HF_TOKEN").read_secret_value()
     except Exception:
         pass
 
-    try:    
+    try:
         wandb_key = project.get_secret("WANDB_KEY").read_secret_value()
     except Exception:
         pass
 
     train(
-        model_id, 
-        from_base, 
+        model_id,
+        from_base,
         hf_dataset_name,
         train_data_path,
         dev_data_path,
@@ -331,7 +338,7 @@ def train_and_log_model(
         save_steps,
         hf_token=hf_token,
         wandb_key=wandb_key,
-        logger=LoggingCallback(project.get_run(os.environ['RUN_ID']))
+        logger=LoggingCallback(project.get_run(os.environ["RUN_ID"])),
     )
 
     model_params = {
@@ -351,19 +358,17 @@ def train_and_log_model(
         "warmup_ratio": warmup_ratio,
         "logging_steps": logging_steps,
         "eval_steps": eval_steps,
-        "save_steps": save_steps
-        
+        "save_steps": save_steps,
     }
-    
+
     model = project.log_model(
         name=model_name,
         kind="huggingface",
         base_model=model_id,
         parameters=model_params,
-        source=final_dir +"/",
-    )      
-    run = project.get_run(os.environ['RUN_ID'])
+        source=final_dir + "/",
+    )
+    run = project.get_run(os.environ["RUN_ID"])
     metrics = run.status.metrics
     for k in metrics:
         model.log_metric(k, metrics[k])
-    

@@ -6,6 +6,7 @@ import os
 from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
 
+
 def embed(url):
     embedding_service_url = os.environ["EMBEDDING_SERVICE_URL"]
     embedding_model_name = os.environ["EMBEDDING_MODEL_NAME"]
@@ -15,10 +16,7 @@ def embed(url):
             client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
             emb_arr = []
             for doc in docs:
-                embs = client.embeddings.create(
-                    input=doc,
-                    model=embedding_model_name
-                )
+                embs = client.embeddings.create(input=doc, model=embedding_model_name)
                 emb_arr.append(embs.data[0].embedding)
             return emb_arr
 
@@ -32,11 +30,7 @@ def embed(url):
 
     loader = WebBaseLoader(
         web_paths=(url,),
-        bs_kwargs=dict(
-            parse_only=bs4.SoupStrainer(
-                class_=("post-content")
-            )
-        ),
+        bs_kwargs=dict(parse_only=bs4.SoupStrainer(class_=("post-content"))),
     )
     docs = loader.load()
 

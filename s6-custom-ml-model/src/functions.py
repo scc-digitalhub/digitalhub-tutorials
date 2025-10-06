@@ -19,7 +19,9 @@ def train_model(project):
     train, test = series[:-36], series[-36:]
 
     # Configure and train NBEATS model
-    model = NBEATSModel(input_chunk_length=24, output_chunk_length=12, n_epochs=200, random_state=0)
+    model = NBEATSModel(
+        input_chunk_length=24, output_chunk_length=12, n_epochs=200, random_state=0
+    )
     model.fit(train)
 
     # Make predictions for evaluation
@@ -32,7 +34,11 @@ def train_model(project):
         z.write("predictor_model.pt.ckpt")
 
     # Calculate metrics
-    metrics = {"mape": mape(test, pred), "smape": smape(test, pred), "mae": mae(test, pred)}
+    metrics = {
+        "mape": mape(test, pred),
+        "smape": smape(test, pred),
+        "mae": mae(test, pred),
+    }
 
     # Register model in DigitalHub
     model_artifact = project.log_model(
