@@ -1,4 +1,4 @@
-# RAG application using KubeAI
+# RAG application
 
 This scenario builds a RAG application, using a chat model and an embedding model, to provide a chatbot.
 
