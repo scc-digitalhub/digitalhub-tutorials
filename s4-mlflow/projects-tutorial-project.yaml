@@ -18,17 +18,6 @@ spec:
         created: "2024-12-05T13:45:55.625Z"
       name: train-mlflow-model
       project: tutorial-project
-    - id: 9d6576772cd74df2ac7d2b36bcc89528
-      key: store://tutorial-project/function/mlflowserve/serve-mlflow-model:9d6576772cd74df2ac7d2b36bcc89528
-      kind: mlflowserve
-      metadata:
-        name: serve-mlflow-model
-        project: tutorial-project
-        ref: functions-9d6576772cd74df2ac7d2b36bcc89528.yaml
-        updated: "2024-12-05T13:46:42.08Z"
-        created: "2024-12-05T13:46:42.08Z"
-      name: serve-mlflow-model
-      project: tutorial-project
   artifacts: []
   workflows:
     - id: 4d51288b219b41c2ad8c7591917e24ba
