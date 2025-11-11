@@ -1,7 +1,8 @@
 id,city,country
 1,Rome,Italy
 2,London,United Kingdom
-3,Paris,France
+3
 4,Berlin,Germany
-5,Madrid,Spain
-6,Athens
+
+5,Madrid
+6,Athens,Greece
