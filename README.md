@@ -5,7 +5,7 @@ This project repository aims to provide some documented scenarios to showcase ho
 - Executable Jupyter Notebook
 - Project descriptor files and code sources
 
-In-depth descriptions of these scenarios, as well as more details on the platform, can be found in [the documentation](https://scc-digitalhub.github.io/docs/0.14/).
+In-depth descriptions of these scenarios, as well as more details on the platform, can be found in [the documentation](https://scc-digitalhub.github.io/docs).
 
 Here follows a short description of each scenario:
 
