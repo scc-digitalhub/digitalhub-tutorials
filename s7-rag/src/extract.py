@@ -1,5 +1,6 @@
 import requests
 
+
 def extract_text(tika_url, artifact, project):
     print(f"Downloading artifact {artifact.name}...")
     fp = artifact.as_file()

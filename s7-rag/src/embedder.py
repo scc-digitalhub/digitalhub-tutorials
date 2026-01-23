@@ -1,12 +1,12 @@
-import bs4
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_postgres import PGVector
 import os
-import requests
-from langchain_openai import OpenAIEmbeddings
-from openai import OpenAI
 
+import bs4
+import requests
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain_postgres import PGVector
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from openai import OpenAI
 
 PG_USER = os.environ["DB_USERNAME"]
 PG_PASS = os.environ["DB_PASSWORD"]
