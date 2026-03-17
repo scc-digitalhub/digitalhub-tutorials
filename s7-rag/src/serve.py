@@ -1,6 +1,7 @@
 import bs4
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_postgres import PGVector
+from langchain_postgres import PGEngine
+from langchain_postgres import PGVectorStore
 import os
 from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
@@ -30,27 +31,35 @@ def init(context):
     chat_service_url = os.environ["CHAT_SERVICE_URL"]
     embedding_model_name = os.environ["EMBEDDING_MODEL_NAME"]
     embedding_service_url = os.environ["EMBEDDING_SERVICE_URL"]
-
+    
     class CEmbeddings(OpenAIEmbeddings):
-        def embed_documents(self, docs):
+        async def aembed_documents(self, docs):
             client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
             emb_arr = []
             for doc in docs:
+                #sanitize string: replace NUL with spaces
+                d=doc.replace("\x00", "-")
                 embs = client.embeddings.create(
-                    input=doc,
-                    model=embedding_model_name
+                    input=d,
+                    model=embedding_model_name                    
                 )
                 emb_arr.append(embs.data[0].embedding)
             return emb_arr
 
     custom_embeddings = CEmbeddings(api_key="ignored")
+   
     PG_CONN_URL = (
         f"postgresql+psycopg://{PG_USER}:{PG_PASS}@{PG_HOST}:{PG_PORT}/{DB_NAME}"
     )
-    vector_store = PGVector(
-        embeddings=custom_embeddings,
-        collection_name=f"{embedding_model_name}_docs",
-        connection=PG_CONN_URL,
+
+    pg_engine = PGEngine.from_connection_string(url=PG_CONN_URL)
+    
+    
+    vector_store = PGVectorStore.create_sync(
+        engine=pg_engine,
+        table_name=f"{embedding_model_name}_docs",
+        # schema_name=SCHEMA_NAME,
+        embedding_service=custom_embeddings,
     )
     
     os.environ["OPENAI_API_KEY"] = "ignore"
@@ -59,6 +68,8 @@ def init(context):
     prompt = hub.pull("rlm/rag-prompt")
 
     def retrieve(state: State):
+        # print('question', state["question"])
+        # print(type(vector_store))
         retrieved_docs = vector_store.similarity_search(state["question"])
         return {"context": retrieved_docs}
     
