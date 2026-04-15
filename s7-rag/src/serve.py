@@ -5,7 +5,7 @@ from langchain_postgres import PGVectorStore
 import os
 from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
-
+import json
 from langchain import hub
 from langchain_core.documents import Document
 from typing_extensions import List, TypedDict

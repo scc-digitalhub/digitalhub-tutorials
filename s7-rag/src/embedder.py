@@ -24,7 +24,7 @@ def process(input):
     return embed(input)
     print("End.")
 
-tokenizer = AutoTokenizer.from_pretrained("thenlper/gte-base")
+tokenizer = AutoTokenizer.from_pretrained("nomic-ai/nomic-embed-text-v1.5")
 
 def truncate_to_512(text: str, max_tokens: int = 500) -> str:
     encoded = tokenizer(
@@ -38,14 +38,14 @@ def truncate_to_512(text: str, max_tokens: int = 500) -> str:
     
 def embed(html_doc_obj):
     
-    url = html_doc_obj.id;
+    url = html_doc_obj.id
     html_doc_path = html_doc_obj.download(overwrite=True)
     
     CONNECTION_STRING = (f"postgresql+psycopg://{PG_USER}:{PG_PASS}@{PG_HOST}:{PG_PORT}/{DB_NAME}")
     engine = PGEngine.from_connection_string(url=CONNECTION_STRING)
     
     # Replace the vector size with your own vector size
-    VECTOR_SIZE = 1024
+    VECTOR_SIZE = 768
 
     print(f"process document id {url}")
     embedding_service_url = os.environ["EMBEDDING_SERVICE_URL"]
