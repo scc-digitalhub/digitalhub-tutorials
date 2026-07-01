@@ -32,14 +32,14 @@ def train(
     setattr(opts, "dim_feedforward", dim_feedforward)
     setattr(opts, "dropout", dropout)
     
-    model_dir = "/data/output"
+    model_dir = "./data/output"
     # fixed logging dir
     setattr(opts, "logging_dir", model_dir)
     
-    training_data.download("/data/input/training.tar.gz")
-    validation_data.download("/data/input/validation.tar.gz")
-    setattr(opts, "train_data", "/data/input/training.tar.gz")
-    setattr(opts, "valid_data", "/data/input/validation.tar.gz")
+    training_data.download("./data/input/training.tar.gz")
+    validation_data.download("./data/input/validation.tar.gz")
+    setattr(opts, "train_data", "./data/input/training.tar.gz")
+    setattr(opts, "valid_data", "./data/input/validation.tar.gz")
 
     metrics = main(opts)
 
