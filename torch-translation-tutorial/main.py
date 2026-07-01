@@ -247,6 +247,11 @@ def main(opts):
 
         logger.info(f"Epoch: {epoch}\n\tTrain loss: {train_loss:.3f}\n\tVal loss: {val_loss:.3f}\n\tEpoch time = {epoch_time:.1f} seconds\n\tETA = {epoch_time*(opts.epochs-idx-1):.1f} seconds")
 
+    return {
+        "train_loss": train_loss,
+        "val_loss": val_loss,
+    }    
+
 if __name__ == "__main__":
 
     parser = ArgumentParser(
