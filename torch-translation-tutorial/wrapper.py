@@ -1,6 +1,7 @@
 import sys
+import traceback
 sys.path.append("./torch-translation-tutorial/")
-print(sys.path)
+
 from main import main
 def train(
    project,
@@ -46,7 +47,12 @@ def train(
 
     setattr(opts, "dry_run", False)
 
-    metrics = main(opts)
+    try:
+        metrics = main(opts)
+    except Exception as e:
+        print(f"Error running training script: {e}")
+        print(traceback.format_exc())
+        raise e
 
     parameters = {
         "src": src_lang,
