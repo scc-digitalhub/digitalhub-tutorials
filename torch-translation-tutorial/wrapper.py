@@ -41,6 +41,8 @@ def train(
     setattr(opts, "train_data", "./data/input/training.tar.gz")
     setattr(opts, "valid_data", "./data/input/validation.tar.gz")
 
+    setattr(opts, "dry_run", False)
+
     metrics = main(opts)
 
     parameters = {
