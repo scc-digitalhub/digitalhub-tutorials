@@ -1,3 +1,6 @@
+import sys
+# sys.path.append()
+print(sys.path)
 from main import main
 def train(
    project,
