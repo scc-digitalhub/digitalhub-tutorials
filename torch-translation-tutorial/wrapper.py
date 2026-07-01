@@ -18,7 +18,7 @@ def train(
    model_name="translator-model",
 ):
     print("Running training script...")
-    opts = {}
+    opts = list()
     setattr(opts, "src", src_lang)
     setattr(opts, "tgt", tgt_lang)
     setattr(opts, "epochs", epochs)
