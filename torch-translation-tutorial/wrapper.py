@@ -42,8 +42,8 @@ def train(
     
     training_data.download("./data/input/training.tar.gz", overwrite=True)
     validation_data.download("./data/input/validation.tar.gz", overwrite=True)
-    setattr(opts, "train_data", "./data/input/training.tar.gz")
-    setattr(opts, "valid_data", "./data/input/validation.tar.gz")
+    setattr(opts, "train_file", "./data/input/training.tar.gz")
+    setattr(opts, "valid_file", "./data/input/validation.tar.gz")
 
     setattr(opts, "dry_run", False)
 
