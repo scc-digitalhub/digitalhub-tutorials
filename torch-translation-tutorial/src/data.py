@@ -1,9 +1,22 @@
+import tarfile
+
 import torch
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader
 from torchtext.data.utils import get_tokenizer
 from torchtext.vocab import build_vocab_from_iterator
 from torchtext.datasets import Multi30k, multi30k
+
+# Read a local tar.gz archive (Multi30k format) and return a list of (src, tgt) tuples.
+# The archive must contain one file per language, identified by its extension (e.g. train.de / train.en).
+def _read_local_tarfile(path, src_lang, tgt_lang):
+    with tarfile.open(path, "r:gz") as tar:
+        members = tar.getmembers()
+        src_member = next(m for m in members if m.name.endswith(f".{src_lang}"))
+        tgt_member = next(m for m in members if m.name.endswith(f".{tgt_lang}"))
+        src_lines = tar.extractfile(src_member).read().decode("utf-8").splitlines()
+        tgt_lines = tar.extractfile(tgt_member).read().decode("utf-8").splitlines()
+    return list(zip(src_lines, tgt_lines))
 
 # Turns an iterable into a generator
 def _yield_tokens(iterable_data, tokenizer, src):
@@ -21,9 +34,6 @@ def get_data(opts):
     src_lang = opts.src
     tgt_lang = opts.tgt
 
-    multi30k.URL["train"] = "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz"
-    multi30k.URL["valid"] = "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz"
-
     # Define a token "unkown", "padding", "beginning of sentence", and "end of sentence"
     special_symbols = {
         "<unk>":0,
@@ -33,8 +43,17 @@ def get_data(opts):
     }
 
     # Get training examples from torchtext (the multi30k dataset)
-    train_iterator = Multi30k(split="train", language_pair=(src_lang, tgt_lang))
-    valid_iterator = Multi30k(split="valid", language_pair=(src_lang, tgt_lang))
+    train_file = getattr(opts, "train_file", None)
+    valid_file = getattr(opts, "valid_file", None)
+
+    if train_file is not None and valid_file is not None:
+        train_iterator = _read_local_tarfile(train_file, src_lang, tgt_lang)
+        valid_iterator = _read_local_tarfile(valid_file, src_lang, tgt_lang)
+    else:
+        multi30k.URL["train"] = "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz"
+        multi30k.URL["valid"] = "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz"
+        train_iterator = Multi30k(split="train", language_pair=(src_lang, tgt_lang))
+        valid_iterator = Multi30k(split="valid", language_pair=(src_lang, tgt_lang))
 
     # Grab a tokenizer for these languages
     src_tokenizer = get_tokenizer("spacy", src_lang)
