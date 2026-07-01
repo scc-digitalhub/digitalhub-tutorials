@@ -1,5 +1,5 @@
 import sys
-# sys.path.append()
+sys.path.append("./torch-translation-tutorial/")
 print(sys.path)
 from main import main
 def train(
