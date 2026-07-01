@@ -32,7 +32,7 @@ def train(
     setattr(opts, "dim_feedforward", dim_feedforward)
     setattr(opts, "dropout", dropout)
     
-    model_dir = "./data/output"
+    model_dir = "./data/output/"
     # fixed logging dir
     setattr(opts, "logging_dir", model_dir)
     
@@ -65,7 +65,7 @@ def train(
         name=model_name,
         kind="model",
         framework="pytorch",
-        source=model_dir + "/best.pt",
+        source=model_dir + "best.pt",
         parameters=parameters,
     )
     model_artifact.log_metrics(metrics)
