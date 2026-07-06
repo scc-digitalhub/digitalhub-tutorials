@@ -44,6 +44,14 @@ def train(
     from spacy.cli import download
     download(src_lang)
     download(tgt_lang)
+    from spacy.cli import download
+    import spacy
+
+    OLD_MODEL_SHORTCUTS = (
+                    spacy.errors.OLD_MODEL_SHORTCUTS if hasattr(spacy.errors, "OLD_MODEL_SHORTCUTS") else {}
+                )
+    spacy.load(OLD_MODEL_SHORTCUTS[src_lang] if src_lang in OLD_MODEL_SHORTCUTS else src_lang)
+    spacy.load(OLD_MODEL_SHORTCUTS[tgt_lang] if tgt_lang in OLD_MODEL_SHORTCUTS else tgt_lang)
 
 
     training_data.download("./data/input/training.tar.gz", overwrite=True)
