@@ -12,7 +12,7 @@ def ensure_lang_model(model_name: str):
                     )
     
     model_name = OLD_MODEL_SHORTCUTS[model_name] if model_name in OLD_MODEL_SHORTCUTS else model_name
-    download(model_name, "--user")    
+    download(model_name, False, False, None, "--user")    
     model_module = import_module(model_name)
     model_module.load()
     
