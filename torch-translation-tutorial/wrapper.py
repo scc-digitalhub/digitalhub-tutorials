@@ -24,6 +24,7 @@ def ensure_lang_model(model_name: str):
 from main import main
 def train(
    project,
+   run,
    training_data,
    validation_data,
    src_lang="de",
@@ -73,6 +74,8 @@ def train(
     setattr(opts, "valid_file", "./data/input/validation.tar.gz")
 
     setattr(opts, "dry_run", False)
+
+    setattr(opts, "run", run)
 
     try:
         metrics = main(opts)

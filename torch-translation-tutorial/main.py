@@ -247,9 +247,13 @@ def main(opts):
 
         logger.info(f"Epoch: {epoch}\n\tTrain loss: {train_loss:.3f}\n\tVal loss: {val_loss:.3f}\n\tEpoch time = {epoch_time:.1f} seconds\n\tETA = {epoch_time*(opts.epochs-idx-1):.1f} seconds")
 
+        run = opts.run if hasattr(opts, "run") else None
+        if run is not None:
+            run.log_metrics({"train_loss": train_loss, "val_loss": val_loss, "epoch_time": epoch_time})
+
     return {
         "train_loss": train_loss,
-        "val_loss": val_loss,
+        "val_loss": best_val_loss,
     }    
 
 if __name__ == "__main__":
