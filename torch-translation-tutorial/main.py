@@ -182,6 +182,7 @@ def validate(model, valid_dl, loss_fn, special_symbols):
 
 # Train the model
 def main(opts):
+    run = opts.run if hasattr(opts, "run") else None
 
     # Set up logging
     os.makedirs(opts.logging_dir, exist_ok=True)
@@ -247,9 +248,10 @@ def main(opts):
 
         logger.info(f"Epoch: {epoch}\n\tTrain loss: {train_loss:.3f}\n\tVal loss: {val_loss:.3f}\n\tEpoch time = {epoch_time:.1f} seconds\n\tETA = {epoch_time*(opts.epochs-idx-1):.1f} seconds")
 
-        run = opts.run if hasattr(opts, "run") else None
         if run is not None:
-            run.log_metrics({"train_loss": train_loss, "val_loss": val_loss, "epoch_time": epoch_time})
+            metrics = {"train_loss": train_loss, "val_loss": val_loss, "epoch_time": epoch_time}
+            logging.info("Logging metrics to run...", metrics)
+            run.log_metrics(metrics)
 
     return {
         "train_loss": train_loss,

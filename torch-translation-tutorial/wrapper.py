@@ -79,6 +79,7 @@ def train(
 
     try:
         metrics = main(opts)
+        print(f"Model metrics:{metrics}")
     except Exception as e:
         print(f"Error running training script: {e}")
         print(traceback.format_exc())
