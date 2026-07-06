@@ -2,6 +2,20 @@ import sys
 import traceback
 sys.path.append("./torch-translation-tutorial/")
 
+def ensure_lang_model(model_name: str):
+    from importlib import import_module
+    from spacy.cli import download
+    import spacy
+
+    OLD_MODEL_SHORTCUTS = (
+                        spacy.errors.OLD_MODEL_SHORTCUTS if hasattr(spacy.errors, "OLD_MODEL_SHORTCUTS") else {}
+                    )
+    
+    model_name = OLD_MODEL_SHORTCUTS[model_name] if model_name in OLD_MODEL_SHORTCUTS else model_name
+    download(model_name)    
+    model_module = import_module(model_name)
+    model_module.load()
+    
 from main import main
 def train(
    project,
@@ -41,18 +55,8 @@ def train(
     setattr(opts, "logging_dir", model_dir)
     
     try:
-        # download language models
-        from spacy.cli import download
-        download(src_lang)
-        download(tgt_lang)
-        from spacy.cli import download
-        import spacy
-
-        OLD_MODEL_SHORTCUTS = (
-                        spacy.errors.OLD_MODEL_SHORTCUTS if hasattr(spacy.errors, "OLD_MODEL_SHORTCUTS") else {}
-                    )
-        spacy.load(OLD_MODEL_SHORTCUTS[src_lang] if src_lang in OLD_MODEL_SHORTCUTS else src_lang)
-        spacy.load(OLD_MODEL_SHORTCUTS[tgt_lang] if tgt_lang in OLD_MODEL_SHORTCUTS else tgt_lang)
+        ensure_lang_model(src_lang)
+        ensure_lang_model(tgt_lang)
     except Exception as e:
         print(f"Error downloading language models: {e}")
         print(traceback.format_exc())
