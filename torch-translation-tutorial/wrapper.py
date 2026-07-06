@@ -1,3 +1,4 @@
+import os
 import sys
 import traceback
 sys.path.append("./torch-translation-tutorial/")
@@ -76,6 +77,9 @@ def train(
     setattr(opts, "dry_run", False)
 
     setattr(opts, "run", run)
+
+    import os
+    os.environ['DHCORE_LOG_LEVEL']="DEBUG"
 
     try:
         metrics = main(opts)

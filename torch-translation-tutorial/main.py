@@ -250,7 +250,7 @@ def main(opts):
 
         if run is not None:
             metrics = {"train_loss": train_loss, "val_loss": val_loss}
-            logging.info("Logging metrics to run...", metrics)
+            logging.info(f"Logging metrics to run... : {metrics}")
             run.log_metrics(metrics)
 
     return {
