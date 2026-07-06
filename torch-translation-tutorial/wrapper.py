@@ -40,6 +40,12 @@ def train(
     # fixed logging dir
     setattr(opts, "logging_dir", model_dir)
     
+    # download language models
+    from spacy.cli import download
+    download(src_lang)
+    download(tgt_lang)
+
+
     training_data.download("./data/input/training.tar.gz", overwrite=True)
     validation_data.download("./data/input/validation.tar.gz", overwrite=True)
     setattr(opts, "train_file", "./data/input/training.tar.gz")
