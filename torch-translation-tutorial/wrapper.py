@@ -1,7 +1,12 @@
 import sys
 import traceback
 sys.path.append("./torch-translation-tutorial/")
+sys.path.append("./torch-translation-tutorial/language_models/")
 
+# WORKAROUND for SpaCy language model download. To use SpaCy models,
+# the model must be downloaded and installed before the training script. 
+# TO make it dynamic, we call the spacy.cli.download() function to download the model 
+# to a specific location, and then import it from that location.
 def ensure_lang_model(model_name: str):
     from importlib import import_module
     from spacy.cli import download
@@ -12,9 +17,8 @@ def ensure_lang_model(model_name: str):
                     )
     
     model_name = OLD_MODEL_SHORTCUTS[model_name] if model_name in OLD_MODEL_SHORTCUTS else model_name
-    download(model_name, False, False, None, "-t", "/shared/language_models/")    
-    sys.path.append("/shared/language_models/")
-    sys.path.append(f"/shared/language_models/{model_name}/")
+    download(model_name, False, False, None, "-t", "./torch-translation-tutorial/language_models/")    
+    sys.path.append(f"./torch-translation-tutorial/language_models/{model_name}/")
     model_module = import_module(model_name)
     model_module.load()
     
