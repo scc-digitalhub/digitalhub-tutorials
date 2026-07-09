@@ -1,5 +1,6 @@
 torch==2.3.0
 torchtext==0.18.0
 torchdata==0.9.0
-spacy
-portalocker
+spacy===3.8.14
+portalocker==3.2.0
+click>=8.2.1
