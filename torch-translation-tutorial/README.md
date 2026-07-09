@@ -426,3 +426,114 @@ Once the execution terminates successfully, the resulting model is logged and re
 
 ## 4. Using the Model for Inference
 
+Once model is trained, we can test it for inference. We start from downloading the model weights locally and create the inference from them.
+
+```python
+model = project.get_model("translator-model")
+model.download("./model/", overwrite=True)
+```
+
+Once the model is downloaded, we can use it for inference. First, we initialize the model
+
+```python
+from src.model import Translator # Our model
+from src.data import get_data, create_mask, generate_square_subsequent_mask # Loading data and data preprocessing
+
+import torch 
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+opts = type("Namespace", (), {})()
+setattr(opts, "src", model.spec.parameters['src'])
+setattr(opts, "tgt", model.spec.parameters['tgt'])
+setattr(opts, "batch", model.spec.parameters['batch'])
+setattr(opts, "train_file", "training.tar.gz")
+setattr(opts, "valid_file", "validation.tar.gz")
+
+_, _, src_vocab, tgt_vocab, src_transform, _, special_symbols = get_data(opts)
+
+src_vocab_size = len(src_vocab)
+tgt_vocab_size = len(tgt_vocab)
+
+# Create model
+translator = Translator(
+    num_encoder_layers=model.spec.parameters['enc_layers'],
+    num_decoder_layers=model.spec.parameters['dec_layers'],
+    embed_size=model.spec.parameters['embed_size'],
+    num_heads=model.spec.parameters['attn_heads'],
+    src_vocab_size=src_vocab_size,
+    tgt_vocab_size=tgt_vocab_size,
+    dim_feedforward=model.spec.parameters['dim_feedforward'],
+    dropout=model.spec.parameters['dropout']
+).to(DEVICE)
+
+# Load in weights
+translator.load_state_dict(torch.load("./model/best.pt"))
+
+# Set to inference
+translator.eval()
+```
+
+Second, we try the inference with a test sentence.  
+
+```python
+sentence = "Ich verstehe nicht."
+
+def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
+
+    # Move to device
+    src = src.to(DEVICE)
+    src_mask = src_mask.to(DEVICE)
+
+    # Encode input
+    memory = model.encode(src, src_mask)
+
+    # Output will be stored here
+    ys = torch.ones(1, 1).fill_(start_symbol).type(torch.long).to(DEVICE)
+
+    # For each element in our translation (which could range up to the maximum translation length)
+    for _ in range(max_len-1):
+
+        # Decode the encoded representation of the input
+        memory = memory.to(DEVICE)
+        tgt_mask = (generate_square_subsequent_mask(ys.size(0), DEVICE).type(torch.bool)).to(DEVICE)
+        out = model.decode(ys, memory, tgt_mask)
+
+        # Reshape
+        out = out.transpose(0, 1)
+
+        # Covert to probabilities and take the max of these probabilities
+        prob = model.ff(out[:, -1])
+        _, next_word = torch.max(prob, dim=1)
+        next_word = next_word.item()
+
+        # Now we have an output which is the vector representation of the translation
+        ys = torch.cat([ys, torch.ones(1, 1).type_as(src.data).fill_(next_word)], dim=0)
+        if next_word == end_symbol:
+            break
+
+    return ys
+
+
+# Convert to tokens
+src = src_transform(sentence).view(-1, 1)
+num_tokens = src.shape[0]
+
+src_mask = (torch.zeros(num_tokens, num_tokens)).type(torch.bool)
+
+# Decode
+tgt_tokens = greedy_decode(
+    translator, src, src_mask, max_len=num_tokens+5, start_symbol=special_symbols["<bos>"], end_symbol=special_symbols["<eos>"]
+).flatten()
+
+# Convert to list of tokens
+output_as_list = list(tgt_tokens.cpu().numpy())
+
+# Convert tokens to words
+output_list_words = tgt_vocab.lookup_tokens(output_as_list)
+
+# Remove special tokens and convert to string
+translation = " ".join(output_list_words).replace("<bos>", "").replace("<eos>", "")
+
+print(translation)
+```
