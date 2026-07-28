@@ -4,8 +4,9 @@ import torch
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader
 from torchtext.data.utils import get_tokenizer
-from torchtext.vocab import build_vocab_from_iterator
 from torchtext.datasets import Multi30k, multi30k
+from torchtext.vocab import build_vocab_from_iterator
+
 
 # Read a local tar.gz archive (Multi30k format) and return a list of (src, tgt) tuples.
 # The archive must contain one file per language, identified by its extension (e.g. train.de / train.en).

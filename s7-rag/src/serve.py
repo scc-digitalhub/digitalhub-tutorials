@@ -1,18 +1,17 @@
-import bs4
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_postgres import PGEngine
-from langchain_postgres import PGVectorStore
-import os
-from langchain_openai import OpenAIEmbeddings
-from openai import OpenAI
 import json
-from langchain import hub
-from langchain_core.documents import Document
-from typing_extensions import List, TypedDict
+import os
 
-from langgraph.graph import START, StateGraph
+import bs4
+from langchain import hub
 from langchain.chat_models import init_chat_model
+from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import OpenAIEmbeddings
+from langchain_postgres import PGEngine, PGVectorStore
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langgraph.graph import START, StateGraph
+from openai import OpenAI
+from typing_extensions import List, TypedDict
 
 PG_USER = os.environ["DB_USERNAME"]
 PG_PASS = os.environ["DB_PASSWORD"]

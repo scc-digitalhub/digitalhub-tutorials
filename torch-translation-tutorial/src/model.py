@@ -1,8 +1,9 @@
 import math
 
 import torch
-from torch.nn import functional as F
 from torch import nn
+from torch.nn import functional as F
+
 
 class PositionalEncoding(nn.Module):
     def __init__(
