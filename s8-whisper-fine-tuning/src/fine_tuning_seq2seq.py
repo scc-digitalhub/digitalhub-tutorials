@@ -11,9 +11,8 @@ from typing import Any, Optional, Union
 import datasets
 import evaluate
 import torch
-from datasets import DatasetDict, load_dataset
-
 import transformers
+from datasets import DatasetDict, load_dataset
 from transformers import (
     AutoConfig,
     AutoFeatureExtractor,
@@ -23,8 +22,8 @@ from transformers import (
     HfArgumentParser,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
-    set_seed,
     TrainerCallback,
+    set_seed,
 )
 from transformers.trainer_utils import get_last_checkpoint, is_main_process
 from transformers.utils import check_min_version, send_example_telemetry

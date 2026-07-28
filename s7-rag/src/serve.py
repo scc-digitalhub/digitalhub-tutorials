@@ -12,6 +12,7 @@ from typing_extensions import List, TypedDict
 
 from langgraph.graph import START, StateGraph
 from langchain.chat_models import init_chat_model
+from langchain_core.prompts import ChatPromptTemplate
 
 PG_USER = os.environ["DB_USERNAME"]
 PG_PASS = os.environ["DB_PASSWORD"]
@@ -65,7 +66,14 @@ def init(context):
     os.environ["OPENAI_API_KEY"] = "ignore"
 
     llm = init_chat_model(chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/")
-    prompt = hub.pull("rlm/rag-prompt")
+    prompt = ChatPromptTemplate.from_template("""
+    Answer the question based only on the provided context.
+    Context:
+    {context}
+    Question:
+    {question}
+    Answer:
+    """)
 
     def retrieve(state: State):
         # print('question', state["question"])
