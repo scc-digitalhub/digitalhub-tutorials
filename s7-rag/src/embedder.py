@@ -1,16 +1,15 @@
+import os
+import re
+import uuid
+
+import requests
+from bs4 import BeautifulSoup
 from langchain_core.documents import Document
 from langchain_core.embeddings import DeterministicFakeEmbedding
-from langchain_postgres import PGEngine, PGVectorStore
-from bs4 import BeautifulSoup
-from langchain_postgres import PGEngine
-from langchain_postgres import PGVectorStore
-import os
-import requests
 from langchain_openai import OpenAIEmbeddings
+from langchain_postgres import PGEngine, PGVectorStore
 from openai import OpenAI
-import re
 from sqlalchemy.exc import ProgrammingError
-import uuid
 from transformers import AutoTokenizer
 
 PG_USER = os.environ["DB_USERNAME"]

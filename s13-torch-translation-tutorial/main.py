@@ -1,14 +1,17 @@
-from time import time # Track how long an epoch takes
-import os # Creating and finding files/directories
-import logging # Logging tools
-from datetime import date # Logging the date for model versioning
+import logging  # Logging tools
+import os  # Creating and finding files/directories
+from argparse import ArgumentParser  # For args
+from datetime import date  # Logging the date for model versioning
+from time import time  # Track how long an epoch takes
 
-import torch # For ML
-from tqdm import tqdm # For fancy progress bars
-
-from src.model import Translator # Our model
-from src.data import get_data, create_mask, generate_square_subsequent_mask # Loading data and data preprocessing
-from argparse import ArgumentParser # For args
+import torch  # For ML
+from src.data import (  # Loading data and data preprocessing
+    create_mask,
+    generate_square_subsequent_mask,
+    get_data,
+)
+from src.model import Translator  # Our model
+from tqdm import tqdm  # For fancy progress bars
 
 # Train on the GPU if possible
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

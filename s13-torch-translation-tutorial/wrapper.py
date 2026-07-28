@@ -1,5 +1,6 @@
 import sys
 import traceback
+
 sys.path.append("./torch-translation-tutorial/")
 
 # WORKAROUND for SpaCy language model download. To use SpaCy models,
@@ -8,8 +9,9 @@ sys.path.append("./torch-translation-tutorial/")
 # to a specific location, and then import it from that location.
 def ensure_lang_model(model_name: str):
     from importlib import import_module
-    from spacy.cli import download
+
     import spacy
+    from spacy.cli import download
 
     OLD_MODEL_SHORTCUTS = (
                         spacy.errors.OLD_MODEL_SHORTCUTS if hasattr(spacy.errors, "OLD_MODEL_SHORTCUTS") else {}
@@ -22,6 +24,8 @@ def ensure_lang_model(model_name: str):
     model_module.load()
     
 from main import main
+
+
 def train(
    project,
    run,
