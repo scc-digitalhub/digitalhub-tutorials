@@ -35,7 +35,9 @@ def train(project):
     chunk_size = 128
 
     def group_texts(examples):
-        concatenated_examples = {k: functools.reduce(operator.iadd, examples[k], []) for k in examples}
+        concatenated_examples = {
+            k: functools.reduce(operator.iadd, examples[k], []) for k in examples
+        }
         total_length = len(concatenated_examples[next(iter(examples.keys()))])
         total_length = (total_length // chunk_size) * chunk_size
         result = {
