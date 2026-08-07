@@ -19,7 +19,7 @@ def pipeline():
                 "init_parameters": {"model_key": "{{inputs.parameters.model}}"},
             },
             function="serve-time-series-model",
-            inputs={"model": C.get_parameter("model")},
+            inputs={"model": B.get_parameter("model")},
         )
         A >> B >> C
     return w
