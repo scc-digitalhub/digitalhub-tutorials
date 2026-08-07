@@ -1,17 +1,14 @@
 import json
 import os
 
-import bs4
-from langchain import hub
 from langchain.chat_models import init_chat_model
 from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import OpenAIEmbeddings
 from langchain_postgres import PGEngine, PGVectorStore
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langgraph.graph import START, StateGraph
 from openai import OpenAI
-from typing_extensions import List, TypedDict
+from typing_extensions import TypedDict
 
 PG_USER = os.environ["DB_USERNAME"]
 PG_PASS = os.environ["DB_PASSWORD"]
@@ -20,9 +17,10 @@ PG_PORT = os.environ["DB_PORT"]
 DB_NAME = os.environ["DB_DATABASE"]
 ACCESS_TOKEN = os.environ["DHCORE_ACCESS_TOKEN"]
 
+
 class State(TypedDict):
     question: str
-    context: List[Document]
+    context: list[Document]
     answer: str
 
 
@@ -31,40 +29,38 @@ def init(context):
     chat_service_url = os.environ["CHAT_SERVICE_URL"]
     embedding_model_name = os.environ["EMBEDDING_MODEL_NAME"]
     embedding_service_url = os.environ["EMBEDDING_SERVICE_URL"]
-    
+
     class CEmbeddings(OpenAIEmbeddings):
         async def aembed_documents(self, docs):
             client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
             emb_arr = []
             for doc in docs:
-                #sanitize string: replace NUL with spaces
-                d=doc.replace("\x00", "-")
-                embs = client.embeddings.create(
-                    input=d,
-                    model=embedding_model_name                    
-                )
+                # sanitize string: replace NUL with spaces
+                d = doc.replace("\x00", "-")
+                embs = client.embeddings.create(input=d, model=embedding_model_name)
                 emb_arr.append(embs.data[0].embedding)
             return emb_arr
 
     custom_embeddings = CEmbeddings(api_key="ignored")
-   
+
     PG_CONN_URL = (
         f"postgresql+psycopg://{PG_USER}:{PG_PASS}@{PG_HOST}:{PG_PORT}/{DB_NAME}"
     )
 
     pg_engine = PGEngine.from_connection_string(url=PG_CONN_URL)
-    
-    
+
     vector_store = PGVectorStore.create_sync(
         engine=pg_engine,
         table_name=f"{embedding_model_name}_docs",
         # schema_name=SCHEMA_NAME,
         embedding_service=custom_embeddings,
     )
-    
+
     os.environ["OPENAI_API_KEY"] = "ignore"
 
-    llm = init_chat_model(chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/")
+    llm = init_chat_model(
+        chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/"
+    )
     prompt = ChatPromptTemplate.from_template("""
     Answer the question based only on the provided context.
     Context:
@@ -79,10 +75,12 @@ def init(context):
         # print(type(vector_store))
         retrieved_docs = vector_store.similarity_search(state["question"])
         return {"context": retrieved_docs}
-    
+
     def generate(state: State):
         docs_content = "\n\n".join(doc.page_content for doc in state["context"])
-        messages = prompt.invoke({"question": state["question"], "context": docs_content})
+        messages = prompt.invoke(
+            {"question": state["question"], "context": docs_content}
+        )
         response = llm.invoke(messages)
         return {"answer": response.content}
 
@@ -90,18 +88,18 @@ def init(context):
     graph_builder.add_edge(START, "retrieve")
     graph = graph_builder.compile()
 
-    setattr(context, "graph", graph)
+    context.graph = graph
+
 
 def serve(context, event):
     graph = context.graph
     context.logger.info(f"Received event: {event}")
-    
+
     if isinstance(event.body, bytes):
         body = json.loads(event.body)
     else:
         body = event.body
-        
+
     question = body["question"]
     response = graph.invoke({"question": question})
     return {"answer": response["answer"]}
-    

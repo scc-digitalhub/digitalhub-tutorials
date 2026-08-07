@@ -6,7 +6,7 @@ import logging
 import os
 import sys
 from dataclasses import dataclass, field
-from typing import Any, Optional, Union
+from typing import Any
 
 import datasets
 import evaluate
@@ -26,8 +26,6 @@ from transformers import (
     set_seed,
 )
 from transformers.trainer_utils import get_last_checkpoint, is_main_process
-from transformers.utils import check_min_version, send_example_telemetry
-from transformers.utils.versions import require_version
 
 
 class LoggingCallback(TrainerCallback):
@@ -64,7 +62,7 @@ class ModelArguments:
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
         }
     )
-    cache_dir: Optional[str] = field(
+    cache_dir: str | None = field(
         default=None,
         metadata={
             "help": "Where to store the pretrained models downloaded from huggingface.co"
@@ -88,13 +86,13 @@ class DataTrainingArguments:
         default=None,
         metadata={"help": "The name of the dataset to use (via the datasets library)."},
     )
-    dataset_config_name: Optional[str] = field(
+    dataset_config_name: str | None = field(
         default=None,
         metadata={
             "help": "The configuration name of the dataset to use (via the datasets library)."
         },
     )
-    data_dir: Optional[str] = field(
+    data_dir: str | None = field(
         default=None,
         metadata={"help": "Where to read preprocessed dataset"},
     )
@@ -102,11 +100,11 @@ class DataTrainingArguments:
         default=False,
         metadata={"help": "Overwrite the cached training and evaluation sets"},
     )
-    preprocessing_num_workers: Optional[int] = field(
+    preprocessing_num_workers: int | None = field(
         default=None,
         metadata={"help": "The number of processes to use for the preprocessing."},
     )
-    max_train_samples: Optional[int] = field(
+    max_train_samples: int | None = field(
         default=None,
         metadata={
             "help": (
@@ -115,7 +113,7 @@ class DataTrainingArguments:
             )
         },
     )
-    max_eval_samples: Optional[int] = field(
+    max_eval_samples: int | None = field(
         default=None,
         metadata={
             "help": (
@@ -213,7 +211,7 @@ class DataCollatorSpeechSeq2SeqWithPadding:
     forward_attention_mask: bool
 
     def __call__(
-        self, features: list[dict[str, Union[list[int], torch.Tensor]]]
+        self, features: list[dict[str, list[int] | torch.Tensor]]
     ) -> dict[str, torch.Tensor]:
         # split inputs and labels since they have to be of different lengths and need
         # different padding methods
@@ -283,7 +281,7 @@ def main(callback=None, args=None):
     transformers.utils.logging.enable_explicit_format()
 
     logger.setLevel(
-        logging.INFO if is_main_process(training_args.local_rank) else logging.WARN
+        logging.INFO if is_main_process(training_args.local_rank) else logging.WARNING
     )
 
     # Log on each process the small summary:
@@ -643,7 +641,7 @@ def train_and_log_model(
     model_name: str,
     model_id: str,
     dataset_name: str,
-    artifact_name: str = None,
+    artifact_name: str | None = None,
     language_code: str = "it",
     language: str = "Italian",
     max_sequence_length: int = 225,
@@ -656,8 +654,8 @@ def train_and_log_model(
     save_steps: int = 1000,
     warmup_steps: int = 500,
     max_steps: int = 5000,
-    max_train_samples: int = None,
-    max_eval_samples: int = None,
+    max_train_samples: int | None = None,
+    max_eval_samples: int | None = None,
 ):
     """
     Train the Whisper model with the given dataset and configuration.
@@ -693,9 +691,8 @@ def train_and_log_model(
     if artifact_name is not None:
         project.get_artifact(artifact_name).download(cache_dir)
 
-    hf_token = None
     try:
-        hf_token = project.get_secret("HF_TOKEN").read_secret_value()
+        project.get_secret("HF_TOKEN").read_secret_value()
     except Exception:
         pass
 
@@ -704,40 +701,38 @@ def train_and_log_model(
         f"--dataset_name={dataset_name}",
         f"--dataset_config_name={language_code}",
         f"--language={language}",
-        f"--task=transcribe",
-        f"--train_split_name=train+validation",
-        f"--eval_split_name=test",
+        "--task=transcribe",
+        "--train_split_name=train+validation",
+        "--eval_split_name=test",
         f"--max_steps={max_steps}",
         f"--output_dir={output_dir}",
         f"--per_device_train_batch_size={train_batch_size}",
         f"--logging_steps={logging_steps}",
         f"--learning_rate={learning_rate}",
         f"--warmup_steps={warmup_steps}",
-        f"--eval_strategy=steps",
+        "--eval_strategy=steps",
         f"--eval_steps={eval_steps}",
-        f"--save_strategy=steps",
+        "--save_strategy=steps",
         f"--save_steps={save_steps}",
-        f"--save_total_limit=1",
+        "--save_total_limit=1",
         f"--generation_max_length={max_sequence_length}",
-        f"--preprocessing_num_workers=16",
-        f"--max_duration_in_seconds=30",
-        f"--text_column_name=sentence",
+        "--preprocessing_num_workers=16",
+        "--max_duration_in_seconds=30",
+        "--text_column_name=sentence",
         f"--cache_dir={cache_dir}",
-        f"--gradient_checkpointing",
-        f"--fp16",
-        f"--overwrite_output_dir",
-        f"--do_train",
-        f"--do_eval",
-        f"--predict_with_generate",
+        "--gradient_checkpointing",
+        "--fp16",
+        "--overwrite_output_dir",
+        "--do_train",
+        "--do_eval",
+        "--predict_with_generate",
     ]
     if max_train_samples is not None:
         args.append(f"--max_train_samples={max_train_samples}")
     if max_eval_samples is not None:
         args.append(f"--max_eval_samples={max_eval_samples}")
 
-    result = main(
-        callback=LoggingCallback(project.get_run(os.environ["RUN_ID"])), args=args
-    )
+    main(callback=LoggingCallback(project.get_run(os.environ["RUN_ID"])), args=args)
 
     model_params = {
         "max_sequence_length": max_sequence_length,
@@ -772,8 +767,8 @@ def preprocess_dataset(
     dataset_name: str,
     language_code: str = "it",
     language: str = "Italian",
-    max_train_samples: int = None,
-    max_eval_samples: int = None,
+    max_train_samples: int | None = None,
+    max_eval_samples: int | None = None,
 ):
     """
     Preprocess dataset and model and store as artifact.
@@ -793,9 +788,8 @@ def preprocess_dataset(
     # final_dir = '/local/data/weights/ground'
     # data_dir = '/local/data/dataset'
 
-    hf_token = None
     try:
-        hf_token = project.get_secret("HF_TOKEN").read_secret_value()
+        project.get_secret("HF_TOKEN").read_secret_value()
     except Exception:
         pass
 
@@ -804,18 +798,18 @@ def preprocess_dataset(
         f"--dataset_name={dataset_name}",
         f"--dataset_config_name={language_code}",
         f"--language={language}",
-        f"--task=transcribe",
-        f"--train_split_name=train+validation",
-        f"--eval_split_name=test",
+        "--task=transcribe",
+        "--train_split_name=train+validation",
+        "--eval_split_name=test",
         f"--output_dir={output_dir}",
-        f"--preprocessing_num_workers=16",
-        f"--max_duration_in_seconds=30",
-        f"--text_column_name=sentence",
+        "--preprocessing_num_workers=16",
+        "--max_duration_in_seconds=30",
+        "--text_column_name=sentence",
         f"--cache_dir={cache_dir}",
-        f"--overwrite_output_dir",
-        f"--preprocessing_only",
-        f"--do_train",
-        f"--do_eval",
+        "--overwrite_output_dir",
+        "--preprocessing_only",
+        "--do_train",
+        "--do_eval",
     ]
     if max_train_samples is not None:
         args.append(f"--max_train_samples={max_train_samples}")
@@ -824,7 +818,7 @@ def preprocess_dataset(
 
     main(args=args)
 
-    artifact = project.log_artifact(
+    project.log_artifact(
         name=artifact_name,
         kind="artifact",
         framework="whisper",

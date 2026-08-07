@@ -1,8 +1,7 @@
-# ML Flow Model Training and Serving
+# MLflow Model Training and Serving
 
-This scenario provides a quick overview of developing and deploying a machine learning application based on model tracked with MLFlow framework using the functionalities of the platform. The "s4-mlflow" folder contains a jupyter notebook and a digitalhub project.
+This tutorial shows how to train and serve an MLflow model with DigitalHub. It trains an Iris classifier, tracks the run with MLflow, and exposes the model as a service.
 
-## Jypter notebook
+## Jupyter notebook
 
-Import the Jupyter notebook located inside project folder in the "Coder" instance and execute it step by step.
-
+Open the notebook in the Coder instance and run it step by step.

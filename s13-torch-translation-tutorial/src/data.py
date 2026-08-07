@@ -19,6 +19,7 @@ def _read_local_tarfile(path, src_lang, tgt_lang):
         tgt_lines = tar.extractfile(tgt_member).read().decode("utf-8").splitlines()
     return list(zip(src_lines, tgt_lines))
 
+
 # Turns an iterable into a generator
 def _yield_tokens(iterable_data, tokenizer, src):
 
@@ -28,6 +29,7 @@ def _yield_tokens(iterable_data, tokenizer, src):
     for data in iterable_data:
         yield tokenizer(data[index])
 
+
 # Get data, tokenizer, text transform, vocab objs, etc. Everything we
 # need to start training the model
 def get_data(opts):
@@ -36,12 +38,7 @@ def get_data(opts):
     tgt_lang = opts.tgt
 
     # Define a token "unkown", "padding", "beginning of sentence", and "end of sentence"
-    special_symbols = {
-        "<unk>":0,
-        "<pad>":1,
-        "<bos>":2,
-        "<eos>":3
-    }
+    special_symbols = {"<unk>": 0, "<pad>": 1, "<bos>": 2, "<eos>": 3}
 
     # Get training examples from torchtext (the multi30k dataset)
     train_file = getattr(opts, "train_file", None)
@@ -51,8 +48,12 @@ def get_data(opts):
         train_iterator = _read_local_tarfile(train_file, src_lang, tgt_lang)
         valid_iterator = _read_local_tarfile(valid_file, src_lang, tgt_lang)
     else:
-        multi30k.URL["train"] = "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz"
-        multi30k.URL["valid"] = "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz"
+        multi30k.URL["train"] = (
+            "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz"
+        )
+        multi30k.URL["valid"] = (
+            "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz"
+        )
         train_iterator = Multi30k(split="train", language_pair=(src_lang, tgt_lang))
         valid_iterator = Multi30k(split="valid", language_pair=(src_lang, tgt_lang))
 
@@ -65,14 +66,14 @@ def get_data(opts):
         _yield_tokens(train_iterator, src_tokenizer, True),
         min_freq=1,
         specials=list(special_symbols.keys()),
-        special_first=True
+        special_first=True,
     )
 
     tgt_vocab = build_vocab_from_iterator(
         _yield_tokens(train_iterator, tgt_tokenizer, False),
         min_freq=1,
         specials=list(special_symbols.keys()),
-        special_first=True
+        special_first=True,
     )
 
     src_vocab.set_default_index(special_symbols["<unk>"])
@@ -84,14 +85,17 @@ def get_data(opts):
             for transform in transforms:
                 txt_input = transform(txt_input)
             return txt_input
+
         return func
 
     # Function to add BOS/EOS and create tensor for input sequence indices
     def _tensor_transform(token_ids):
         return torch.cat(
-            (torch.tensor([special_symbols["<bos>"]]),
-             torch.tensor(token_ids),
-             torch.tensor([special_symbols["<eos>"]]))
+            (
+                torch.tensor([special_symbols["<bos>"]]),
+                torch.tensor(token_ids),
+                torch.tensor([special_symbols["<eos>"]]),
+            )
         )
 
     src_lang_transform = _seq_transform(src_tokenizer, src_vocab, _tensor_transform)
@@ -110,15 +114,31 @@ def get_data(opts):
         return src_batch, tgt_batch
 
     # Create the dataloader
-    train_dataloader = DataLoader(train_iterator, batch_size=opts.batch, collate_fn=_collate_fn)
-    valid_dataloader = DataLoader(valid_iterator, batch_size=opts.batch, collate_fn=_collate_fn)
+    train_dataloader = DataLoader(
+        train_iterator, batch_size=opts.batch, collate_fn=_collate_fn
+    )
+    valid_dataloader = DataLoader(
+        valid_iterator, batch_size=opts.batch, collate_fn=_collate_fn
+    )
 
-    return train_dataloader, valid_dataloader, src_vocab, tgt_vocab, src_lang_transform, tgt_lang_transform, special_symbols
+    return (
+        train_dataloader,
+        valid_dataloader,
+        src_vocab,
+        tgt_vocab,
+        src_lang_transform,
+        tgt_lang_transform,
+        special_symbols,
+    )
+
 
 def generate_square_subsequent_mask(size, device):
     mask = (torch.triu(torch.ones((size, size), device=device)) == 1).transpose(0, 1)
-    mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
+    mask = (
+        mask.float().masked_fill(mask == 0, float("-inf")).masked_fill(mask == 1, 0.0)
+    )
     return mask
+
 
 # Create masks for input into model
 def create_mask(src, tgt, pad_idx, device):
@@ -129,26 +149,34 @@ def create_mask(src, tgt, pad_idx, device):
 
     # Generate the mask
     tgt_mask = generate_square_subsequent_mask(tgt_seq_len, device)
-    src_mask = torch.zeros((src_seq_len, src_seq_len),device=device).type(torch.bool)
+    src_mask = torch.zeros((src_seq_len, src_seq_len), device=device).type(torch.bool)
 
     # Overlay the mask over the original input
     src_padding_mask = (src == pad_idx).transpose(0, 1)
     tgt_padding_mask = (tgt == pad_idx).transpose(0, 1)
     return src_mask, tgt_mask, src_padding_mask, tgt_padding_mask
 
+
 # A small test to make sure our data loasd in correctly
-if __name__=="__main__":
+if __name__ == "__main__":
 
     class Opts:
         def __init__(self):
-            self.src = "en",
+            self.src = ("en",)
             self.tgt = "de"
             self.batch = 128
 
     opts = Opts()
-    
-    train_dl, valid_dl, src_vocab, tgt_vocab, src_lang_transform, tgt_lang_transform, special_symbols = get_data(opts)
+
+    (
+        train_dl,
+        valid_dl,
+        src_vocab,
+        tgt_vocab,
+        src_lang_transform,
+        tgt_lang_transform,
+        special_symbols,
+    ) = get_data(opts)
 
     print(f"{opts.src} vocab size: {len(src_vocab)}")
     print(f"{opts.src} vocab size: {len(tgt_vocab)}")
-

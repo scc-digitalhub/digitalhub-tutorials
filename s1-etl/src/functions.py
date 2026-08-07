@@ -74,7 +74,7 @@ def process_measures(di):
 def init_context(context, dataitem):
     di = context.project.get_dataitem(dataitem)
     df = di.as_df()
-    setattr(context, "df", df)
+    context.df = df
 
 
 def serve(context, event):
@@ -83,34 +83,17 @@ def serve(context, event):
     if df is None:
         return ""
 
-    # mock REST api
+    # Simple REST API
     fields = event.fields
 
-    # pagination
-    page = 0
-    pageSize = 50
-
-    if "page" in fields:
-        page = int(fields["page"])
-
-    if "size" in fields:
-        pageSize = int(fields["size"])
-
-    if page < 0:
-        page = 0
-
-    if pageSize < 1:
-        pageSize = 1
-
-    if pageSize > 100:
-        pageSize = 100
+    page = max(int(fields.get("page", 0)), 0)
+    pageSize = min(max(int(fields.get("size", 50)), 1), 100)
 
     start = page * pageSize
     end = start + pageSize
     total = len(df)
 
-    if end > total:
-        end = total
+    end = min(end, total)
 
     ds = df.iloc[start:end]
     json = ds.to_json(orient="records")

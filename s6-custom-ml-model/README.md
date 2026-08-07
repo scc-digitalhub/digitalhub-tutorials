@@ -1,7 +1,7 @@
-# Custom ML FLow Model Training and Serving
+# Custom ML Model Training and Serving
 
-This scenario provides a quick overview of developing and deploying generic machine learning applications using the functionalities of the platform. For this purpose, we use ML algorithms for the time series management provided by the Darts framework. The "s6-custom-ml-model" folder contains a jupyter notebook and a digitalhub project.
+This tutorial shows how to build, train, and serve a custom time series model with DigitalHub and Darts. It uses the Air Passengers dataset and deploys the model as a service.
 
-## Jypter notebook
+## Jupyter notebook
 
-Import the Jupyter notebook located inside project folder in the "Coder" instance and execute it step by step.
+Open the notebook in the Coder instance and run it step by step.

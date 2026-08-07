@@ -43,7 +43,6 @@ def train_model(project):
     # Register model in DigitalHub
     model_artifact = project.log_model(
         name="air-passengers-forecaster",
-        kind="model",
         source="predictor_model.pt.zip",
         algorithm="darts.models.NBEATSModel",
         framework="darts",
@@ -70,7 +69,7 @@ def init_context(context, model_key):
     name_model_local = local_path_model + "predictor_model.pt"
     mm = NBEATSModel(input_chunk_length, output_chunk_length).load(name_model_local)
 
-    setattr(context, "model", mm)
+    context.model = mm
 
 
 def serve_predictions(context, event):

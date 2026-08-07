@@ -1,3 +1,3 @@
-# Data validation
+# Data Validation
 
-This scenario implements a simple data validation function, which evaluates the correctness of a CSV table by leveraging an open source library, Frictionless.
+This tutorial shows a simple CSV validation flow with Frictionless and DigitalHub. It checks a file, generates a report, and labels the dataset as valid or invalid.

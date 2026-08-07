@@ -16,6 +16,7 @@ from tqdm import tqdm  # For fancy progress bars
 # Train on the GPU if possible
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 # Function to generate output sequence using greedy algorithm
 def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
 
@@ -30,11 +31,12 @@ def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
     ys = torch.ones(1, 1).fill_(start_symbol).type(torch.long).to(DEVICE)
 
     # For each element in our translation (which could range up to the maximum translation length)
-    for _ in range(max_len-1):
-
+    for _ in range(max_len - 1):
         # Decode the encoded representation of the input
         memory = memory.to(DEVICE)
-        tgt_mask = (generate_square_subsequent_mask(ys.size(0), DEVICE).type(torch.bool)).to(DEVICE)
+        tgt_mask = (
+            generate_square_subsequent_mask(ys.size(0), DEVICE).type(torch.bool)
+        ).to(DEVICE)
         out = model.decode(ys, memory, tgt_mask)
 
         # Reshape
@@ -51,6 +53,7 @@ def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
             break
 
     return ys
+
 
 # Opens an user interface where users can translate an arbitrary sentence
 def inference(opts):
@@ -71,7 +74,7 @@ def inference(opts):
         src_vocab_size=src_vocab_size,
         tgt_vocab_size=tgt_vocab_size,
         dim_feedforward=opts.dim_feedforward,
-        dropout=opts.dropout
+        dropout=opts.dropout,
     ).to(DEVICE)
 
     # Load in weights
@@ -94,7 +97,12 @@ def inference(opts):
 
         # Decode
         tgt_tokens = greedy_decode(
-            model, src, src_mask, max_len=num_tokens+5, start_symbol=special_symbols["<bos>"], end_symbol=special_symbols["<eos>"]
+            model,
+            src,
+            src_mask,
+            max_len=num_tokens + 5,
+            start_symbol=special_symbols["<bos>"],
+            end_symbol=special_symbols["<eos>"],
         ).flatten()
 
         # Convert to list of tokens
@@ -104,9 +112,12 @@ def inference(opts):
         output_list_words = tgt_vocab.lookup_tokens(output_as_list)
 
         # Remove special tokens and convert to string
-        translation = " ".join(output_list_words).replace("<bos>", "").replace("<eos>", "")
+        translation = (
+            " ".join(output_list_words).replace("<bos>", "").replace("<eos>", "")
+        )
 
         print(translation)
+
 
 # Train the model for 1 epoch
 def train(model, train_dl, loss_fn, optim, special_symbols, opts):
@@ -117,7 +128,6 @@ def train(model, train_dl, loss_fn, optim, special_symbols, opts):
     # Put model into training mode
     model.train()
     for src, tgt in tqdm(train_dl, ascii=True):
-
         src = src.to(DEVICE)
         tgt = tgt.to(DEVICE)
 
@@ -125,10 +135,20 @@ def train(model, train_dl, loss_fn, optim, special_symbols, opts):
         tgt_input = tgt[:-1, :]
 
         # Create masks
-        src_mask, tgt_mask, src_padding_mask, tgt_padding_mask = create_mask(src, tgt_input, special_symbols["<pad>"], DEVICE)
+        src_mask, tgt_mask, src_padding_mask, tgt_padding_mask = create_mask(
+            src, tgt_input, special_symbols["<pad>"], DEVICE
+        )
 
         # Pass into model, get probability over the vocab out
-        logits = model(src, tgt_input, src_mask, tgt_mask,src_padding_mask, tgt_padding_mask, src_padding_mask)
+        logits = model(
+            src,
+            tgt_input,
+            src_mask,
+            tgt_mask,
+            src_padding_mask,
+            tgt_padding_mask,
+            src_padding_mask,
+        )
 
         # Reset gradients before we try to compute the gradients over the loss
         optim.zero_grad()
@@ -152,9 +172,10 @@ def train(model, train_dl, loss_fn, optim, special_symbols, opts):
     # Return the average loss
     return losses / len(list(train_dl))
 
+
 # Check the model accuracy on the validation dataset
 def validate(model, valid_dl, loss_fn, special_symbols):
-    
+
     # Object for accumulating losses
     losses = 0
 
@@ -162,7 +183,6 @@ def validate(model, valid_dl, loss_fn, special_symbols):
     model.eval()
 
     for src, tgt in tqdm(valid_dl):
-
         src = src.to(DEVICE)
         tgt = tgt.to(DEVICE)
 
@@ -170,10 +190,20 @@ def validate(model, valid_dl, loss_fn, special_symbols):
         tgt_input = tgt[:-1, :]
 
         # Create masks
-        src_mask, tgt_mask, src_padding_mask, tgt_padding_mask = create_mask(src, tgt_input, special_symbols["<pad>"], DEVICE)
+        src_mask, tgt_mask, src_padding_mask, tgt_padding_mask = create_mask(
+            src, tgt_input, special_symbols["<pad>"], DEVICE
+        )
 
         # Pass into model, get probability over the vocab out
-        logits = model(src, tgt_input, src_mask, tgt_mask,src_padding_mask, tgt_padding_mask, src_padding_mask)
+        logits = model(
+            src,
+            tgt_input,
+            src_mask,
+            tgt_mask,
+            src_padding_mask,
+            tgt_padding_mask,
+            src_padding_mask,
+        )
 
         # Get original shape back, compute loss, accumulate that loss
         tgt_out = tgt[1:, :]
@@ -182,6 +212,7 @@ def validate(model, valid_dl, loss_fn, special_symbols):
 
     # Return the average loss
     return losses / len(list(valid_dl))
+
 
 # Train the model
 def main(opts):
@@ -221,7 +252,7 @@ def main(opts):
         src_vocab_size=src_vocab_size,
         tgt_vocab_size=tgt_vocab_size,
         dim_feedforward=opts.dim_feedforward,
-        dropout=opts.dropout
+        dropout=opts.dropout,
     ).to(DEVICE)
 
     logging.info("Model created... starting training!")
@@ -230,16 +261,17 @@ def main(opts):
     loss_fn = torch.nn.CrossEntropyLoss(ignore_index=special_symbols["<pad>"])
 
     # These special values are from the "Attention is all you need" paper
-    optim = torch.optim.Adam(model.parameters(), lr=opts.lr, betas=(0.9, 0.98), eps=1e-9)
+    optim = torch.optim.Adam(
+        model.parameters(), lr=opts.lr, betas=(0.9, 0.98), eps=1e-9
+    )
 
     best_val_loss = 1e6
-    
-    for idx, epoch in enumerate(range(1, opts.epochs+1)):
 
+    for idx, epoch in enumerate(range(1, opts.epochs + 1)):
         start_time = time()
         train_loss = train(model, train_dl, loss_fn, optim, special_symbols, opts)
         epoch_time = time() - start_time
-        val_loss   = validate(model, valid_dl, loss_fn, special_symbols)
+        val_loss = validate(model, valid_dl, loss_fn, special_symbols)
 
         # Once training is done, we want to save out the model
         if val_loss < best_val_loss:
@@ -249,7 +281,9 @@ def main(opts):
 
         torch.save(model.state_dict(), opts.logging_dir + "last.pt")
 
-        logger.info(f"Epoch: {epoch}\n\tTrain loss: {train_loss:.3f}\n\tVal loss: {val_loss:.3f}\n\tEpoch time = {epoch_time:.1f} seconds\n\tETA = {epoch_time*(opts.epochs-idx-1):.1f} seconds")
+        logger.info(
+            f"Epoch: {epoch}\n\tTrain loss: {train_loss:.3f}\n\tVal loss: {val_loss:.3f}\n\tEpoch time = {epoch_time:.1f} seconds\n\tETA = {epoch_time * (opts.epochs - idx - 1):.1f} seconds"
+        )
 
         if run is not None:
             metrics = {"train_loss": train_loss, "val_loss": val_loss}
@@ -259,60 +293,78 @@ def main(opts):
     return {
         "train_loss": train_loss,
         "val_loss": val_loss,
-    }    
+    }
+
 
 if __name__ == "__main__":
-
     parser = ArgumentParser(
         prog="Machine Translator training and inference",
     )
 
     # Inference mode
-    parser.add_argument("--inference", action="store_true",
-                        help="Set true to run inference")
-    parser.add_argument("--model_path", type=str,
-                        help="Path to the model to run inference on")
+    parser.add_argument(
+        "--inference", action="store_true", help="Set true to run inference"
+    )
+    parser.add_argument(
+        "--model_path", type=str, help="Path to the model to run inference on"
+    )
 
     # Translation settings
-    parser.add_argument("--src", type=str, default="de",
-                        help="Source language (translating FROM this language)")
-    parser.add_argument("--tgt", type=str, default="en",
-                        help="Target language (translating TO this language)")
+    parser.add_argument(
+        "--src",
+        type=str,
+        default="de",
+        help="Source language (translating FROM this language)",
+    )
+    parser.add_argument(
+        "--tgt",
+        type=str,
+        default="en",
+        help="Target language (translating TO this language)",
+    )
 
-    # Training settings 
-    parser.add_argument("-e", "--epochs", type=int, default=30,
-                        help="Epochs")
-    parser.add_argument("--lr", type=float, default=1e-4,
-                        help="Default learning rate")
-    parser.add_argument("--batch", type=int, default=128,
-                        help="Batch size")
-    parser.add_argument("--backend", type=str, default="cpu",
-                        help="Batch size")
-    
+    # Training settings
+    parser.add_argument("-e", "--epochs", type=int, default=30, help="Epochs")
+    parser.add_argument("--lr", type=float, default=1e-4, help="Default learning rate")
+    parser.add_argument("--batch", type=int, default=128, help="Batch size")
+    parser.add_argument("--backend", type=str, default="cpu", help="Batch size")
+
     # Transformer settings
-    parser.add_argument("--attn_heads", type=int, default=8,
-                        help="Number of attention heads")
-    parser.add_argument("--enc_layers", type=int, default=5,
-                        help="Number of encoder layers")
-    parser.add_argument("--dec_layers", type=int, default=5,
-                        help="Number of decoder layers")
-    parser.add_argument("--embed_size", type=int, default=512,
-                        help="Size of the language embedding")
-    parser.add_argument("--dim_feedforward", type=int, default=512,
-                        help="Feedforward dimensionality")
-    parser.add_argument("--dropout", type=float, default=0.1,
-                        help="Transformer dropout")
+    parser.add_argument(
+        "--attn_heads", type=int, default=8, help="Number of attention heads"
+    )
+    parser.add_argument(
+        "--enc_layers", type=int, default=5, help="Number of encoder layers"
+    )
+    parser.add_argument(
+        "--dec_layers", type=int, default=5, help="Number of decoder layers"
+    )
+    parser.add_argument(
+        "--embed_size", type=int, default=512, help="Size of the language embedding"
+    )
+    parser.add_argument(
+        "--dim_feedforward", type=int, default=512, help="Feedforward dimensionality"
+    )
+    parser.add_argument(
+        "--dropout", type=float, default=0.1, help="Transformer dropout"
+    )
 
     # Logging settings
-    parser.add_argument("--logging_dir", type=str, default="./" + str(date.today()) + "/",
-                        help="Where the output of this program should be placed")
+    parser.add_argument(
+        "--logging_dir",
+        type=str,
+        default="./" + str(date.today()) + "/",
+        help="Where the output of this program should be placed",
+    )
 
     # Just for continuous integration
     parser.add_argument("--dry_run", action="store_true")
 
     args = parser.parse_args()
 
-    DEVICE = torch.device("cuda" if args.backend == "gpu" and torch.cuda.is_available() else "cpu")
+    DEVICE = torch.device(
+        "cuda" if args.backend == "gpu" and torch.cuda.is_available() else "cpu"
+    )
 
     if args.inference:
         inference(args)

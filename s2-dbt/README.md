@@ -1,7 +1,7 @@
-# DBT (Database transformation) scenario
+# DBT (Data transformation) tutorial
 
-This scenario depict how to collect some data regarding organizations, analyze and transform it, then expose the resulting dataset. The "s2-dbt" folder contains a jupyter notebook and a digitalhub project yaml descriptor.
+This tutorial shows a simple DBT flow with DigitalHub. It loads employee data, transforms it with SQL, and runs the process through a workflow.
 
-## Jypter notebook
+## Jupyter notebook
 
-Import the Jupyter notebook located inside project folder in the "Coder" instance and execute it step by step.
+Open the notebook in the Coder instance and run it step by step.

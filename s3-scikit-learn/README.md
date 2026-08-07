@@ -1,7 +1,7 @@
-# Scikit Learn Scenario
+# Scikit-Learn Tutorial
 
-This scenario provides a quick overview of developing and deploying a scikit-learn machine learning application using the functionalities of the platform. We will prepare data, train a generic model and expose it as a service. The "s3-scikit-learn" folder contains a jupyter notebook and a digitalhub project yaml descriptor.
+This tutorial shows how to build and deploy a simple scikit-learn workflow with DigitalHub. It prepares data, trains a model, and exposes it as a service.
 
-## Jypter notebook
+## Jupyter notebook
 
-Import the Jupyter notebook located inside project folder in the "Coder" instance and execute it step by step.
+Open the notebook in the Coder instance and run it step by step.

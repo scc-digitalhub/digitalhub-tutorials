@@ -11,14 +11,14 @@ The tutorial demonstrates how to migrate an existing project to use the platform
 - the code requires some preparatory steps, which are **executed before the main script**, to download the language models.
 - the training **data is static** and is imported using a specific library from the datasets available on a public GitHub repository.
 - the training function relies on tourch library as well as some **additional python dependencies**.
-- the function get use of **GPU acceleration** and may use CUDA libraries if available. 
+- the function get use of **GPU acceleration** and may use CUDA libraries if available.
 - the training function **saves the model** to the local folder.
 
 With this properties in mind, we show how to migrate the code to use the platform and its instruments in the best way possible:
 
 - describe and register training procedure starting from the Git repository of the tutorial and adding a necessary wrapper for the training function as an entry point for the platform. In this way the changes to the original code are minimal.
 - make the input data explicit and register it as a versioned data artifact in the platform to ensure the dataset is availble and may be reused.
-- declaring and packaging the dependencies required for the code to be executed. 
+- declaring and packaging the dependencies required for the code to be executed.
 - registering the trained model as a versioned model entity in the platform, together with the hyper parameters, metrics, and input data references to keep track of the lineage.
 - track the experiment metrics in order to be able to evaluate the training performance and compare different experiments.
 
@@ -30,7 +30,7 @@ But before doing the migration, we need to address several critical issues with 
 - the dataset used by the original code refers to third-party data, while the original dataset used by the paper is not available anymore.
 - the scenario in general allows for arbitrary SpaCy-compatible models, but in practice the dataset is for German to English translation only. The reference to the dataset is hardocded in the original code of the project.
 
-To solve the compatibility issue, the `requirements.txt` has been changed to refer to explicit versions of the dependencies. 
+To solve the compatibility issue, the `requirements.txt` has been changed to refer to explicit versions of the dependencies.
 
 To address the issue of the hardcoded dataset, we change the code so that the reference to the training and validation data may be customized (see `src/data.py` for reference):
 
@@ -67,7 +67,7 @@ In this way the datasets are read from local files, falling back to predefined d
 
 For the project to work, the language models should be downloaded and installed using SpaCy toolkit before the script execution. In certain settings it may be more
 flexible to download and install the models programmatically, like this is done in the following project: [https://github.com/BramVanroy/spacy_download](https://github.com/BramVanroy/spacy_download). In this approach the CLI is called programmatically and the model is imported on the fly. While not strictly necessary, this approach
-makes the code self-consistent and universal. We will see how this may be used in the migration steps. 
+makes the code self-consistent and universal. We will see how this may be used in the migration steps.
 
 ## 2. Adapting the Code
 
@@ -82,11 +82,13 @@ Please note that the data initialization and storing the training output are man
 ```python
 import sys
 import traceback
-sys.path.append("./torch-translation-tutorial/")
+
+sys.path.append("./s13-torch-translation-tutorial/")
+
 
 # WORKAROUND for SpaCy language model download. To use SpaCy models,
-# the model must be downloaded and installed before the training script. 
-# TO make it dynamic, we call the spacy.cli.download() function to download the model 
+# the model must be downloaded and installed before the training script.
+# TO make it dynamic, we call the spacy.cli.download() function to download the model
 # to a specific location, and then import it from that location.
 def ensure_lang_model(model_name: str):
     from importlib import import_module
@@ -94,34 +96,43 @@ def ensure_lang_model(model_name: str):
     import spacy
 
     OLD_MODEL_SHORTCUTS = (
-                        spacy.errors.OLD_MODEL_SHORTCUTS if hasattr(spacy.errors, "OLD_MODEL_SHORTCUTS") else {}
-                    )
-    
-    model_name = OLD_MODEL_SHORTCUTS[model_name] if model_name in OLD_MODEL_SHORTCUTS else model_name
-    download(model_name, False, False, None, "-t", "/shared/language_models/")    
+        spacy.errors.OLD_MODEL_SHORTCUTS
+        if hasattr(spacy.errors, "OLD_MODEL_SHORTCUTS")
+        else {}
+    )
+
+    model_name = (
+        OLD_MODEL_SHORTCUTS[model_name]
+        if model_name in OLD_MODEL_SHORTCUTS
+        else model_name
+    )
+    download(model_name, False, False, None, "-t", "/shared/language_models/")
     sys.path.append("/shared/language_models/")
     model_module = import_module(model_name)
     model_module.load()
-    
+
+
 from main import main
+
+
 def train(
-   project,
-   run,
-   training_data,
-   validation_data,
-   src_lang="de",
-   tgt_lang="en",
-   epochs=30,     
-   lr=1e-4,
-   batch_size=128,
-   backend="cpu",
-   attn_heads=8,
-   enc_layers=5,
-   dec_layers=5,
-   embed_size=512,
-   dim_feedforward=512,
-   dropout=0.1,
-   model_name="translator-model",
+    project,
+    run,
+    training_data,
+    validation_data,
+    src_lang="de",
+    tgt_lang="en",
+    epochs=30,
+    lr=1e-4,
+    batch_size=128,
+    backend="cpu",
+    attn_heads=8,
+    enc_layers=5,
+    dec_layers=5,
+    embed_size=512,
+    dim_feedforward=512,
+    dropout=0.1,
+    model_name="translator-model",
 ):
     print("Running training script...")
     opts = type("Namespace", (), {})()
@@ -133,15 +144,15 @@ def train(
     setattr(opts, "backend", backend)
     setattr(opts, "attn_heads", attn_heads)
     setattr(opts, "enc_layers", enc_layers)
-    setattr(opts, "dec_layers", dec_layers)    
+    setattr(opts, "dec_layers", dec_layers)
     setattr(opts, "embed_size", embed_size)
     setattr(opts, "dim_feedforward", dim_feedforward)
     setattr(opts, "dropout", dropout)
-    
+
     model_dir = "./data/output/"
     # fixed logging dir
     setattr(opts, "logging_dir", model_dir)
-    
+
     try:
         ensure_lang_model(src_lang)
         ensure_lang_model(tgt_lang)
@@ -179,7 +190,7 @@ def train(
         "dec_layers": dec_layers,
         "embed_size": embed_size,
         "dim_feedforward": dim_feedforward,
-        "dropout": dropout
+        "dropout": dropout,
     }
 
     # log model
@@ -200,7 +211,7 @@ Let us see the implementation of the `wrapper` in details.
 ### Code references
 
 ```python
-sys.path.append("./torch-translation-tutorial/")
+sys.path.append("./s13-torch-translation-tutorial/")
 ```
 
 This is needed to import the `main` function from the `src/main.py` file. When the Git tutorial project is imported, the execution has the project root as a python entry path. So to make the `main.py` and `src/` files visible, we need to add the tutorial root to the python path.
@@ -217,25 +228,24 @@ To make the hyper parameters explicit, we need to declare the entry point taking
 
 ```python
 def train(
-   project,
-   run,
-   training_data,
-   validation_data,
-   src_lang="de",
-   tgt_lang="en",
-   epochs=30,     
-   lr=1e-4,
-   batch_size=128,
-   backend="cpu",
-   attn_heads=8,
-   enc_layers=5,
-   dec_layers=5,
-   embed_size=512,
-   dim_feedforward=512,
-   dropout=0.1,
-   model_name="translator-model",
-):
-    ...
+    project,
+    run,
+    training_data,
+    validation_data,
+    src_lang="de",
+    tgt_lang="en",
+    epochs=30,
+    lr=1e-4,
+    batch_size=128,
+    backend="cpu",
+    attn_heads=8,
+    enc_layers=5,
+    dec_layers=5,
+    embed_size=512,
+    dim_feedforward=512,
+    dropout=0.1,
+    model_name="translator-model",
+): ...
 ```
 
 Note some extra parameters passed:
@@ -300,14 +310,14 @@ def main(opts):
     return {
         "train_loss": train_loss,
         "val_loss": val_loss,
-    }    
+    }
 ```
 
 ### (Optional) Tracing the training metrics
 
 The last (optional also in this) change regards the possibility to report the training metrics while executing at each epoch step. This is done by the following code:
 
-```python 
+```python
     ...
     run = opts.run if hasattr(opts, "run") else None
     ...
@@ -329,13 +339,13 @@ Once the code is ready, we can execute it in the platform. As all the operations
 It is possible to create the project via platform UI or programmatically using the platform SDK:
 
 ```python
-
 import digitalhub as dh
 
 project = dh.get_or_create_project("translation-example")
 ```
 
 ### Prepare and register the input data
+
 The next step is to prepare and explicitly register the input data necessary for our experiment. Making it explicit allows for better tracability and reproducibility of the experiments. We will use the same data as in the original code. Download it locally for further processing.
 
 - training: [https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz](https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz)
@@ -344,7 +354,6 @@ The next step is to prepare and explicitly register the input data necessary for
 It is possible to upload the data artifacts via UI or programmatically:
 
 ```python
-
 project.log_artifact("train-data", kind="artifact", source="training.tar.gz")
 project.log_artifact("validation-data", kind="artifact", source="validation.tar.gz")
 ```
@@ -359,14 +368,21 @@ func = project.new_function(
     kind="python",
     python_version="PYTHON3_12",
     code_src="git+https://github.com/scc-digitalhub/digitalhub-tutorials",
-    handler="torch-translation-tutorial.wrapper:train",
-    requirements=["torch==2.3.0", "torchtext==0.18.0", "torchdata==0.9.0", "spacy===3.8.14", "portalocker==3.2.0", "click >= 8.2.1"]
+    handler="s13-torch-translation-tutorial.wrapper:train",
+    requirements=[
+        "torch==2.3.0",
+        "torchtext==0.18.0",
+        "torchdata==0.9.0",
+        "spacy===3.8.14",
+        "portalocker==3.2.0",
+        "click >= 8.2.1",
+    ],
 )
 ```
 
 Note the reference to the git repository where the training function is located: by default it will point out to the **current** version of the code in the main branch. So each time the function is executed, the latest version of the code will be used. However, it is possible to point to a specific commit, branch, or tag using the standard git reference syntax (e.g., `git+https://github.com/scc-digitalhub/digitalhub-tutorials#main`).
 
-If the code is at the private repository, it is possile to [configure the credentials](https://scc-digitalhub.github.io/docs/tasks/code-source/#remote-git-repository) to access it, using environment variables or [secrets](https://scc-digitalhub.github.io/docs/tasks/secrets/), such as, e.g, `GITHUB_TOKEN`. 
+If the code is at the private repository, it is possile to [configure the credentials](https://scc-digitalhub.github.io/docs/tasks/code-source/#remote-git-repository) to access it, using environment variables or [secrets](https://scc-digitalhub.github.io/docs/tasks/secrets/), such as, e.g, `GITHUB_TOKEN`.
 
 The entry point is defined as `handler` attribute composed of python path to the containing module and the function name.
 
@@ -381,7 +397,6 @@ In case of remote execution, the execution takes place in the computational clus
 The build operation may be triggered by the UI or programmatically:
 
 ```python
-
 func.run(action="build")
 ```
 
@@ -400,14 +415,11 @@ run = func.run(
     action="job",
     inputs={
         "training_data": project.get_artifact("train-data").key,
-        "validation_data": project.get_artifact("validation-data").key
+        "validation_data": project.get_artifact("validation-data").key,
     },
-    parameters={
-        "epochs": 1,
-        "backend": "gpu"
-    },
+    parameters={"epochs": 1, "backend": "gpu"},
     profile="1xV100",
-    local_execution=False
+    local_execution=False,
 )
 ```
 
@@ -436,17 +448,21 @@ model.download("./model/", overwrite=True)
 Once the model is downloaded, we can use it for inference. First, we initialize the model
 
 ```python
-from src.model import Translator # Our model
-from src.data import get_data, create_mask, generate_square_subsequent_mask # Loading data and data preprocessing
+from src.model import Translator  # Our model
+from src.data import (
+    get_data,
+    create_mask,
+    generate_square_subsequent_mask,
+)  # Loading data and data preprocessing
 
-import torch 
+import torch
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 opts = type("Namespace", (), {})()
-setattr(opts, "src", model.spec.parameters['src'])
-setattr(opts, "tgt", model.spec.parameters['tgt'])
-setattr(opts, "batch", model.spec.parameters['batch'])
+setattr(opts, "src", model.spec.parameters["src"])
+setattr(opts, "tgt", model.spec.parameters["tgt"])
+setattr(opts, "batch", model.spec.parameters["batch"])
 setattr(opts, "train_file", "training.tar.gz")
 setattr(opts, "valid_file", "validation.tar.gz")
 
@@ -457,14 +473,14 @@ tgt_vocab_size = len(tgt_vocab)
 
 # Create model
 translator = Translator(
-    num_encoder_layers=model.spec.parameters['enc_layers'],
-    num_decoder_layers=model.spec.parameters['dec_layers'],
-    embed_size=model.spec.parameters['embed_size'],
-    num_heads=model.spec.parameters['attn_heads'],
+    num_encoder_layers=model.spec.parameters["enc_layers"],
+    num_decoder_layers=model.spec.parameters["dec_layers"],
+    embed_size=model.spec.parameters["embed_size"],
+    num_heads=model.spec.parameters["attn_heads"],
     src_vocab_size=src_vocab_size,
     tgt_vocab_size=tgt_vocab_size,
-    dim_feedforward=model.spec.parameters['dim_feedforward'],
-    dropout=model.spec.parameters['dropout']
+    dim_feedforward=model.spec.parameters["dim_feedforward"],
+    dropout=model.spec.parameters["dropout"],
 ).to(DEVICE)
 
 # Load in weights
@@ -474,10 +490,11 @@ translator.load_state_dict(torch.load("./model/best.pt"))
 translator.eval()
 ```
 
-Second, we try the inference with a test sentence.  
+Second, we try the inference with a test sentence.
 
 ```python
 sentence = "Ich verstehe nicht."
+
 
 def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
 
@@ -492,11 +509,12 @@ def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
     ys = torch.ones(1, 1).fill_(start_symbol).type(torch.long).to(DEVICE)
 
     # For each element in our translation (which could range up to the maximum translation length)
-    for _ in range(max_len-1):
-
+    for _ in range(max_len - 1):
         # Decode the encoded representation of the input
         memory = memory.to(DEVICE)
-        tgt_mask = (generate_square_subsequent_mask(ys.size(0), DEVICE).type(torch.bool)).to(DEVICE)
+        tgt_mask = (
+            generate_square_subsequent_mask(ys.size(0), DEVICE).type(torch.bool)
+        ).to(DEVICE)
         out = model.decode(ys, memory, tgt_mask)
 
         # Reshape
@@ -523,7 +541,12 @@ src_mask = (torch.zeros(num_tokens, num_tokens)).type(torch.bool)
 
 # Decode
 tgt_tokens = greedy_decode(
-    translator, src, src_mask, max_len=num_tokens+5, start_symbol=special_symbols["<bos>"], end_symbol=special_symbols["<eos>"]
+    translator,
+    src,
+    src_mask,
+    max_len=num_tokens + 5,
+    start_symbol=special_symbols["<bos>"],
+    end_symbol=special_symbols["<eos>"],
 ).flatten()
 
 # Convert to list of tokens

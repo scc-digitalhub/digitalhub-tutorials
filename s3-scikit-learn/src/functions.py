@@ -11,9 +11,7 @@ from sklearn.svm import SVC
 
 @handler(outputs=["dataset"])
 def data_generator():
-    """
-    A function which generates the breast cancer dataset from scikit-learn
-    """
+    """Generate the breast cancer dataset."""
     breast_cancer = load_breast_cancer()
     breast_cancer_dataset = pd.DataFrame(
         data=breast_cancer.data, columns=breast_cancer.feature_names
@@ -27,9 +25,7 @@ def data_generator():
 
 @handler(outputs=["model"])
 def train_model(project, di):
-    """
-    Train an SVM classifier on the breast cancer dataset and log metrics
-    """
+    """Train an SVM classifier and log metrics."""
     df_cancer = di.as_df()
     X = df_cancer.drop(["target"], axis=1)
     y = df_cancer["target"]
@@ -52,8 +48,6 @@ def train_model(project, di):
         "precision": sklearn.metrics.precision_score(y_test, y_predict),
         "recall": sklearn.metrics.recall_score(y_test, y_predict),
     }
-    model = project.log_model(
-        name="breast-cancer-classifier", kind="sklearn", source="./model/"
-    )
+    model = project.log_sklearn(name="breast-cancer-classifier", source="./model/")
     model.log_metrics(metrics)
     return model
