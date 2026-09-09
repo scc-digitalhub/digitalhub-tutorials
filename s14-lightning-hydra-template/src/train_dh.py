@@ -1,7 +1,7 @@
 import sys
 
 
-sys.path.append("./s14-lightning-hydra-template/")
+sys.path.append("./s14-lightning-hydra-template/src/")
 
 import train
 
