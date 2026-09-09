@@ -1,7 +1,7 @@
 import sys
 
 
-sys.path.append("./s14-lightning-hydra-template/src/")
+rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
 import train
 
