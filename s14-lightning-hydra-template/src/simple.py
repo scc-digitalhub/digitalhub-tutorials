@@ -5,6 +5,16 @@ import rootutils
 from omegaconf import DictConfig
 from typing import Any, Dict, List, Optional, Tuple
 
+from src.utils import (
+    RankedLogger,
+    extras,
+    get_metric_value,
+    instantiate_callbacks,
+    instantiate_loggers,
+    log_hyperparameters,
+    task_wrapper,
+)
+
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
 # the setup_root above is equivalent to:
@@ -27,6 +37,11 @@ rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> Optional[float]:
     print('running test')
+
+    print(cfg)
+    print('extras')    
+    extras(cfg)
+    
     return 42
 
 
