@@ -29,7 +29,8 @@ def main(cfg: DictConfig) -> Optional[float]:
     print('running test!')
 
     print(cfg)
-    OmegaConf.to_yaml(cfg, resolve=True)
+    print('yaml')
+    print(OmegaConf.to_yaml(cfg, resolve=True))
     
     return 42
 
