@@ -26,13 +26,8 @@ rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> Optional[float]:
-    x: float = cfg.x
-    y: float = cfg.y
-
-    if cfg.get("error", False):
-        raise RuntimeError("cfg.error is True")
-
-    return x**2 + y**2
+    print('running test')
+    return 42
 
 
 if __name__ == "__main__":
