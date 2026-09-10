@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 #sys.path.append("./s14-lightning-hydra-template/")
 #sys.path.append("./s14-lightning-hydra-template/src/")
+import rootutils
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
 from src import simple
