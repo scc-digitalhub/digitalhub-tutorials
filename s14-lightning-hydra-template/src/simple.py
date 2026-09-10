@@ -2,12 +2,8 @@ import hydra
 
 import rootutils
 
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 from typing import Any, Dict, List, Optional, Tuple
-
-from src.utils import (
-    extras
-)
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -33,8 +29,7 @@ def main(cfg: DictConfig) -> Optional[float]:
     print('running test!')
 
     print(cfg)
-    print('extras')    
-    extras(cfg)
+    OmegaConf.to_yaml(cfg, resolve=True)
     
     return 42
 
