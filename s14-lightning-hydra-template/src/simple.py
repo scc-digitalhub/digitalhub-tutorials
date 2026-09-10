@@ -6,13 +6,7 @@ from omegaconf import DictConfig
 from typing import Any, Dict, List, Optional, Tuple
 
 from src.utils import (
-    RankedLogger,
-    extras,
-    get_metric_value,
-    instantiate_callbacks,
-    instantiate_loggers,
-    log_hyperparameters,
-    task_wrapper,
+    extras
 )
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
