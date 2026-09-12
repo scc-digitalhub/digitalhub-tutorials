@@ -30,7 +30,7 @@ def main(cfg: DictConfig) -> Optional[float]:
 
     print(cfg)
     print('yaml')
-    print(OmegaConf.to_yaml(cfg, resolve=True))
+    #print(OmegaConf.to_yaml(cfg, resolve=True))
     
     return 42
 
