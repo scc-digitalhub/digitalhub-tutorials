@@ -32,7 +32,7 @@ def main(cfg: DictConfig) -> Optional[float]:
     print('yaml')
     #print(OmegaConf.to_yaml(cfg, resolve=True))
     
-    return 42
+    return 0.1
 
 
 if __name__ == "__main__":
