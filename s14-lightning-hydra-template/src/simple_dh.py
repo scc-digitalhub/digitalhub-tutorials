@@ -23,4 +23,4 @@ def complete(context) -> None:
     
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> Optional[float]:
-    simple.main(cfg)
+    return simple.main(cfg)
