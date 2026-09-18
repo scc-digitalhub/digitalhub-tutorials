@@ -21,4 +21,16 @@ def complete(context) -> None:
     
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> Optional[float]:
+    import ssl
+    import urllib.request
+    
+    _original_create_default_context = ssl.create_default_context
+    
+    def create_default_context(*args, **kwargs):
+        context = _original_create_default_context(*args, **kwargs)
+        context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+        return context
+    
+    ssl.create_default_context = create_default_context
+    
     train.main(cfg)
