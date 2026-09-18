@@ -23,6 +23,7 @@ def complete(context) -> None:
 def main(cfg: DictConfig) -> Optional[float]:
 
     print('Bypass http proxy')
+    import os
     os.environ.pop("http_proxy", None)
     os.environ.pop("https_proxy", None)
     
