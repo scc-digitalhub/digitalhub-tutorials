@@ -24,7 +24,19 @@ def main(cfg: DictConfig) -> Optional[float]:
 
     print('Bypass http proxy')
     import os
-    os.environ.pop("http_proxy", None)
-    os.environ.pop("https_proxy", None)
+    os.environ['http_proxy'] = ''
+    os.environ['https_proxy'] = ''
+    os.environ['no_proxy'] = '*'
+    import ssl
+    import urllib.request
+    
+    _original_create_default_context = ssl.create_default_context
+    
+    def create_default_context(*args, **kwargs):
+        context = _original_create_default_context(*args, **kwargs)
+        context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+        return context
+    
+    ssl.create_default_context = create_default_context
     
     train.main(cfg)
