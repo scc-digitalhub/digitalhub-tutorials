@@ -17,13 +17,16 @@ def init(context) -> None:
 def complete(context) -> None:
     print("complete() called")
     import optuna
+    import os
     try:
         study = optuna.load_study(
             study_name="hpo", 
             storage="sqlite:///hpo.db"
         )
         best_run = study.best_trial
-        print(f"Best Trial: #{best_run.number} with Value: {best_run.value}")
+        print(f"Best Trial: #{best_run.number} with Value: {best_run}")
+        p = f"/shared/hpo_results/{best_run.number}/checkpoints/last.ckpt"
+        print(f"Checkpoint": {p}, exists: {os.path.isfile(p)}")
 
     except  Exception as ex: 
         print("loading best model failed")
