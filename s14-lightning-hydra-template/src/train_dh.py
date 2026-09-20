@@ -16,7 +16,17 @@ def init(context) -> None:
 
 def complete(context) -> None:
     print("complete() called")
-    time.sleep(1)
+    import optuna
+    try:
+        study = optuna.load_study(
+            study_name="hpo", 
+            storage="sqlite:///hpo.db"
+        )
+        best_run = study.best_trial
+        print(f"Best Trial: #{best_run.number} with Value: {best_run.value}")
+
+    except  Exception as ex: 
+        print("loading best model failed")
     print("complete() finished")
     
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
