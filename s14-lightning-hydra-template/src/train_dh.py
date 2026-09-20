@@ -26,7 +26,7 @@ def complete(context) -> None:
         best_run = study.best_trial
         print(f"Best Trial: #{best_run.number} with Value: {best_run}")
         p = f"/shared/hpo_results/{best_run.number}/checkpoints/last.ckpt"
-        print(f"Checkpoint": {p}, exists: {os.path.isfile(p)}")
+        print(f"Checkpoint: {p}, exists: {os.path.isfile(p)}")
 
     except  Exception as ex: 
         print("loading best model failed")
