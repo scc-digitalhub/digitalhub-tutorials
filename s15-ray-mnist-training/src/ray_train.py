@@ -70,6 +70,7 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
     scaling_config = ray.train.ScalingConfig(num_workers=2, use_gpu=False)
 
     # [5] Launch distributed training job.
+    bucket_name = os.environ.get('S3_BUCKET')
     trainer = ray.train.torch.TorchTrainer(
         train_func,
         scaling_config=scaling_config,
@@ -77,8 +78,9 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
         # should configure the run's persistent storage that is accessible
         # across all worker nodes.
         # [PLATFORM] log the checkpoints to the preconfigured project S3 storage path
-        run_config=ray.train.RunConfig(storage_path=f"s3://{project.name}/ray", name=run.id),
+        run_config=ray.train.RunConfig(storage_path=f"s3://{bucket_name}/{project.name}/ray", name=run.id),
     )
+    
     result = trainer.fit()
 
     # [6] Load the trained model.
