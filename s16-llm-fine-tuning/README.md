@@ -17,7 +17,6 @@ Open the notebook [train-llm.ipynb](train-llm.ipynb) in your environment and run
 
 - [train-llm.ipynb](train-llm.ipynb): Interactive orchestration notebook for project setup, building the function image, submitting fine-tuning jobs, and serving.
 - [train.py](train.py): Core training logic supporting 4-bit QLoRA, Llama-3 chat formatting, dataset loading, WandB logging, and model saving.
-- [serve.py](serve.py): DigitalHub serving script implementing `init_context` (loads base model + LoRA adapters) and `serve_predictions` (REST inference handler).
 - [requirements.txt](requirements.txt): Runtime dependencies for PyTorch, Transformers, TRL, PEFT, and BitsAndBytes.
 
 ---
@@ -64,65 +63,56 @@ The entrypoint function `train_and_log_model` in [train.py](train.py) accepts th
 
 ## 4. Serving the Model (REST API)
 
-Following the DigitalHub model serving pattern (with `init_context` and `serve_predictions` handlers), deploy [serve.py](serve.py) as a serving service:
+Deploy the trained model with the DigitalHub `vllmserve-text` runtime. This example serves a QLoRA adapter alongside its base model: `base_model` and `model` must refer to DigitalHub storage objects containing the base model and the adapter saved under `/app/local_data/weights/ground`, respectively. Replace these references and the base model name with the values for your run. The adapter is registered as `adapter`; use that name in inference requests.
 
 ```python
-# 1. Define the serving function
-serving_func = proj.new_function(
-    name="serve-llm",
-    kind="python",
-    python_version="PYTHON3_11",
-    code_src="serve.py",
-    init_function="init_context",
-    handler="serve_predictions",
-    requirements="requirements.txt"
+# 1. Define the vLLM text-serving runtime function.
+#    `base_model` and `model` are DigitalHub storage objects for this run.
+vllm_func = proj.new_function(
+    name="vllm-text-serve",
+    kind="vllmserve-text",
+    model_name="base-model",
+    url=base_model.key,
+    adapters = [{
+    "name": "adapter",
+    "url": model.key
+    }],
+    
 )
 
-# 2. Build the serving container image
-serving_func.run(action="build")
-
-# 3. Deploy the service on GPU with persistent volume and secrets
-serve_run = serving_func.run(
+# 2. Deploy on a GPU. Include HF_TOKEN if the base model requires access.
+serve_run = vllm_func.run(
     action="serve",
-    profile="1xrtx5000",
+    profile="1xrtxa5000-shared",
     secrets=["HF_TOKEN"],
-    envs=[
-        {"name": "HF_HOME", "value": "/app/local_data/huggingface"},
-        {"name": "TRANSFORMERS_CACHE", "value": "/app/local_data/huggingface"},
-        {"name": "MODEL_NAME", "value": "llmpa-tracked"},
-        {"name": "BASE_MODEL_ID", "value": "meta-llama/Llama-3.1-8B"},
-        {"name": "QUANTIZATION", "value": "4"}
-    ],
-    volumes=[{
-        "volume_type": "persistent_volume_claim",
-        "name": "volume-llmpa",
-        "mount_path": "/app/local_data",
-        "spec": {"size": "20Gi"}
-    }]
+    args=["--gpu_memory_utilization", "0.95", "--max_model_len", "32768"],
+    resources={
+        "mem": "24Gi",
+        "disk": "20Gi"
+        },
+    wait=True
 )
 ```
 
-### Inference Request Example
+### Send an Inference Request
 
-Once deployed, send POST requests to the serving endpoint:
+After deployment, use the service endpoint shown in DigitalHub as `SERVING_ENDPOINT` and send a chat completion request to the OpenAI-compatible vLLM API. For more details, see the [notebook](train-llm.ipynb):
 
-```json
-{
-  "prompt": "Explain gradient descent in machine learning.",
-  "system_prompt": "You are an expert AI assistant.",
-  "max_new_tokens": 256,
-  "temperature": 0.7,
-  "top_p": 0.9
-}
+```python
+import requests
+
+response = requests.post(
+    f"{SERVING_ENDPOINT.rstrip('/')}/v1/chat/completions",
+    json={
+        "model": "adapter",
+        "messages": [{"role": "user", "content": "What is fine-tuning?"}],
+        "max_tokens": 128,
+    },
+)
+response.raise_for_status()
+print(response.json()["choices"][0]["message"]["content"])
 ```
 
-Response format:
-```json
-{
-  "generated_text": "Gradient descent is an optimization algorithm used to minimize...",
-  "model": "meta-llama/Llama-3.1-8B"
-}
-```
 
 ---
 
