@@ -510,15 +510,7 @@ def train_and_log_model(
     # DigitalHub Model Logging
     # ========================================================
 
-    # model = project.log_model(
-    #     name=model_name,
-    #     kind="huggingface",
-    #     base_model=model_id,
-    #     parameters=model_params,
-    #     source=final_dir + "/",
-    # )
-
-    model = project.log_huggingface(
+    model = project.log_model(
         name=model_name,
         source=final_dir + "/",
         model_id=model_id,
