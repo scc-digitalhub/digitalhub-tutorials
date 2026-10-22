@@ -1,9 +1,7 @@
+
 import hydra
-
 import rootutils
-
-from omegaconf import DictConfig, OmegaConf
-from typing import Any, Dict, List, Optional, Tuple
+from omegaconf import DictConfig
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -21,17 +19,17 @@ rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # 2. set `root_dir` to "." in "configs/paths/default.yaml"
 #
 # more info: https://github.com/ashleve/rootutils
-# ------------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------------
 
 
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
-def main(cfg: DictConfig) -> Optional[float]:
-    print('running test!')
+def main(cfg: DictConfig) -> float | None:
+    print("running test!")
 
     print(cfg)
-    print('yaml')
-    #print(OmegaConf.to_yaml(cfg, resolve=True))
-    
+    print("yaml")
+    # print(OmegaConf.to_yaml(cfg, resolve=True))
+
     return 0.1
 
 

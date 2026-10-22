@@ -1,5 +1,6 @@
 import json
 import os
+
 import torch
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -17,13 +18,17 @@ def init_context(context):
     model_name = os.environ.get("MODEL_NAME", "llmpa-tracked")
     base_model_id = os.environ.get("BASE_MODEL_ID", "meta-llama/Llama-3.1-8B")
     quantization = int(os.environ.get("QUANTIZATION", "4"))
-    local_weights_dir = os.environ.get("LOCAL_WEIGHTS_DIR", "/app/local_data/weights/ground")
+    local_weights_dir = os.environ.get(
+        "LOCAL_WEIGHTS_DIR", "/app/local_data/weights/ground"
+    )
 
     adapter_path = local_weights_dir
 
     # Check if weights exist locally in mounted volume; otherwise download via DigitalHub
     if not os.path.exists(adapter_path) or not os.listdir(adapter_path):
-        context.logger.info(f"Local weights not found at {adapter_path}. Downloading model artifact '{model_name}' from DigitalHub...")
+        context.logger.info(
+            f"Local weights not found at {adapter_path}. Downloading model artifact '{model_name}' from DigitalHub..."
+        )
         model_artifact = context.project.get_model(model_name)
         adapter_path = model_artifact.download()
 
@@ -61,8 +66,8 @@ def init_context(context):
     model.eval()
 
     # Store model and tokenizer in the serving context
-    setattr(context, "model", model)
-    setattr(context, "tokenizer", tokenizer)
+    context.model = model
+    context.tokenizer = tokenizer
     context.logger.info("Serving context initialization complete.")
 
 
@@ -132,7 +137,9 @@ def serve_predictions(context, event):
     # Slice output tokens to remove prompt tokens
     input_len = inputs["input_ids"].shape[-1]
     generated_tokens = output_tokens[0][input_len:]
-    generated_text = tokenizer.decode(generated_tokens, skip_special_tokens=True).strip()
+    generated_text = tokenizer.decode(
+        generated_tokens, skip_special_tokens=True
+    ).strip()
 
     return {
         "generated_text": generated_text,

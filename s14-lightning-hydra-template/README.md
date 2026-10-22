@@ -30,27 +30,28 @@ sys.path.append("./s14-lightning-hydra-template/src/")
 
 from src import train
 
+
 def init(context) -> None:
     print("init() called")
+
 
 def complete(context) -> None:
     print("complete() called")
     import optuna
     import os
+
     try:
-        study = optuna.load_study(
-            study_name="hpo", 
-            storage="sqlite:///hpo.db"
-        )
+        study = optuna.load_study(study_name="hpo", storage="sqlite:///hpo.db")
         best_run = study.best_trial
         print(f"Best Trial: #{best_run.number} with Value: {best_run}")
         p = f"/shared/hpo_results/{best_run.number}/checkpoints/last.ckpt"
         print(f"Checkpoint: {p}, exists: {os.path.isfile(p)}")
 
-    except  Exception as ex: 
+    except Exception as ex:
         print("loading best model failed")
     print("complete() finished")
-    
+
+
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> Optional[float]:
     return train.main(cfg)
@@ -76,7 +77,6 @@ Once the code is ready, we can execute it in the platform. As all the operations
 It is possible to create the project via platform UI or programmatically using the platform SDK:
 
 ```python
-
 import digitalhub as dh
 
 project = dh.get_or_create_project("hydra-example")
@@ -97,8 +97,15 @@ func = project.new_function(
     config_path="s14-lightning-hydra-template/configs",
     python_version="PYTHON3_13",
     requirements=[
-        "torch>=2.0.0", "torchvision>=0.15.0", "lightning>=2.0.0", "torchmetrics>=0.11.4", "hydra-colorlog==1.2.0", "hydra-optuna-sweeper==1.2.0", "SQLAlchemy==1.4.46", "rootutils"
-    ]
+        "torch>=2.0.0",
+        "torchvision>=0.15.0",
+        "lightning>=2.0.0",
+        "torchmetrics>=0.11.4",
+        "hydra-colorlog==1.2.0",
+        "hydra-optuna-sweeper==1.2.0",
+        "SQLAlchemy==1.4.46",
+        "rootutils",
+    ],
 )
 ```
 
@@ -119,7 +126,6 @@ In case of remote execution, the execution takes place in the computational clus
 The build operation may be triggered by the UI or programmatically:
 
 ```python
-
 func.run(action="build")
 ```
 
@@ -139,10 +145,10 @@ run = func.run(
         "hparams_search": "mnist_optuna",
         "hydra.sweeper.storage": "sqlite:///hpo.db",
         "hydra.sweeper.study_name": "hpo",
-        "hydra.sweep.dir": "./hpo_results"
+        "hydra.sweep.dir": "./hpo_results",
     },
     workers=5,
-    local_execution=False
+    local_execution=False,
 )
 ```
 

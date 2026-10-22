@@ -1,29 +1,27 @@
 import os
-os.environ["SETUPTOOLS_USE_DISTUTILS"] = "stdlib"
-import json
-import torch
-import huggingface_hub
-import wandb
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from trl import SFTTrainer, SFTConfig
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    BitsAndBytesConfig,
-    TrainingArguments,
-    EarlyStoppingCallback,
-    TrainerCallback
-)
-from datasets import Dataset, load_dataset
-import sys
 
+os.environ["SETUPTOOLS_USE_DISTUTILS"] = "stdlib"
+
+import huggingface_hub
+import torch
+import wandb
+from datasets import load_dataset
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    EarlyStoppingCallback,
+    TrainerCallback,
+)
+from trl import SFTConfig, SFTTrainer
 
 # ============================================================
 # Logging Callback
 # ============================================================
 
-class LoggingCallback(TrainerCallback):
 
+class LoggingCallback(TrainerCallback):
     def __init__(self, run):
         self.run = run
 
@@ -35,7 +33,6 @@ class LoggingCallback(TrainerCallback):
         metrics = {}
 
         for k, v in logs.items():
-
             if isinstance(v, (int, float)):
                 metrics[k] = v
 
@@ -43,7 +40,6 @@ class LoggingCallback(TrainerCallback):
                 metrics[k] = v.item()
 
         for k, v in metrics.items():
-
             try:
                 self.run.log_metric(k, v)
 
@@ -55,12 +51,12 @@ class LoggingCallback(TrainerCallback):
 # Formatting Function
 # ============================================================
 
+
 def formatting_func(example):
 
     output_texts = []
 
     for q, a in zip(example["question"], example["answer"]):
-
         text = (
             "<|begin_of_text|>"
             "<|start_header_id|>system<|end_header_id|>\n"
@@ -82,6 +78,7 @@ def formatting_func(example):
 # ============================================================
 # Train Function
 # ============================================================
+
 
 def train(
     model_id: str,
@@ -120,23 +117,18 @@ def train(
     # ========================================================
 
     if hf_token is not None:
-
         try:
             huggingface_hub.login(token=hf_token)
 
         except Exception:
-            raise RuntimeError(
-                "Error logging into Hugging Face"
-            )
+            raise RuntimeError("Error logging into Hugging Face")
 
     # ========================================================
     # WandB Login
     # ========================================================
 
     if wandb_key is not None:
-
         try:
-
             wandb.login(key=wandb_key)
 
             wandb.init(
@@ -145,12 +137,9 @@ def train(
             )
 
         except Exception:
-            raise RuntimeError(
-                "Error logging into WandB"
-            )
+            raise RuntimeError("Error logging into WandB")
 
     else:
-
         wandb.init(mode="disabled")
 
     # ========================================================
@@ -166,17 +155,12 @@ def train(
     print("GPU count:", torch.cuda.device_count())
 
     if torch.cuda.is_available():
-
         print("GPU:", torch.cuda.get_device_name(0))
 
         print(
             "GPU memory:",
-            round(
-                torch.cuda.get_device_properties(0).total_memory
-                / 1024**3,
-                2
-            ),
-            "GB"
+            round(torch.cuda.get_device_properties(0).total_memory / 1024**3, 2),
+            "GB",
         )
 
     # ========================================================
@@ -204,7 +188,6 @@ def train(
     quantization_config = None
 
     if quantization == 4:
-
         print("4bit quantization enabled")
 
         quantization_config = BitsAndBytesConfig(
@@ -215,7 +198,6 @@ def train(
         )
 
     else:
-
         print("No quantization")
 
     # ========================================================
@@ -227,7 +209,6 @@ def train(
     print("=" * 80)
 
     try:
-
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             quantization_config=quantization_config,
@@ -237,7 +218,6 @@ def train(
         )
 
     except Exception as e:
-
         print("=" * 80)
         print("MODEL LOAD ERROR")
         print("=" * 80)
@@ -265,7 +245,6 @@ def train(
     # ========================================================
 
     if quantization == 4:
-
         print("=" * 80)
         print("PREPARING MODEL FOR QLORA")
         print("=" * 80)
@@ -310,7 +289,6 @@ def train(
     print("=" * 80)
 
     try:
-
         dataset = load_dataset(
             hf_dataset_name,
             data_files={
@@ -323,13 +301,10 @@ def train(
         dev_dataset = dataset["validation"].shuffle(seed=42)
 
     except Exception as e:
-
         print("DATASET ERROR")
         traceback.print_exc()
 
-        raise RuntimeError(
-            f"Error loading dataset: {str(e)}"
-        )
+        raise RuntimeError(f"Error loading dataset: {e!s}")
 
     print("Train samples:", len(train_dataset))
     print("Validation samples:", len(dev_dataset))
@@ -338,11 +313,7 @@ def train(
     # Callbacks
     # ========================================================
 
-    callbacks = [
-        EarlyStoppingCallback(
-            early_stopping_patience=early_stopping_patience
-        )
-    ]
+    callbacks = [EarlyStoppingCallback(early_stopping_patience=early_stopping_patience)]
 
     if logger is not None:
         callbacks.append(logger)
@@ -364,40 +335,25 @@ def train(
         callbacks=callbacks,
         args=SFTConfig(
             output_dir=output_dir,
-
             max_seq_length=max_sequence_length,
-
             learning_rate=learning_rate,
             lr_scheduler_type=scheduler_type,
-
             per_device_train_batch_size=train_batch_size,
             per_device_eval_batch_size=eval_batch_size,
-
             gradient_accumulation_steps=grad_accum_steps,
-
             num_train_epochs=num_epochs,
-
             weight_decay=weight_decay,
             warmup_ratio=warmup_ratio,
-
             logging_steps=logging_steps,
-
             eval_strategy="steps",
             eval_steps=eval_steps,
-
             save_strategy="steps",
             save_steps=save_steps,
-
             load_best_model_at_end=True,
             metric_for_best_model="eval_loss",
-
-            report_to="wandb"
-            if wandb_key is not None
-            else "none",
-
+            report_to="wandb" if wandb_key is not None else "none",
             fp16=True,
             bf16=False,
-
             seed=42,
         ),
     )
@@ -437,6 +393,7 @@ def train(
 # ============================================================
 # Train + DigitalHub Logging
 # ============================================================
+
 
 def train_and_log_model(
     project,
@@ -478,19 +435,13 @@ def train_and_log_model(
     # ========================================================
 
     try:
-
-        hf_token = project.get_secret(
-            "HF_TOKEN"
-        ).read_secret_value()
+        hf_token = project.get_secret("HF_TOKEN").read_secret_value()
 
     except Exception:
         pass
 
     try:
-
-        wandb_key = project.get_secret(
-            "WANDB_KEY"
-        ).read_secret_value()
+        wandb_key = project.get_secret("WANDB_KEY").read_secret_value()
 
     except Exception:
         pass
@@ -528,9 +479,7 @@ def train_and_log_model(
         save_steps=save_steps,
         hf_token=hf_token,
         wandb_key=wandb_key,
-        logger=LoggingCallback(
-            project.get_run(os.environ["RUN_ID"])
-        ),
+        logger=LoggingCallback(project.get_run(os.environ["RUN_ID"])),
     )
 
     # ========================================================
@@ -568,12 +517,12 @@ def train_and_log_model(
     #     parameters=model_params,
     #     source=final_dir + "/",
     # )
-    
+
     model = project.log_huggingface(
         name=model_name,
         source=final_dir + "/",
         model_id=model_id,
-        model_revision="main"
+        model_revision="main",
     )
 
     run = project.get_run(os.environ["RUN_ID"])
@@ -581,7 +530,6 @@ def train_and_log_model(
     metrics = run.status.metrics
 
     for k in metrics:
-
         try:
             model.log_metric(k, metrics[k])
 
