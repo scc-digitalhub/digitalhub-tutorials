@@ -238,7 +238,10 @@ def train(
     # ========================================================
 
     model.config.use_cache = False
-    model.gradient_checkpointing_enable()
+    gradient_checkpointing_kwargs = {"use_reentrant": False}
+    model.gradient_checkpointing_enable(
+        gradient_checkpointing_kwargs=gradient_checkpointing_kwargs
+    )
 
     # ========================================================
     # Prepare for QLoRA
@@ -249,7 +252,10 @@ def train(
         print("PREPARING MODEL FOR QLORA")
         print("=" * 80)
 
-        model = prepare_model_for_kbit_training(model)
+        model = prepare_model_for_kbit_training(
+            model,
+            gradient_checkpointing_kwargs=gradient_checkpointing_kwargs,
+        )
 
     # ========================================================
     # LoRA
@@ -328,7 +334,7 @@ def train(
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         train_dataset=train_dataset,
         eval_dataset=dev_dataset,
         formatting_func=formatting_func,
@@ -341,6 +347,8 @@ def train(
             per_device_train_batch_size=train_batch_size,
             per_device_eval_batch_size=eval_batch_size,
             gradient_accumulation_steps=grad_accum_steps,
+            gradient_checkpointing=True,
+            gradient_checkpointing_kwargs=gradient_checkpointing_kwargs,
             num_train_epochs=num_epochs,
             weight_decay=weight_decay,
             warmup_ratio=warmup_ratio,
