@@ -15,7 +15,7 @@ def main(project, di):
     di.metadata.labels = (
         di.metadata.labels.append(label) if di.metadata.labels else [label]
     )
-    di.save(update=True)
+    di.update()
     # cleanup
     os.remove(path)
 

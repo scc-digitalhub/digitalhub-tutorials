@@ -1,15 +1,15 @@
 import os
 import tempfile
 
+import ray.train.torch
 import torch
 from torch.nn import CrossEntropyLoss
 from torch.optim import Adam
 from torch.utils.data import DataLoader
-from torchvision.models import resnet18
 from torchvision.datasets import FashionMNIST
-from torchvision.transforms import ToTensor, Normalize, Compose
+from torchvision.models import resnet18
+from torchvision.transforms import Compose, Normalize, ToTensor
 
-import ray.train.torch
 
 def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
 
@@ -27,7 +27,9 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
 
         # Data
         transform = Compose([ToTensor(), Normalize((0.28604,), (0.32025,))])
-        train_data = FashionMNIST(root="/data", train=True, download=False, transform=transform)
+        train_data = FashionMNIST(
+            root="/data", train=True, download=False, transform=transform
+        )
         train_loader = DataLoader(train_data, batch_size=128, shuffle=True)
         # [2] Prepare dataloader.
         train_loader = ray.train.torch.prepare_data_loader(train_loader)
@@ -51,7 +53,7 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
             with tempfile.TemporaryDirectory() as temp_checkpoint_dir:
                 torch.save(
                     model.module.state_dict(),
-                    os.path.join(temp_checkpoint_dir, "model.pt")
+                    os.path.join(temp_checkpoint_dir, "model.pt"),
                 )
                 ray.train.report(
                     metrics,
@@ -62,7 +64,7 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
                 # [PLATFORM] Specific platform change: logging metrics for the current experiment
                 run.log_metrics({"loss": metrics["loss"]})
 
-    # [0] Initialized dataset to the shared volume folder. To initialize dataset before the actual training starts. 
+    # [0] Initialized dataset to the shared volume folder. To initialize dataset before the actual training starts.
     # May use, for example, the dataset stored in the platform as artifact instead.
     train_data = FashionMNIST(root="/data", train=True, download=True)
 
@@ -70,7 +72,7 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
     scaling_config = ray.train.ScalingConfig(num_workers=2, use_gpu=False)
 
     # [5] Launch distributed training job.
-    bucket_name = os.environ.get('S3_BUCKET')
+    bucket_name = os.environ.get("S3_BUCKET")
     trainer = ray.train.torch.TorchTrainer(
         train_func,
         scaling_config=scaling_config,
@@ -78,9 +80,11 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
         # should configure the run's persistent storage that is accessible
         # across all worker nodes.
         # [PLATFORM] log the checkpoints to the preconfigured project S3 storage path
-        run_config=ray.train.RunConfig(storage_path=f"s3://{bucket_name}/{project.name}/ray", name=run.id),
+        run_config=ray.train.RunConfig(
+            storage_path=f"s3://{bucket_name}/{project.name}/ray", name=run.id
+        ),
     )
-    
+
     result = trainer.fit()
 
     # [6] Load the trained model.
@@ -89,18 +93,14 @@ def ray_handler(project, run, epochs=1, num_classes=10, lr=0.001):
         print(mdl_path)
         print(f"logging model from {mdl_path}")
         print(f"results: {result}")
-        
-        parameters = {
-            "epochs": epochs,
-            "num_classes": num_classes,
-            "lr": lr
-        }
+
+        parameters = {"epochs": epochs, "num_classes": num_classes, "lr": lr}
         # [PLATFORM] Log model to the platform
         mdl = project.log_model(
-                          name="resnet18_fashion_mnist",
-                          framework="pytorch",
-                          algorithm="resnet18",
-                          parameters=parameters,
-                          source=mdl_path
+            name="resnet18_fashion_mnist",
+            framework="pytorch",
+            algorithm="resnet18",
+            parameters=parameters,
+            source=mdl_path,
         )
-        mdl.log_metrics({"loss" : result.metrics["loss"]})
+        mdl.log_metrics({"loss": result.metrics["loss"]})

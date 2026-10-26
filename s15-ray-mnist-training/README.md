@@ -28,7 +28,6 @@ Once the code is ready, we can execute it in the platform. As all the operations
 It is possible to create the project via platform UI or programmatically using the platform SDK:
 
 ```python
-
 import digitalhub as dh
 
 project = dh.get_or_create_project("ray-example")
@@ -44,7 +43,7 @@ func = project.new_function(
     kind="ray",
     requirements=["torch==2.2.2", "torchvision==0.17.2", "numpy==1.24.1"],
     code_src="src/ray_train.py",
-    handler="ray_handler"
+    handler="ray_handler",
 )
 ```
 
@@ -61,7 +60,6 @@ A good practive is to build a container image for the function so that the depen
 The build operation may be triggered by the UI or programmatically:
 
 ```python
-
 func.run(action="build")
 ```
 
@@ -85,9 +83,9 @@ train_run = func.run(
             "name": "data",
             "mount_path": "/data",
             "volume_type": "persistent_volume_claim",
-            "spec": {"size": "1Gi"} 
+            "spec": {"size": "1Gi"},
         }
-    ]
+    ],
 )
 ```
 

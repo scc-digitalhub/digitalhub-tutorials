@@ -73,11 +73,7 @@ vllm_func = proj.new_function(
     kind="vllmserve-text",
     model_name="base-model",
     url=base_model.key,
-    adapters = [{
-    "name": "adapter",
-    "url": model.key
-    }],
-    
+    adapters=[{"name": "adapter", "url": model.key}],
 )
 
 # 2. Deploy on a GPU. Include HF_TOKEN if the base model requires access.
@@ -86,11 +82,8 @@ serve_run = vllm_func.run(
     profile="1xrtxa5000-shared",
     secrets=["HF_TOKEN"],
     args=["--gpu_memory_utilization", "0.95", "--max_model_len", "32768"],
-    resources={
-        "mem": "24Gi",
-        "disk": "20Gi"
-        },
-    wait=True
+    resources={"mem": "24Gi", "disk": "20Gi"},
+    wait=True,
 )
 ```
 
