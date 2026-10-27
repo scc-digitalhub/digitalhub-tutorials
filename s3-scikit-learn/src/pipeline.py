@@ -19,7 +19,7 @@ def pipeline():
                 "inputs": {"di": "{{inputs.parameters.di}}"},
             },
             function="train-classifier",
-            inputs={"di": A.get_parameter("dataset")},
+            inputs={"di": B.get_parameter("dataset")},
             outputs=["model"],
         )
         D = step(
@@ -28,7 +28,7 @@ def pipeline():
                 "path": "{{inputs.parameters.model}}",
             },
             function="serve-classifier",
-            inputs={"model": B.get_parameter("model")},
+            inputs={"model": C.get_parameter("model")},
         )
         A >> B >> C >> D
     return w
