@@ -9,7 +9,7 @@ def pipeline():
             function="build-function-darts",
         )
         B = step(
-            template={"action": "job"},
+            template={"action": "job", "resources":{"cpu": "10", "mem": "4Gi"}},
             function="train-time-series-model",
             outputs=["model"],
         )
