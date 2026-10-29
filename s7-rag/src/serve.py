@@ -32,7 +32,7 @@ def init(context):
 
     class CEmbeddings(OpenAIEmbeddings):
         async def aembed_documents(self, docs):
-            client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
+            client = OpenAI(api_key="ignored", base_url=embedding_service_url)
             emb_arr = []
             for doc in docs:
                 # sanitize string: replace NUL with spaces
@@ -59,7 +59,7 @@ def init(context):
     os.environ["OPENAI_API_KEY"] = "ignore"
 
     llm = init_chat_model(
-        chat_model_name, model_provider="openai", base_url=f"{chat_service_url}/v1/"
+        chat_model_name, model_provider="openai", base_url=chat_service_url
     )
     prompt = ChatPromptTemplate.from_template("""
     Answer the question based only on the provided context.
@@ -73,7 +73,13 @@ def init(context):
     def retrieve(state: State):
         # print('question', state["question"])
         # print(type(vector_store))
-        retrieved_docs = vector_store.similarity_search(state["question"])
+        try:
+            retrieved_docs = vector_store.similarity_search(state["question"])
+        except Exception as error:
+            raise RuntimeError(
+                f"Retrieval failed (embedding API: {embedding_service_url}): "
+                f"{error}; cause: {error.__cause__!r}"
+            ) from error
         return {"context": retrieved_docs}
 
     def generate(state: State):
@@ -81,7 +87,13 @@ def init(context):
         messages = prompt.invoke(
             {"question": state["question"], "context": docs_content}
         )
-        response = llm.invoke(messages)
+        try:
+            response = llm.invoke(messages)
+        except Exception as error:
+            raise RuntimeError(
+                f"Chat generation failed at {chat_service_url}: "
+                f"{error}; cause: {error.__cause__!r}"
+            ) from error
         return {"answer": response.content}
 
     graph_builder = StateGraph(State).add_sequence([retrieve, generate])
@@ -92,14 +104,21 @@ def init(context):
 
 
 def serve(context, event):
-    graph = context.graph
     context.logger.info(f"Received event: {event}")
 
-    if isinstance(event.body, bytes):
+    if event.method == "GET":
+        return {"status": "ok"}
+
+    if isinstance(event.body, (bytes, str)):
         body = json.loads(event.body)
     else:
         body = event.body
 
+    if not isinstance(body, dict):
+        raise ValueError("Expected a JSON object with a non-empty 'question' string")
+    if not isinstance(body.get("question"), str) or not body["question"].strip():
+        raise ValueError("Expected a JSON object with a non-empty 'question' string")
+
     question = body["question"]
-    response = graph.invoke({"question": question})
+    response = context.graph.invoke({"question": question})
     return {"answer": response["answer"]}

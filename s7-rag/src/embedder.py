@@ -60,7 +60,7 @@ def embed(html_doc_obj):
 
     class CEmbeddings(OpenAIEmbeddings):
         async def aembed_documents(self, docs):
-            client = OpenAI(api_key="ignored", base_url=f"{embedding_service_url}/v1")
+            client = OpenAI(api_key="ignored", base_url=embedding_service_url)
             emb_arr = []
             for doc in docs:
                 # sanitize string: replace NUL with spaces
