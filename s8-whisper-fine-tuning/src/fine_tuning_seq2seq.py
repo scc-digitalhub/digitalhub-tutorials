@@ -749,7 +749,6 @@ def train_and_log_model(
 
     model = project.log_model(
         name=model_name,
-        kind="huggingface",
         base_model=model_id,
         parameters=model_params,
         source=output_dir + "/",
@@ -819,8 +818,7 @@ def preprocess_dataset(
     main(args=args)
 
     project.log_artifact(
-        name=artifact_name,
-        kind="artifact",
+        name=artifact_name,        
         framework="whisper",
         source=output_dir + "/",
     )

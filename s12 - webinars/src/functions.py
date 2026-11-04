@@ -93,7 +93,7 @@ def train(project):
     trainer.save_model(save_dir)
     tokenizer.save_pretrained(save_dir)
 
-    project.log_huggingface(
+    project.log_model(
         name="test_llm_model",
         base_model=model_id,
         source=save_dir,

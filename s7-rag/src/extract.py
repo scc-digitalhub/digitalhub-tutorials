@@ -20,9 +20,7 @@ def extract_text(tika_url, artifact, project):
         res = os.path.join(base_dir, "output.html")
         with open(res, "w") as tf:
             tf.write(response.text)
-        project.log_artifact(
-            kind="artifact", name=artifact.name + "_output.html", source=res
-        )
+        project.log_artifact(name=artifact.name + "_output.html", source=res)
         return res
     else:
         print(f"Received error: {response.status_code}")

@@ -196,7 +196,6 @@ def train(
     # log model
     model_artifact = project.log_model(
         name=model_name,
-        kind="model",
         framework="pytorch",
         source=model_dir + "best.pt",
         parameters=parameters,
@@ -290,7 +289,6 @@ parameters = {
     # log model
     model_artifact = project.log_model(
         name=model_name,
-        kind="model",
         framework="pytorch",
         source=model_dir + "best.pt",
         parameters=parameters,
@@ -354,8 +352,8 @@ The next step is to prepare and explicitly register the input data necessary for
 It is possible to upload the data artifacts via UI or programmatically:
 
 ```python
-project.log_artifact("train-data", kind="artifact", source="training.tar.gz")
-project.log_artifact("validation-data", kind="artifact", source="validation.tar.gz")
+project.log_artifact(name="train-data", source="training.tar.gz")
+project.log_artifact(name="validation-data", source="validation.tar.gz")
 ```
 
 ### Register function
