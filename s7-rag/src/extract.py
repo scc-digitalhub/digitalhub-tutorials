@@ -11,7 +11,7 @@ def extract_text(tika_url, artifact, project):
         tika_url = "http://" + tika_url
     print(f"Sending {fp} to {tika_url}...")
     response = requests.put(
-        tika_url.rstrip("/") + "/tika/html",
+        tika_url.rstrip("/") + "/tika",
         headers={"Accept": "text/html"},
         data=open(fp, "rb").read(),
     )
